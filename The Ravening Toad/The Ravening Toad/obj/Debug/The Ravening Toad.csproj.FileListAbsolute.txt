@@ -1,0 +1,15 @@
+C:\Users\Kendall\Desktop\The-Ravening-Toad\The Ravening Toad\The Ravening Toad\bin\Debug\terminal8x8.png
+C:\Users\Kendall\Desktop\The-Ravening-Toad\The Ravening Toad\The Ravening Toad\bin\Debug\The Ravening Toad.exe.config
+C:\Users\Kendall\Desktop\The-Ravening-Toad\The Ravening Toad\The Ravening Toad\bin\Debug\The Ravening Toad.exe
+C:\Users\Kendall\Desktop\The-Ravening-Toad\The Ravening Toad\The Ravening Toad\bin\Debug\The Ravening Toad.pdb
+C:\Users\Kendall\Desktop\The-Ravening-Toad\The Ravening Toad\The Ravening Toad\bin\Debug\OpenTK.dll
+C:\Users\Kendall\Desktop\The-Ravening-Toad\The Ravening Toad\The Ravening Toad\bin\Debug\RLNET.dll
+C:\Users\Kendall\Desktop\The-Ravening-Toad\The Ravening Toad\The Ravening Toad\bin\Debug\RogueSharp.dll
+C:\Users\Kendall\Desktop\The-Ravening-Toad\The Ravening Toad\The Ravening Toad\bin\Debug\OpenTK.xml
+C:\Users\Kendall\Desktop\The-Ravening-Toad\The Ravening Toad\The Ravening Toad\bin\Debug\OpenTK.dll.config
+C:\Users\Kendall\Desktop\The-Ravening-Toad\The Ravening Toad\The Ravening Toad\obj\Debug\The Ravening Toad.csproj.AssemblyReference.cache
+C:\Users\Kendall\Desktop\The-Ravening-Toad\The Ravening Toad\The Ravening Toad\obj\Debug\The Ravening Toad.csproj.SuggestedBindingRedirects.cache
+C:\Users\Kendall\Desktop\The-Ravening-Toad\The Ravening Toad\The Ravening Toad\obj\Debug\The Ravening Toad.csproj.CoreCompileInputs.cache
+C:\Users\Kendall\Desktop\The-Ravening-Toad\The Ravening Toad\The Ravening Toad\obj\Debug\The Ravening Toad.csproj.CopyComplete
+C:\Users\Kendall\Desktop\The-Ravening-Toad\The Ravening Toad\The Ravening Toad\obj\Debug\The Ravening Toad.exe
+C:\Users\Kendall\Desktop\The-Ravening-Toad\The Ravening Toad\The Ravening Toad\obj\Debug\The Ravening Toad.pdb
