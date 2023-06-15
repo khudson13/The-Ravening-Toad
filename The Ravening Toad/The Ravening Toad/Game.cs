@@ -5,27 +5,31 @@ namespace RaveningToad
 {
     public class Game
     {
-        // The screen height and width are in number of tiles
+        //*************************
+        // DEFINE PRIMARY WINDOWS *
+        // measured in 8x8 tiles  *
+        //*************************
+        // Main Screen
         private static readonly int _screenWidth = 100;
         private static readonly int _screenHeight = 70;
         private static RLRootConsole _rootConsole;
 
-        // The map console takes up most of the screen and is where the map will be drawn
+        // Map Window
         private static readonly int _mapWidth = 80;
         private static readonly int _mapHeight = 48;
         private static RLConsole _mapConsole;
 
-        // Below the map console is the message console which displays attack rolls and other information
+        // Message Window
         private static readonly int _messageWidth = 80;
         private static readonly int _messageHeight = 11;
         private static RLConsole _messageConsole;
 
-        // The stat console is to the right of the map and display player and monster stats
+        // Stats Window
         private static readonly int _statWidth = 20;
         private static readonly int _statHeight = 70;
         private static RLConsole _statConsole;
 
-        // Above the map is the inventory console which shows the players equipment, abilities, and items
+        // Inventory Window
         private static readonly int _inventoryWidth = 80;
         private static readonly int _inventoryHeight = 11;
         private static RLConsole _inventoryConsole;
@@ -35,9 +39,9 @@ namespace RaveningToad
             // Store font file in variable for easy changing later
             string fontFileName = "terminal8x8.png";
 
-            //******************************
-            //*** DEFINE CONSOLE WINDOWS ***
-            //******************************
+            //*****************************
+            // INITIALIZE CONSOLE WINDOWS *
+            //*****************************
             // Title for top of console
             string consoleTitle = "The Ravening Toad - Level 1";
             // RLNet creates root console with the font, 8x8 tiles
