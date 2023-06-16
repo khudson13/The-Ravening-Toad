@@ -25,6 +25,29 @@ namespace The_Ravening_Toad.Core
             }
         }
 
+        // Returns true when able to place the Actor on the cell or false otherwise
+        public bool SetActorPosition(Actor actor, int x, int y)
+        {
+            // Only allow actor placement if the cell is walkable
+            if (GetCell(x, y).IsWalkable)
+            {
+                // The cell the actor was previously on is now walkable
+                SetIsWalkable(actor.X, actor.Y, true);
+                // Update the actor's position
+                actor.X = x;
+                actor.Y = y;
+                // The new cell the actor is on is now not walkable
+                SetIsWalkable(actor.X, actor.Y, false);
+                // If Player, reposition field-of-view
+                if (actor is Player)
+                {
+                    UpdatePlayerFieldOfView();
+                }
+                return true;
+            }
+            return false;
+        }
+
         private void SetConsoleSymbolForCell(RLConsole console, Cell cell)
         {
             // Don't draw unexplored cells
@@ -60,6 +83,13 @@ namespace The_Ravening_Toad.Core
                     console.Set(cell.X, cell.Y, Colors.Wall, Colors.WallBackground, '#');
                 }
             }
+        }
+
+        // A helper method for setting the IsWalkable property on a Cell
+        public void SetIsWalkable(int x, int y, bool isWalkable)
+        {
+            ICell cell = GetCell(x, y);
+            SetCellProperties(cell.X, cell.Y, cell.IsTransparent, isWalkable, cell.IsExplored);
         }
 
         // When Player moves, update field-of-view
