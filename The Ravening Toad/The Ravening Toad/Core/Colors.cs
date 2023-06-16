@@ -24,5 +24,7 @@ namespace The_Ravening_Toad.Core
         public static RLColor WallFov = Palette.SecondaryLighter;
 
         public static RLColor TextHeading = Palette.Light;
+
+        public static RLColor Player = Palette.Light;
     }
 }

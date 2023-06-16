@@ -35,9 +35,10 @@ namespace RaveningToad
         private static readonly int _inventoryHeight = 11;
         private static RLConsole _inventoryConsole;
 
-        //***********************
-        // INSTANTIATE BASIC MAP *
-        //***********************
+        //************************
+        // DEFINE BASIC ELEMENTS *
+        //************************
+        public static Player Player { get; private set; }
         public static ToadMap ToadMap1 { get; private set; }
 
         //*************
@@ -68,9 +69,13 @@ namespace RaveningToad
             // Set up a handler for RLNET's Render event
             _rootConsole.Render += OnRootConsoleRender;
 
+            // Create Player
+            Player = new Player();
+
             // Create map
             MapGenerator mapGenerator = new MapGenerator(_mapWidth, _mapHeight);
             ToadMap1 = mapGenerator.CreateMap();
+            ToadMap1.UpdatePlayerFieldOfView();
 
             // Begin RLNET's game loop
             _rootConsole.Run();
@@ -81,7 +86,7 @@ namespace RaveningToad
         {
             // Set background color and text for each console 
             _mapConsole.SetBackColor(0, 0, _mapWidth, _mapHeight, Colors.FloorBackground);
-            _mapConsole.Print(1, 1, "Map", Colors.TextHeading);
+            //_mapConsole.Print(1, 1, "Map", Colors.TextHeading);
 
             _messageConsole.SetBackColor(0, 0, _messageWidth, _messageHeight, Palette.DeepWater);
             _messageConsole.Print(1, 1, "Messages", Colors.TextHeading);
@@ -111,6 +116,9 @@ namespace RaveningToad
 
             // and draw the map
             ToadMap1.Draw(_mapConsole);
+
+            // and draw the player
+            Player.Draw(_mapConsole, ToadMap1);
         }
     }
 }
