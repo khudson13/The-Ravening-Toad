@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using RLNET;
 
+// hex values for available colors using RLNET
+
 namespace The_Ravening_Toad.Core
 {
     public class Palette

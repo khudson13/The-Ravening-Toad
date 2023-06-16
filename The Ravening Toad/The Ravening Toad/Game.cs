@@ -1,5 +1,6 @@
 ﻿using RLNET;
 using The_Ravening_Toad.Core;
+using The_Ravening_Toad.Systems;
 
 namespace RaveningToad
 {
@@ -34,6 +35,14 @@ namespace RaveningToad
         private static readonly int _inventoryHeight = 11;
         private static RLConsole _inventoryConsole;
 
+        //***********************
+        // INSTANTIATE BASIC MAP *
+        //***********************
+        public static ToadMap ToadMap1 { get; private set; }
+
+        //*************
+        // BEGIN MAIN *
+        //*************
         public static void Main()
         {
             // Store font file in variable for easy changing later
@@ -41,13 +50,14 @@ namespace RaveningToad
 
             //*****************************
             // INITIALIZE CONSOLE WINDOWS *
+            // using RLNet                *
             //*****************************
             // Title for top of console
             string consoleTitle = "The Ravening Toad - Level 1";
             // RLNet creates root console with the font, 8x8 tiles
             _rootConsole = new RLRootConsole(fontFileName, _screenWidth, _screenHeight,
               8, 8, 1f, consoleTitle);
-            // Initialize sub consoles that we will Blit to the root console
+            // Initialize sub consoles and Blit to root console
             _mapConsole = new RLConsole(_mapWidth, _mapHeight);
             _messageConsole = new RLConsole(_messageWidth, _messageHeight);
             _statConsole = new RLConsole(_statWidth, _statHeight);
@@ -58,6 +68,10 @@ namespace RaveningToad
             // Set up a handler for RLNET's Render event
             _rootConsole.Render += OnRootConsoleRender;
 
+            // Create map
+            MapGenerator mapGenerator = new MapGenerator(_mapWidth, _mapHeight);
+            ToadMap1 = mapGenerator.CreateMap();
+
             // Begin RLNET's game loop
             _rootConsole.Run();
         }
@@ -66,7 +80,6 @@ namespace RaveningToad
         private static void OnRootConsoleUpdate(object sender, UpdateEventArgs e)
         {
             // Set background color and text for each console 
-            // so that we can verify they are in the correct positions
             _mapConsole.SetBackColor(0, 0, _mapWidth, _mapHeight, Colors.FloorBackground);
             _mapConsole.Print(1, 1, "Map", Colors.TextHeading);
 
@@ -95,6 +108,9 @@ namespace RaveningToad
 
             // Tell RLNET to draw the console
             _rootConsole.Draw();
+
+            // and draw the map
+            ToadMap1.Draw(_mapConsole);
         }
     }
 }

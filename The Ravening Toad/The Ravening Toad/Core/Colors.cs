@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using RLNET;
 
+// color assignments
+
 namespace The_Ravening_Toad.Core
 {
     public class Colors
