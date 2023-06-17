@@ -1,4 +1,6 @@
 ﻿using RLNET;
+using RogueSharp.Random;
+using System;
 using The_Ravening_Toad.Core;
 using The_Ravening_Toad.Systems;
 
@@ -44,6 +46,9 @@ namespace RaveningToad
         private static bool _renderRequired = true;
 
         public static CommandSystem CommandSystem { get; private set; }
+        
+        // Singleton of IRandom used throughout the game when generating random numbers
+        public static IRandom Random { get; private set; }
 
         //*************
         // BEGIN MAIN *
@@ -53,12 +58,16 @@ namespace RaveningToad
             // Store font file in variable for easy changing later
             string fontFileName = "terminal8x8.png";
 
+            // Generate seed for random number generator using time
+            int seed = (int)DateTime.UtcNow.Ticks;
+            Random = new DotNetRandom(seed);
+
             //*****************************
             // INITIALIZE CONSOLE WINDOWS *
             // using RLNet                *
             //*****************************
             // Title for top of console
-            string consoleTitle = "The Ravening Toad - Level 1";
+            string consoleTitle = $"The Ravening Toad - Level 1 - Seed {seed}";
             // RLNet creates root console with the font, 8x8 tiles
             _rootConsole = new RLRootConsole(fontFileName, _screenWidth, _screenHeight,
               8, 8, 1f, consoleTitle);
@@ -97,7 +106,7 @@ namespace RaveningToad
             Player = new Player();
 
             // Create map
-            MapGenerator mapGenerator = new MapGenerator(_mapWidth, _mapHeight);
+            MapGenerator mapGenerator = new MapGenerator(_mapWidth, _mapHeight, 20, 13, 7);
             ToadMap1 = mapGenerator.CreateMap();
             ToadMap1.UpdatePlayerFieldOfView();
 

@@ -14,6 +14,15 @@ namespace The_Ravening_Toad.Core
     // ToadMap extends the RogueSharp Map class
     public class ToadMap : Map
     {
+        // let the set of rooms be a list of rectangles
+        public List<Rectangle> Rooms;
+
+        public ToadMap()
+        {
+            // Initialize the list of rooms when we create a new Map
+            Rooms = new List<Rectangle>();
+        }
+
         // Draw called on map update
         // Renders all symbols/colors for each cell on map sub console
         public void Draw(RLConsole mapConsole)
