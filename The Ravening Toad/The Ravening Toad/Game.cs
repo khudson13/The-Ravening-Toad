@@ -40,7 +40,7 @@ namespace RaveningToad
         //************************
         // DEFINE BASIC ELEMENTS *
         //************************
-        public static Player Player { get; private set; }
+        public static Player Player { get; set; }
         public static ToadMap ToadMap1 { get; private set; }
         
         private static bool _renderRequired = true;
@@ -102,8 +102,6 @@ namespace RaveningToad
             //******************************
             // INSTANTIATE PRIMARY OBJECTS *
             //******************************
-            // Create Player
-            Player = new Player();
 
             // Create map
             MapGenerator mapGenerator = new MapGenerator(_mapWidth, _mapHeight, 20, 13, 7);

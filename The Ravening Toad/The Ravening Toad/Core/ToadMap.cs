@@ -23,6 +23,14 @@ namespace The_Ravening_Toad.Core
             Rooms = new List<Rectangle>();
         }
 
+        // Called by MapGenerator, adds player to first room generated
+        public void AddPlayer(Player player)
+        {
+            Game.Player = player;
+            SetIsWalkable(player.X, player.Y, false);
+            UpdatePlayerFieldOfView();
+        }
+
         // Draw called on map update
         // Renders all symbols/colors for each cell on map sub console
         public void Draw(RLConsole mapConsole)

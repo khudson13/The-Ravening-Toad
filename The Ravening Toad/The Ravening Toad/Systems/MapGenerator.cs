@@ -73,6 +73,9 @@ namespace The_Ravening_Toad.Systems
                 CreateRoom(room);
             }
 
+            // put the player in the center of the first room
+            PlacePlayer();
+
             return _map;
         }
 
@@ -87,6 +90,21 @@ namespace The_Ravening_Toad.Systems
                     _map.SetCellProperties(x, y, true, true, true);
                 }
             }
+        }
+
+        // Find the center of the first room and place Player
+        private void PlacePlayer()
+        {
+            Player player = Game.Player;
+            if (player == null)
+            {
+                player = new Player();
+            }
+
+            player.X = _map.Rooms[0].Center.X;
+            player.Y = _map.Rooms[0].Center.Y;
+
+            _map.AddPlayer(player);
         }
     }
 }
