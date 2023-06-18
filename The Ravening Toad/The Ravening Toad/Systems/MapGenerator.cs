@@ -73,6 +73,28 @@ namespace The_Ravening_Toad.Systems
                 CreateRoom(room);
             }
 
+            // Iterate through rooms, skip first room (rooms link to previous rooms)
+            for (int r = 1; r < _map.Rooms.Count; r++)
+            {
+                // Find the center of this room and the previous room
+                int previousRoomCenterX = _map.Rooms[r - 1].Center.X;
+                int previousRoomCenterY = _map.Rooms[r - 1].Center.Y;
+                int currentRoomCenterX = _map.Rooms[r].Center.X;
+                int currentRoomCenterY = _map.Rooms[r].Center.Y;
+
+                // Halls are 'L' shaped, randomly select one of two possible 'L's
+                if (Game.Random.Next(1, 2) == 1)
+                {
+                    CreateHorizontalTunnel(previousRoomCenterX, currentRoomCenterX, previousRoomCenterY);
+                    CreateVerticalTunnel(previousRoomCenterY, currentRoomCenterY, currentRoomCenterX);
+                }
+                else
+                {
+                    CreateVerticalTunnel(previousRoomCenterY, currentRoomCenterY, previousRoomCenterX);
+                    CreateHorizontalTunnel(previousRoomCenterX, currentRoomCenterX, currentRoomCenterY);
+                }
+            }
+
             // put the player in the center of the first room
             PlacePlayer();
 
@@ -83,12 +105,30 @@ namespace The_Ravening_Toad.Systems
         // set the cell properties for that area to true
         private void CreateRoom(Rectangle room)
         {
-            for (int x = room.Left + 1; x < room.Right; x++)
+            for (int x = room.Left + 1; x < room.Right; ++x)
             {
-                for (int y = room.Top + 1; y < room.Bottom; y++)
+                for (int y = room.Top + 1; y < room.Bottom; ++y)
                 {
-                    _map.SetCellProperties(x, y, true, true, true);
+                    _map.SetCellProperties(x, y, true, true, false);
                 }
+            }
+        }
+
+        // Create tunnel parallel to the x-axis
+        private void CreateHorizontalTunnel(int xStart, int xEnd, int yPosition)
+        {
+            for (int x = Math.Min(xStart, xEnd); x <= Math.Max(xStart, xEnd); ++x)
+            {
+                _map.SetCellProperties(x, yPosition, true, true);
+            }
+        }
+
+        // Create tunnel parallel to the y-axis
+        private void CreateVerticalTunnel(int yStart, int yEnd, int xPosition)
+        {
+            for (int y = Math.Min(yStart, yEnd); y <= Math.Max(yStart, yEnd); ++y)
+            {
+                _map.SetCellProperties(xPosition, y, true, true);
             }
         }
 
