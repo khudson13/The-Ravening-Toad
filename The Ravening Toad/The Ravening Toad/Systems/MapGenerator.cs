@@ -45,7 +45,7 @@ namespace The_Ravening_Toad.Systems
 
             // Try to place as many rooms as the specified maxRooms
             // Note: Only using decrementing loop because of WordPress formatting
-            for (int r = _maxRooms; r > 0; r--)
+            for (int i = 0; i < _maxRooms; ++i)
             {
                 // Determine the size and position of the room randomly
                 int roomWidth = Game.Random.Next(_roomMinSize, _roomMaxSize);
