@@ -42,13 +42,16 @@ namespace RaveningToad
         //************************
         public static Player Player { get; set; }
         public static ToadMap ToadMap1 { get; private set; }
-        
-        private static bool _renderRequired = true;
 
         public static CommandSystem CommandSystem { get; private set; }
-        
+
+        public static MessageLog MessageLog { get; private set; }
+
         // Singleton of IRandom used throughout the game when generating random numbers
         public static IRandom Random { get; private set; }
+
+        private static bool _renderRequired = true;
+
 
         //*************
         // BEGIN MAIN *
@@ -78,12 +81,17 @@ namespace RaveningToad
             _inventoryConsole = new RLConsole(_inventoryWidth, _inventoryHeight);
 
             //* Set background color and text for each console *
-           
+
             //_mapConsole.SetBackColor(0, 0, _mapWidth, _mapHeight, Colors.FloorBackground);
             //_mapConsole.Print(1, 1, "Map", Colors.TextHeading);
 
-            _messageConsole.SetBackColor(0, 0, _messageWidth, _messageHeight, Palette.DeepWater);
-            _messageConsole.Print(1, 1, "Messages", Colors.TextHeading);
+            //_messageConsole.SetBackColor(0, 0, _messageWidth, _messageHeight, Palette.DeepWater);
+            //_messageConsole.Print(1, 1, "Messages", Colors.TextHeading);
+
+            // Create a new MessageLog and print the random seed used to generate the level
+            MessageLog = new MessageLog();
+            MessageLog.Add("The Toad is on the hunt!");
+            MessageLog.Add($"Map created with seed '{seed}'");
 
             _statConsole.SetBackColor(0, 0, _statWidth, _statHeight, Palette.OldStone);
             _statConsole.Print(1, 1, "Stats", Colors.TextHeading);
@@ -169,6 +177,9 @@ namespace RaveningToad
 
                 // and draw the player
                 Player.Draw(_mapConsole, ToadMap1);
+
+                // and draw the console
+                MessageLog.Draw(_messageConsole);
 
                 // Blit the sub consoles to the root console in the correct locations
                 RLConsole.Blit(_mapConsole, 0, 0, _mapWidth, _mapHeight,
