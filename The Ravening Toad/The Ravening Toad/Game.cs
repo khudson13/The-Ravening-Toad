@@ -93,8 +93,8 @@ namespace RaveningToad
             MessageLog.Add("The Toad is on the hunt!");
             MessageLog.Add($"Map created with seed '{seed}'");
 
-            _statConsole.SetBackColor(0, 0, _statWidth, _statHeight, Palette.OldStone);
-            _statConsole.Print(1, 1, "Stats", Colors.TextHeading);
+            //_statConsole.SetBackColor(0, 0, _statWidth, _statHeight, Palette.OldStone);
+            //_statConsole.Print(1, 1, "Stats", Colors.TextHeading);
 
             _inventoryConsole.SetBackColor(0, 0, _inventoryWidth, _inventoryHeight, Palette.Wood);
             _inventoryConsole.Print(1, 1, "Inventory", Colors.TextHeading);
@@ -180,6 +180,9 @@ namespace RaveningToad
 
                 // and draw the console
                 MessageLog.Draw(_messageConsole);
+
+                // and draw stats
+                Player.DrawStats(_statConsole);
 
                 // Blit the sub consoles to the root console in the correct locations
                 RLConsole.Blit(_mapConsole, 0, 0, _mapWidth, _mapHeight,
