@@ -67,7 +67,7 @@ namespace RaveningToad
             // using RLNet                *
             //*****************************
             // Title for top of console
-            string consoleTitle = $"The Ravening Toad - Level 1 - Seed {seed}";
+            string consoleTitle = $"The Ravening Toad - Seed {seed}";
             // RLNet creates root console with the font, 8x8 tiles
             _rootConsole = new RLRootConsole(fontFileName, _screenWidth, _screenHeight,
               8, 8, 1f, consoleTitle);
