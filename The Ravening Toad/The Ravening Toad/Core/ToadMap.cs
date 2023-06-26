@@ -14,13 +14,24 @@ namespace The_Ravening_Toad.Core
     // ToadMap extends the RogueSharp Map class
     public class ToadMap : Map
     {
-        // let the set of rooms be a list of rectangles
+        // list of rooms (rectangles)
         public List<Rectangle> Rooms;
+
+        // list of monsters
+        private readonly List<Monster> _monsters;
 
         public ToadMap()
         {
-            // Initialize the list of rooms when we create a new Map
+            // Initialize all lists for new dungeon
             Rooms = new List<Rectangle>();
+            _monsters = new List<Monster>();
+        }
+
+        public void AddMonster(Monster monster)
+        {
+            _monsters.Add(monster);
+            // set monster location not walkable
+            SetIsWalkable(monster.X, monster.Y, false);
         }
 
         // Called by MapGenerator, adds player to first room generated
@@ -29,6 +40,22 @@ namespace The_Ravening_Toad.Core
             Game.Player = player;
             SetIsWalkable(player.X, player.Y, false);
             UpdatePlayerFieldOfView();
+        }
+
+        // Iterate through each Cell in the room and return true if any are walkable
+        public bool DoesRoomHaveWalkableSpace(Rectangle room)
+        {
+            for (int x = 1; x <= room.Width - 2; x++)
+            {
+                for (int y = 1; y <= room.Height - 2; y++)
+                {
+                    if (IsWalkable(x + room.X, y + room.Y))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
         // Draw called on map update
@@ -40,6 +67,31 @@ namespace The_Ravening_Toad.Core
             {
                 SetConsoleSymbolForCell(mapConsole, cell);
             }
+            // draw monsters
+            foreach (Monster monster in _monsters)
+            {
+                monster.Draw(mapConsole, this);
+            }
+        }
+
+        // Look for a random location in the room that is walkable.
+        public Point GetRandomWalkableLocationInRoom(Rectangle room)
+        {
+            if (DoesRoomHaveWalkableSpace(room))
+            {
+                for (int i = 0; i < 100; i++)
+                {
+                    int x = Game.Random.Next(1, room.Width - 2) + room.X;
+                    int y = Game.Random.Next(1, room.Height - 2) + room.Y;
+                    if (IsWalkable(x, y))
+                    {
+                        return new Point(x, y);
+                    }
+                }
+            }
+
+            // If no walkable location return null
+            return new Point(-1, -1);
         }
 
         // Returns true when able to place the Actor on the cell or false otherwise

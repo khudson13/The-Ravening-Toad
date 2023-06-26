@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using RaveningToad;
 using RogueSharp;
+using RogueSharp.DiceNotation;
 using The_Ravening_Toad.Core;
+using The_Ravening_Toad.Monsters;
 
 /*
  * This is where we make the map, make the map, make the map
@@ -97,6 +99,9 @@ namespace The_Ravening_Toad.Systems
             // put the player in the center of the first room
             PlacePlayer();
 
+            // sprinkle in monsters
+            PlaceMonsters();
+
             return _map;
         }
 
@@ -131,6 +136,33 @@ namespace The_Ravening_Toad.Systems
             }
         }
 
+
+        private void PlaceMonsters()
+        {
+            foreach (var room in _map.Rooms)
+            {
+                // Each room has a 60% chance of having monsters
+                if (Dice.Roll("1D10") < 7)
+                {
+                    // Generate between 1 and 4 monsters
+                    var numberOfMonsters = Dice.Roll("1D4");
+                    for (int i = 0; i < numberOfMonsters; i++)
+                    {
+                        // Find a random walkable location in the room to place the monster
+                        Point randomRoomLocation = _map.GetRandomWalkableLocationInRoom(room);
+                        // Skip monster if null
+                        if (randomRoomLocation.X != -1 && randomRoomLocation.Y != -1)
+                        {
+                            // Temporarily hard code this monster to be created at level 1
+                            var monster = FilthRat.Create();
+                            monster.X = randomRoomLocation.X;
+                            monster.Y = randomRoomLocation.Y;
+                            _map.AddMonster(monster);
+                        }
+                    }
+                }
+            }
+        }
         // Find the center of the first room and place Player
         private void PlacePlayer()
         {

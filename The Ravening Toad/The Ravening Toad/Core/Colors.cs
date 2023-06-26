@@ -29,5 +29,7 @@ namespace The_Ravening_Toad.Core
 
         public static RLColor Text = Palette.Light;
         public static RLColor Gold = Palette.Sun;
+
+        public static RLColor FilthRatColor = Palette.BrightWood;
     }
 }
