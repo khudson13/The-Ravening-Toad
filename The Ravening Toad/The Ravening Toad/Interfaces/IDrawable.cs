@@ -6,9 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-/*
- * Drawale things have a color, character and x/y coords
- */
+ // Drawable things have a color, character, and x/y coords
+ 
 
 namespace The_Ravening_Toad.Interfaces
 {

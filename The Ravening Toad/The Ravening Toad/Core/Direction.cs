@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace The_Ravening_Toad.Core
 {
     // Direction values correspond to numpad numbers
-    // note: diagonals don't actually work-
+    // note: diagonals don't actually work yet
     public enum Direction
     {
         None = 0,
