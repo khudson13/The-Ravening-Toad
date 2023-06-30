@@ -41,7 +41,7 @@ namespace RaveningToad
         // DEFINE BASIC ELEMENTS *
         //************************
         public static Player Player { get; set; }
-        public static ToadMap ToadMap1 { get; private set; }
+        public static ToadMap ToadMap { get; private set; }
 
         public static CommandSystem CommandSystem { get; private set; }
 
@@ -113,8 +113,8 @@ namespace RaveningToad
 
             // Create map
             MapGenerator mapGenerator = new MapGenerator(_mapWidth, _mapHeight, 20, 13, 7);
-            ToadMap1 = mapGenerator.CreateMap();
-            ToadMap1.UpdatePlayerFieldOfView();
+            ToadMap = mapGenerator.CreateMap();
+            ToadMap.UpdatePlayerFieldOfView();
 
             // Create Command System
             CommandSystem = new CommandSystem();
@@ -178,10 +178,10 @@ namespace RaveningToad
                 _messageConsole.Clear();
 
                 // Draw the map
-                ToadMap1.Draw(_mapConsole, _statConsole);
+                ToadMap.Draw(_mapConsole, _statConsole);
 
                 // and draw the player
-                Player.Draw(_mapConsole, ToadMap1);
+                Player.Draw(_mapConsole, ToadMap);
 
                 // and draw the console
                 MessageLog.Draw(_messageConsole);

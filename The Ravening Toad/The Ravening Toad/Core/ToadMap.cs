@@ -86,6 +86,11 @@ namespace The_Ravening_Toad.Core
             }
         }
 
+        public Monster GetMonsterAt(int x, int y)
+        {
+            return _monsters.FirstOrDefault(m => m.X == x && m.Y == y);
+        }
+
         // Look for a random location in the room that is walkable.
         public Point GetRandomWalkableLocationInRoom(Rectangle room)
         {
@@ -104,6 +109,12 @@ namespace The_Ravening_Toad.Core
 
             // If no walkable location return null
             return new Point(-1, -1);
+        }
+
+        public void RemoveMonster(Monster monster)
+        {
+            _monsters.Remove(monster);
+            SetIsWalkable(monster.X, monster.Y, true);
         }
 
         // Returns true when able to place the Actor on the cell or false otherwise
