@@ -35,7 +35,7 @@ namespace The_Ravening_Toad.Systems
         // Draw each line of the log to the console
         public void Draw(RLConsole console)
         {
-            console.Clear();
+            //console.Clear();
             string[] lines = _lines.ToArray();
             for (int i = 0; i < lines.Length; i++)
             {

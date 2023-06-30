@@ -172,8 +172,13 @@ namespace RaveningToad
             // Only redraw as needed
             if (_renderRequired)
             {
+                // blank it before drawing
+                _mapConsole.Clear();
+                _statConsole.Clear();
+                _messageConsole.Clear();
+
                 // Draw the map
-                ToadMap1.Draw(_mapConsole);
+                ToadMap1.Draw(_mapConsole, _statConsole);
 
                 // and draw the player
                 Player.Draw(_mapConsole, ToadMap1);
