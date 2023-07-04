@@ -31,5 +31,10 @@ namespace The_Ravening_Toad.Core
         public static RLColor Gold = Palette.Sun;
 
         public static RLColor FilthRatColor = Palette.BrightWood;
+
+        public static RLColor DoorBackground = Palette.ComplimentDarkest;
+        public static RLColor Door = Palette.ComplimentLighter;
+        public static RLColor DoorBackgroundFov = Palette.ComplimentDarker;
+        public static RLColor DoorFov = Palette.ComplimentLightest;
     }
 }

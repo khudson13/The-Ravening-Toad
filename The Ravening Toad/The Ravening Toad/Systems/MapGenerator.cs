@@ -39,6 +39,37 @@ namespace The_Ravening_Toad.Systems
             _map = new ToadMap();
         }
 
+        private void CreateDoors(Rectangle room)
+        {
+            // The the boundries of the room
+            int xMin = room.Left;
+            int xMax = room.Right;
+            int yMin = room.Top;
+            int yMax = room.Bottom;
+
+            // Put the rooms border cells into a list
+            List<ICell> borderCells = _map.GetCellsAlongLine(xMin, yMin, xMax, yMin).ToList();
+            borderCells.AddRange(_map.GetCellsAlongLine(xMin, yMin, xMin, yMax));
+            borderCells.AddRange(_map.GetCellsAlongLine(xMin, yMax, xMax, yMax));
+            borderCells.AddRange(_map.GetCellsAlongLine(xMax, yMin, xMax, yMax));
+
+            // Go through each of the rooms border cells and look for locations to place doors.
+            foreach (ICell cell in borderCells)
+            {
+                if (IsPotentialDoor(cell))
+                {
+                    // A door must block field-of-view when it is closed.
+                    _map.SetCellProperties(cell.X, cell.Y, false, true);
+                    _map.Doors.Add(new Door
+                    {
+                        X = cell.X,
+                        Y = cell.Y,
+                        IsOpen = false
+                    });
+                }
+            }
+        }
+
         // Generate a new map that places rooms randomly
         public ToadMap CreateMap()
         {
@@ -67,7 +98,7 @@ namespace The_Ravening_Toad.Systems
                     _map.Rooms.Add(newRoom);
                 }
             }
-            // Iterate through each room that we wanted placed 
+            // Iterate through each room in list
             // call CreateRoom to make it
             foreach (Rectangle room in _map.Rooms)
             {
@@ -94,6 +125,12 @@ namespace The_Ravening_Toad.Systems
                     CreateVerticalTunnel(previousRoomCenterY, currentRoomCenterY, previousRoomCenterX);
                     CreateHorizontalTunnel(previousRoomCenterX, currentRoomCenterX, currentRoomCenterY);
                 }
+            }
+
+            // Add doors
+            foreach (Rectangle room in _map.Rooms)
+            {
+                CreateDoors(room);
             }
 
             // put the player in the center of the first room
@@ -136,6 +173,44 @@ namespace The_Ravening_Toad.Systems
             }
         }
 
+        // Check if cell is good door candidate
+        private bool IsPotentialDoor(ICell cell)
+        {
+            // If it isn't walkable, it's a wall
+            if (!cell.IsWalkable)
+            {
+                return false;
+            }
+
+            // Store references to all of the neighboring cells 
+            ICell right = _map.GetCell(cell.X + 1, cell.Y);
+            ICell left = _map.GetCell(cell.X - 1, cell.Y);
+            ICell top = _map.GetCell(cell.X, cell.Y - 1);
+            ICell bottom = _map.GetCell(cell.X, cell.Y + 1);
+
+            // Make sure there is not already a door
+            if (_map.GetDoor(cell.X, cell.Y) != null ||
+                _map.GetDoor(right.X, right.Y) != null ||
+                _map.GetDoor(left.X, left.Y) != null ||
+                _map.GetDoor(top.X, top.Y) != null ||
+                _map.GetDoor(bottom.X, bottom.Y) != null)
+            {
+                return false;
+            }
+
+            // This is a good place for a door on the left or right side of the room
+            if (right.IsWalkable && left.IsWalkable && !top.IsWalkable && !bottom.IsWalkable)
+            {
+                return true;
+            }
+
+            // This is a good place for a door on the top or bottom of the room
+            if (!right.IsWalkable && !left.IsWalkable && top.IsWalkable && bottom.IsWalkable)
+            {
+                return true;
+            }
+            return false;
+        }
 
         private void PlaceMonsters()
         {

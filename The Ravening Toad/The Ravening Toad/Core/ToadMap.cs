@@ -14,16 +14,20 @@ namespace The_Ravening_Toad.Core
     // ToadMap extends the RogueSharp Map class
     public class ToadMap : Map
     {
-        // list of rooms (rectangles)
+        // List of rooms (rectangles)
         public List<Rectangle> Rooms;
 
-        // list of monsters
+        // List of doors
+        public List<Door> Doors { get; set; }
+
+        // List of monsters
         private readonly List<Monster> _monsters;
 
         public ToadMap()
         {
             // Initialize all lists for new dungeon
             Rooms = new List<Rectangle>();
+            Doors = new List<Door>();
             _monsters = new List<Monster>();
         }
 
@@ -64,10 +68,14 @@ namespace The_Ravening_Toad.Core
         // Renders all symbols/colors for each cell on map sub console
         public void Draw(RLConsole mapConsole, RLConsole statConsole)
         {
-            //mapConsole.Clear();
             foreach (Cell cell in GetAllCells())
             {
                 SetConsoleSymbolForCell(mapConsole, cell);
+            }
+
+            foreach (Door door in Doors)
+            {
+                door.Draw(mapConsole, this);
             }
 
             // draw monsters
@@ -78,14 +86,20 @@ namespace The_Ravening_Toad.Core
             foreach (Monster monster in _monsters)
             {
                 monster.Draw(mapConsole, this);
-                // When the monster is in the field-of-view also draw their stats
+                // When monster in FoV also draw their stats
                 if (IsInFov(monster.X, monster.Y))
                 {
-                    // Pass in the index to DrawStats and increment it afterwards
+                    // Pass index to DrawStats and increment it afterwards
                     monster.DrawStats(statConsole, i);
                     i++;
                 }
             }
+        }
+
+        // Return door or null if not found.
+        public Door GetDoor(int x, int y)
+        {
+            return Doors.SingleOrDefault(d => d.X == x && d.Y == y);
         }
 
         public Monster GetMonsterAt(int x, int y)
@@ -113,6 +127,21 @@ namespace The_Ravening_Toad.Core
             return new Point(-1, -1);
         }
 
+        // Actor opens door
+        private void OpenDoor(Actor actor, int x, int y)
+        {
+            Door door = GetDoor(x, y);
+            if (door != null && !door.IsOpen)
+            {
+                door.IsOpen = true;
+                var cell = GetCell(x, y);
+                // Once opened mark as transparent and don't block FoV
+                SetCellProperties(x, y, true, cell.IsWalkable, cell.IsExplored);
+
+                Game.MessageLog.Add($"{actor.Name} opened a door");
+            }
+        }
+
         public void RemoveMonster(Monster monster)
         {
             _monsters.Remove(monster);
@@ -133,6 +162,8 @@ namespace The_Ravening_Toad.Core
                 actor.Y = y;
                 // The new cell the actor is on is now not walkable
                 SetIsWalkable(actor.X, actor.Y, false);
+                // Try to open a door if one exists here
+                OpenDoor(actor, x, y);
                 // If Player, reposition field-of-view
                 if (actor is Player)
                 {
