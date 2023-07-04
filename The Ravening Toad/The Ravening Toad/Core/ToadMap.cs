@@ -32,6 +32,7 @@ namespace The_Ravening_Toad.Core
             _monsters.Add(monster);
             // set monster location not walkable
             SetIsWalkable(monster.X, monster.Y, false);
+            Game.SchedulingSystem.Add(monster);
         }
 
         // Called by MapGenerator, adds player to first room generated
@@ -40,6 +41,7 @@ namespace The_Ravening_Toad.Core
             Game.Player = player;
             SetIsWalkable(player.X, player.Y, false);
             UpdatePlayerFieldOfView();
+            Game.SchedulingSystem.Add(player);
         }
 
         // Iterate through each Cell in the room and return true if any are walkable
@@ -115,6 +117,7 @@ namespace The_Ravening_Toad.Core
         {
             _monsters.Remove(monster);
             SetIsWalkable(monster.X, monster.Y, true);
+            Game.SchedulingSystem.Remove(monster);
         }
 
         // Returns true when able to place the Actor on the cell or false otherwise

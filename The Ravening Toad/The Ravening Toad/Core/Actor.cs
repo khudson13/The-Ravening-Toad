@@ -11,7 +11,7 @@ using The_Ravening_Toad.Interfaces;
 
 namespace The_Ravening_Toad.Core
 {
-    public class Actor : IActor, IDrawable
+    public class Actor : IActor, IDrawable, IScheduleable
     {
         // IActor
         // IActor
@@ -169,6 +169,15 @@ namespace The_Ravening_Toad.Core
             {
                 // When not in field-of-view just draw a normal floor
                 console.Set(X, Y, Colors.Floor, Colors.FloorBackground, '.');
+            }
+        }
+
+        // IScheduleable
+        public int Time
+        {
+            get
+            {
+                return Speed;
             }
         }
     }

@@ -4,11 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using The_Ravening_Toad.Behaviors;
+using The_Ravening_Toad.Systems;
 
 namespace The_Ravening_Toad.Core
 {
     public class Monster : Actor
     {
+
+        public int? TurnsAlerted { get; set; }
+
         public void DrawStats(RLConsole statConsole, int position)
         {
             // Y=13 is below the player stats.
@@ -28,6 +33,12 @@ namespace The_Ravening_Toad.Core
 
             // Print the monsters name above health bar
             statConsole.Print(2, yPosition, $": {Name}", Palette.Light);
+        }
+
+        public virtual void PerformAction(CommandSystem commandSystem)
+        {
+            var behavior = new StandardMoveAndAttack();
+            behavior.Act(this, commandSystem);
         }
     }
 }

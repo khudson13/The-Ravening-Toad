@@ -47,6 +47,8 @@ namespace RaveningToad
 
         public static MessageLog MessageLog { get; private set; }
 
+        public static SchedulingSystem SchedulingSystem { get; private set; }
+
         // Singleton of IRandom used throughout the game when generating random numbers
         public static IRandom Random { get; private set; }
 
@@ -111,6 +113,10 @@ namespace RaveningToad
             // INSTANTIATE PRIMARY OBJECTS *
             //******************************
 
+            // Create Scheduling System
+            SchedulingSystem = new SchedulingSystem();
+
+
             // Create map
             MapGenerator mapGenerator = new MapGenerator(_mapWidth, _mapHeight, 20, 13, 7);
             ToadMap = mapGenerator.CreateMap();
@@ -136,32 +142,41 @@ namespace RaveningToad
             bool didPlayerAct = false;
             RLKeyPress keyPress = _rootConsole.Keyboard.GetKeyPress();
 
-            if (keyPress != null)
+            if (CommandSystem.IsPlayerTurn)
             {
-                if (keyPress.Key == RLKey.Up || keyPress.Key == RLKey.Keypad8)
+                if (keyPress != null)
                 {
-                    didPlayerAct = CommandSystem.MovePlayer(Direction.Up);
+                    if (keyPress.Key == RLKey.Up)
+                    {
+                        didPlayerAct = CommandSystem.MovePlayer(Direction.Up);
+                    }
+                    else if (keyPress.Key == RLKey.Down)
+                    {
+                        didPlayerAct = CommandSystem.MovePlayer(Direction.Down);
+                    }
+                    else if (keyPress.Key == RLKey.Left)
+                    {
+                        didPlayerAct = CommandSystem.MovePlayer(Direction.Left);
+                    }
+                    else if (keyPress.Key == RLKey.Right)
+                    {
+                        didPlayerAct = CommandSystem.MovePlayer(Direction.Right);
+                    }
+                    else if (keyPress.Key == RLKey.Escape)
+                    {
+                        _rootConsole.Close();
+                    }
                 }
-                else if (keyPress.Key == RLKey.Down || keyPress.Key == RLKey.Keypad2)
+
+                if (didPlayerAct)
                 {
-                    didPlayerAct = CommandSystem.MovePlayer(Direction.Down);
-                }
-                else if (keyPress.Key == RLKey.Left || keyPress.Key == RLKey.Keypad4)
-                {
-                    didPlayerAct = CommandSystem.MovePlayer(Direction.Left);
-                }
-                else if (keyPress.Key == RLKey.Right || keyPress.Key == RLKey.Keypad6)
-                {
-                    didPlayerAct = CommandSystem.MovePlayer(Direction.Right);
-                }
-                else if (keyPress.Key == RLKey.Escape)
-                {
-                    _rootConsole.Close();
+                    _renderRequired = true;
+                    CommandSystem.EndPlayerTurn();
                 }
             }
-
-            if (didPlayerAct)
+            else
             {
+                CommandSystem.ActivateMonsters();
                 _renderRequired = true;
             }
         }

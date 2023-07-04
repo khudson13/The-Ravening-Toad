@@ -1,4 +1,5 @@
 ﻿using RaveningToad;
+using RogueSharp;
 using RogueSharp.DiceNotation;
 using System;
 using System.Collections.Generic;
@@ -7,11 +8,53 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using The_Ravening_Toad.Core;
+using The_Ravening_Toad.Interfaces;
 
 namespace The_Ravening_Toad.Systems
 {
     public class CommandSystem
     {
+
+        public void ActivateMonsters()
+        {
+            IScheduleable scheduleable = Game.SchedulingSystem.Get();
+            if (scheduleable is Player)
+            {
+                IsPlayerTurn = true;
+                Game.SchedulingSystem.Add(Game.Player);
+            }
+            else
+            {
+                Monster monster = scheduleable as Monster;
+
+                if (monster != null)
+                {
+                    monster.PerformAction(this);
+                    Game.SchedulingSystem.Add(monster);
+                }
+
+                ActivateMonsters();
+            }
+        }
+
+        public void EndPlayerTurn()
+        {
+            IsPlayerTurn = false;
+        }
+
+        public bool IsPlayerTurn { get; set; }
+
+        public void MoveMonster(Monster monster, ICell cell)
+        {
+            if (!Game.ToadMap.SetActorPosition(monster, cell.X, cell.Y))
+            {
+                if (Game.Player.X == cell.X && Game.Player.Y == cell.Y)
+                {
+                    Attack(monster, Game.Player);
+                }
+            }
+        }
+
         // Returns true if player moved
         // false if blocked
         public bool MovePlayer(Direction direction)
