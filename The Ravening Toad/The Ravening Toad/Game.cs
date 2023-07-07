@@ -37,6 +37,8 @@ namespace RaveningToad
         private static readonly int _inventoryHeight = 11;
         private static RLConsole _inventoryConsole;
 
+        private static int _mapLevel = 1;
+
         //************************
         // DEFINE BASIC ELEMENTS *
         //************************
@@ -93,7 +95,7 @@ namespace RaveningToad
             // Create a new MessageLog and print the random seed used to generate the level
             MessageLog = new MessageLog();
             MessageLog.Add("The Toad is on the hunt!");
-            MessageLog.Add($"Map created with seed '{seed}'");
+            MessageLog.Add($"Map - Level {_mapLevel} -  created with seed '{seed}'");
 
             //_statConsole.SetBackColor(0, 0, _statWidth, _statHeight, Palette.OldStone);
             //_statConsole.Print(1, 1, "Stats", Colors.TextHeading);
@@ -118,7 +120,7 @@ namespace RaveningToad
 
 
             // Create map
-            MapGenerator mapGenerator = new MapGenerator(_mapWidth, _mapHeight, 20, 13, 7);
+            MapGenerator mapGenerator = new MapGenerator(_mapWidth, _mapHeight, 20, 13, 7, _mapLevel);
             ToadMap = mapGenerator.CreateMap();
             ToadMap.UpdatePlayerFieldOfView();
 
@@ -161,6 +163,18 @@ namespace RaveningToad
                     else if (keyPress.Key == RLKey.Right)
                     {
                         didPlayerAct = CommandSystem.MovePlayer(Direction.Right);
+                    }
+                    else if (keyPress.Key == RLKey.Period)
+                    {
+                        if (ToadMap.CanMoveDownToNextLevel())
+                        {
+                            MapGenerator mapGenerator = new MapGenerator(_mapWidth, _mapHeight, 20, 13, 7, ++_mapLevel);
+                            ToadMap = mapGenerator.CreateMap();
+                            MessageLog = new MessageLog();
+                            CommandSystem = new CommandSystem();
+                            _rootConsole.Title = $"The Ravening Toad - Level {_mapLevel}";
+                            didPlayerAct = true;
+                        }
                     }
                     else if (keyPress.Key == RLKey.Escape)
                     {

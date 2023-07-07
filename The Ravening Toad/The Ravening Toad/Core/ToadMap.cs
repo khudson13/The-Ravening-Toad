@@ -20,11 +20,15 @@ namespace The_Ravening_Toad.Core
         // List of doors
         public List<Door> Doors { get; set; }
 
+        public Stairs StairsUp { get; set; }
+        public Stairs StairsDown { get; set; }
+
         // List of monsters
         private readonly List<Monster> _monsters;
 
         public ToadMap()
         {
+            Game.SchedulingSystem.Clear();
             // Initialize all lists for new dungeon
             Rooms = new List<Rectangle>();
             Doors = new List<Door>();
@@ -46,6 +50,12 @@ namespace The_Ravening_Toad.Core
             SetIsWalkable(player.X, player.Y, false);
             UpdatePlayerFieldOfView();
             Game.SchedulingSystem.Add(player);
+        }
+
+        public bool CanMoveDownToNextLevel()
+        {
+            Player player = Game.Player;
+            return StairsDown.X == player.X && StairsDown.Y == player.Y;
         }
 
         // Iterate through each Cell in the room and return true if any are walkable
@@ -77,6 +87,9 @@ namespace The_Ravening_Toad.Core
             {
                 door.Draw(mapConsole, this);
             }
+
+            StairsUp.Draw(mapConsole, this);
+            StairsDown.Draw(mapConsole, this);
 
             // draw monsters
             // Index is position in stat window

@@ -29,7 +29,7 @@ namespace The_Ravening_Toad.Systems
 
         // Constructor takes dimensions of map and features
         public MapGenerator(int width, int height,
-        int maxRooms, int roomMaxSize, int roomMinSize)
+        int maxRooms, int roomMaxSize, int roomMinSize, int mapLevel)
         {
             _width = width;
             _height = height;
@@ -133,6 +133,8 @@ namespace The_Ravening_Toad.Systems
                 CreateDoors(room);
             }
 
+            CreateStairs();
+
             // put the player in the center of the first room
             PlacePlayer();
 
@@ -171,6 +173,22 @@ namespace The_Ravening_Toad.Systems
             {
                 _map.SetCellProperties(xPosition, y, true, true);
             }
+        }
+
+        private void CreateStairs()
+        {
+            _map.StairsUp = new Stairs
+            {
+                X = _map.Rooms.First().Center.X + 1,
+                Y = _map.Rooms.First().Center.Y,
+                IsUp = true
+            };
+            _map.StairsDown = new Stairs
+            {
+                X = _map.Rooms.Last().Center.X,
+                Y = _map.Rooms.Last().Center.Y,
+                IsUp = false
+            };
         }
 
         // Check if cell is good door candidate
