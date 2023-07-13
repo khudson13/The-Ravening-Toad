@@ -51,6 +51,8 @@ namespace RaveningToad
 
         public static SchedulingSystem SchedulingSystem { get; private set; }
 
+        public static Save Save { get; private set; }
+
         // Singleton of IRandom used throughout the game when generating random numbers
         public static IRandom Random { get; private set; }
 
@@ -127,6 +129,9 @@ namespace RaveningToad
             // Create Command System
             CommandSystem = new CommandSystem();
 
+            // Create Save/Load Systems
+            Save = new Save();
+
             //**************
             // AND ACTION! *
             //**************
@@ -175,6 +180,10 @@ namespace RaveningToad
                             _rootConsole.Title = $"The Ravening Toad - Level {_mapLevel}";
                             didPlayerAct = true;
                         }
+                    }
+                    else if (keyPress.Key == RLKey.S)
+                    {
+                        Save.saveGame();
                     }
                     else if (keyPress.Key == RLKey.Escape)
                     {
