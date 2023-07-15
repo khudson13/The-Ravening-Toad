@@ -52,6 +52,7 @@ namespace RaveningToad
         public static SchedulingSystem SchedulingSystem { get; private set; }
 
         public static Save Save { get; private set; }
+        public static Load Load { get; private set; }
 
         // Singleton of IRandom used throughout the game when generating random numbers
         public static IRandom Random { get; private set; }
@@ -131,6 +132,7 @@ namespace RaveningToad
 
             // Create Save/Load Systems
             Save = new Save();
+            Load = new Load();
 
             //**************
             // AND ACTION! *
@@ -184,6 +186,10 @@ namespace RaveningToad
                     else if (keyPress.Key == RLKey.S)
                     {
                         Save.saveGame(Player);
+                    }
+                    else if (keyPress.Key == RLKey.L)
+                    {
+                        Load.loadGame(Player);
                     }
                     else if (keyPress.Key == RLKey.Escape)
                     {
