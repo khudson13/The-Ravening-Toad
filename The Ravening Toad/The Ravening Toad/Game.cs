@@ -183,7 +183,7 @@ namespace RaveningToad
                     }
                     else if (keyPress.Key == RLKey.S)
                     {
-                        Save.saveGame();
+                        Save.saveGame(Player);
                     }
                     else if (keyPress.Key == RLKey.Escape)
                     {
