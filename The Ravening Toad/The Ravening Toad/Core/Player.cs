@@ -1,6 +1,7 @@
 ﻿using RLNET;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,20 @@ namespace The_Ravening_Toad.Core
 {
     public class Player : Actor
     {
+        private bool _mainmenu = false;
         private bool _pause = false;
+
+        public bool mainmenu
+        {
+            get
+            {
+                return _mainmenu;
+            }
+            set
+            {
+                _mainmenu = value;
+            }
+        }
 
         public bool pause
         {

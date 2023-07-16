@@ -48,6 +48,7 @@ namespace RaveningToad
         public static CommandSystem CommandSystem { get; private set; }
 
         public static MessageLog MessageLog { get; private set; }
+        public static MainMenu MainMenu { get; private set; }
 
         public static SchedulingSystem SchedulingSystem { get; private set; }
 
@@ -100,9 +101,6 @@ namespace RaveningToad
             MessageLog.Add("The Toad is on the hunt!");
             MessageLog.Add($"Map - Level {_mapLevel} -  created with seed '{seed}'");
 
-            //_statConsole.SetBackColor(0, 0, _statWidth, _statHeight, Palette.OldStone);
-            //_statConsole.Print(1, 1, "Stats", Colors.TextHeading);
-
             _inventoryConsole.SetBackColor(0, 0, _inventoryWidth, _inventoryHeight, Palette.Wood);
             _inventoryConsole.Print(1, 1, "Inventory", Colors.TextHeading);
 
@@ -121,6 +119,8 @@ namespace RaveningToad
             // Create Scheduling System
             SchedulingSystem = new SchedulingSystem();
 
+            // Prepare menus
+            MainMenu = new MainMenu();
 
             // Create map
             MapGenerator mapGenerator = new MapGenerator(_mapWidth, _mapHeight, 20, 13, 7, _mapLevel);
@@ -184,23 +184,45 @@ namespace RaveningToad
                             didPlayerAct = true;
                         }
                     }
-                    else if (keyPress.Key == RLKey.S)
-                    {
-                        Save.saveGame(Player);
-                    }
-                    else if (keyPress.Key == RLKey.L)
-                    {
-                        Load.loadGame(Player);
-                    }
                     else if (keyPress.Key == RLKey.Escape)
                     {
-                        _rootConsole.Close();
+                        Player.pause = true;
+                        Player.mainmenu = true;
+                        _renderRequired = true;
                     }
                 }
                 // special case player controls (menu, inventory, etc.)
                 else if (Player.pause)
                 {
-
+                    if (keyPress != null)
+                    {
+                        if (keyPress.Key == RLKey.Escape)
+                        {
+                            Player.pause = false;
+                            Player.mainmenu = false;
+                            _renderRequired = true;
+                        }
+                        else if (keyPress.Key == RLKey.Number1)
+                        {
+                            Save.saveGame(Player);
+                            MessageLog.Add("Game Saved");
+                            Player.pause = false;
+                            Player.mainmenu = false;
+                            _renderRequired = true;
+                        }
+                        else if (keyPress.Key == RLKey.Number2)
+                        {
+                            Load.loadGame(Player);
+                            MessageLog.Add("Game Loaded");
+                            Player.pause = false;
+                            Player.mainmenu = false;
+                            _renderRequired = true;
+                        }
+                        else if (keyPress.Key == RLKey.Number3)
+                        {
+                            _rootConsole.Close();
+                        }
+                    }
                 }
 
                 if (didPlayerAct)
@@ -226,6 +248,7 @@ namespace RaveningToad
                 _mapConsole.Clear();
                 _statConsole.Clear();
                 _messageConsole.Clear();
+                _inventoryConsole.Clear();
 
                 // Draw the map
                 ToadMap.Draw(_mapConsole, _statConsole);
@@ -238,6 +261,12 @@ namespace RaveningToad
 
                 // and draw stats
                 Player.DrawStats(_statConsole);
+
+                // if main menu open
+                if (Player.mainmenu)
+                {
+                    MainMenu.Draw(_inventoryConsole);
+                }
 
                 // Blit the sub consoles to the root console in the correct locations
                 RLConsole.Blit(_mapConsole, 0, 0, _mapWidth, _mapHeight,
