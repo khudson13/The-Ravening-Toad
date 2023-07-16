@@ -11,6 +11,20 @@ namespace The_Ravening_Toad.Core
 {
     public class Player : Actor
     {
+        private bool _pause = false;
+
+        public bool pause
+        {
+            get
+            {
+                return _pause;
+            }
+            set
+            {
+                _pause = value;
+            }
+        }
+
         public Player()
         {
             Attack = 2;

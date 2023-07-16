@@ -153,7 +153,8 @@ namespace RaveningToad
 
             if (CommandSystem.IsPlayerTurn)
             {
-                if (keyPress != null)
+                // primary player controls
+                if (keyPress != null && !Player.pause)
                 {
                     if (keyPress.Key == RLKey.Up)
                     {
@@ -195,6 +196,11 @@ namespace RaveningToad
                     {
                         _rootConsole.Close();
                     }
+                }
+                // special case player controls (menu, inventory, etc.)
+                else if (Player.pause)
+                {
+
                 }
 
                 if (didPlayerAct)
