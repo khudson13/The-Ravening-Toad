@@ -262,7 +262,7 @@ namespace RaveningToad
                 // and draw stats
                 Player.DrawStats(_statConsole);
 
-                // if main menu open
+                // if main menu open, then draw it
                 if (Player.mainmenu)
                 {
                     MainMenu.Draw(_inventoryConsole);
@@ -270,7 +270,7 @@ namespace RaveningToad
 
                 // Blit the sub consoles to the root console in the correct locations
                 RLConsole.Blit(_mapConsole, 0, 0, _mapWidth, _mapHeight,
-              _rootConsole, 0, _inventoryHeight);
+                  _rootConsole, 0, _inventoryHeight);
                 RLConsole.Blit(_statConsole, 0, 0, _statWidth, _statHeight,
                   _rootConsole, _mapWidth, 0);
                 RLConsole.Blit(_messageConsole, 0, 0, _messageWidth, _messageHeight,
