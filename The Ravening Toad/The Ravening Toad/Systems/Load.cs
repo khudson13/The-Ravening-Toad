@@ -1,4 +1,6 @@
-﻿using System;
+﻿using RaveningToad;
+using RogueSharp.Random;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -24,6 +26,12 @@ namespace The_Ravening_Toad.Systems
                 player.MaxHealth = int.Parse(reader.ReadLine());
                 player.X = int.Parse(reader.ReadLine());
                 player.Y = int.Parse(reader.ReadLine());
+
+                Game.seed = int.Parse(reader.ReadLine());
+                Game.Random = new DotNetRandom(Game.seed);
+                MapGenerator mapGenerator = new MapGenerator(Game.mapWidth, Game.mapHeight, 20, 13, 7, Game.mapLevel);
+                Game.ToadMap = mapGenerator.CreateMap();
+                Game.ToadMap.UpdatePlayerFieldOfView();
             }
         }
     }

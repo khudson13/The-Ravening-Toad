@@ -18,8 +18,8 @@ namespace RaveningToad
         private static RLRootConsole _rootConsole;
 
         // Map Window
-        private static readonly int _mapWidth = 80;
-        private static readonly int _mapHeight = 48;
+        public static readonly int mapWidth = 80;
+        public static readonly int mapHeight = 48;
         private static RLConsole _mapConsole;
 
         // Message Window
@@ -37,13 +37,13 @@ namespace RaveningToad
         private static readonly int _inventoryHeight = 11;
         private static RLConsole _inventoryConsole;
 
-        private static int _mapLevel = 1;
+        public static int mapLevel = 1;
 
         //************************
         // DEFINE BASIC ELEMENTS *
         //************************
         public static Player Player { get; set; }
-        public static ToadMap ToadMap { get; private set; }
+        public static ToadMap ToadMap { get; set; }
 
         public static CommandSystem CommandSystem { get; private set; }
 
@@ -56,7 +56,8 @@ namespace RaveningToad
         public static Load Load { get; private set; }
 
         // Singleton of IRandom used throughout the game when generating random numbers
-        public static IRandom Random { get; private set; }
+        public static int seed { get; set; }
+        public static IRandom Random { get; set; }
 
         private static bool _renderRequired = true;
 
@@ -70,7 +71,7 @@ namespace RaveningToad
             string fontFileName = "terminal8x8.png";
 
             // Generate seed for random number generator using time
-            int seed = (int)DateTime.UtcNow.Ticks;
+            seed = (int)DateTime.UtcNow.Ticks;
             Random = new DotNetRandom(seed);
 
             //*****************************
@@ -83,7 +84,7 @@ namespace RaveningToad
             _rootConsole = new RLRootConsole(fontFileName, _screenWidth, _screenHeight,
               8, 8, 1f, consoleTitle);
             // Initialize sub consoles and Blit to root console
-            _mapConsole = new RLConsole(_mapWidth, _mapHeight);
+            _mapConsole = new RLConsole(mapWidth, mapHeight);
             _messageConsole = new RLConsole(_messageWidth, _messageHeight);
             _statConsole = new RLConsole(_statWidth, _statHeight);
             _inventoryConsole = new RLConsole(_inventoryWidth, _inventoryHeight);
@@ -99,7 +100,7 @@ namespace RaveningToad
             // Create a new MessageLog and print the random seed used to generate the level
             MessageLog = new MessageLog();
             MessageLog.Add("The Toad is on the hunt!");
-            MessageLog.Add($"Map - Level {_mapLevel} -  created with seed '{seed}'");
+            MessageLog.Add($"Map - Level {mapLevel} -  created with seed '{seed}'");
 
             _inventoryConsole.SetBackColor(0, 0, _inventoryWidth, _inventoryHeight, Palette.Wood);
             _inventoryConsole.Print(1, 1, "Inventory", Colors.TextHeading);
@@ -123,7 +124,7 @@ namespace RaveningToad
             MainMenu = new MainMenu();
 
             // Create map
-            MapGenerator mapGenerator = new MapGenerator(_mapWidth, _mapHeight, 20, 13, 7, _mapLevel);
+            MapGenerator mapGenerator = new MapGenerator(mapWidth, mapHeight, 20, 13, 7, mapLevel);
             ToadMap = mapGenerator.CreateMap();
             ToadMap.UpdatePlayerFieldOfView();
 
@@ -176,11 +177,11 @@ namespace RaveningToad
                     {
                         if (ToadMap.CanMoveDownToNextLevel())
                         {
-                            MapGenerator mapGenerator = new MapGenerator(_mapWidth, _mapHeight, 20, 13, 7, ++_mapLevel);
+                            MapGenerator mapGenerator = new MapGenerator(mapWidth, mapHeight, 20, 13, 7, ++mapLevel);
                             ToadMap = mapGenerator.CreateMap();
                             MessageLog = new MessageLog();
                             CommandSystem = new CommandSystem();
-                            _rootConsole.Title = $"The Ravening Toad - Level {_mapLevel}";
+                            _rootConsole.Title = $"The Ravening Toad - Level {mapLevel}";
                             didPlayerAct = true;
                         }
                     }
@@ -269,10 +270,10 @@ namespace RaveningToad
                 }
 
                 // Blit the sub consoles to the root console in the correct locations
-                RLConsole.Blit(_mapConsole, 0, 0, _mapWidth, _mapHeight,
+                RLConsole.Blit(_mapConsole, 0, 0, mapWidth, mapHeight,
                   _rootConsole, 0, _inventoryHeight);
                 RLConsole.Blit(_statConsole, 0, 0, _statWidth, _statHeight,
-                  _rootConsole, _mapWidth, 0);
+                  _rootConsole, mapWidth, 0);
                 RLConsole.Blit(_messageConsole, 0, 0, _messageWidth, _messageHeight,
                   _rootConsole, 0, _screenHeight - _messageHeight);
                 RLConsole.Blit(_inventoryConsole, 0, 0, _inventoryWidth, _inventoryHeight,
