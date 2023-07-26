@@ -22,6 +22,8 @@ namespace The_Ravening_Toad.Systems
                 player.Meat = int.Parse(reader.ReadLine());
                 player.Health = int.Parse(reader.ReadLine());
                 player.MaxHealth = int.Parse(reader.ReadLine());
+                player.X = int.Parse(reader.ReadLine());
+                player.Y = int.Parse(reader.ReadLine());
             }
         }
     }

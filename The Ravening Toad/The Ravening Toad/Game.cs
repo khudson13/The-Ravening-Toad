@@ -194,7 +194,7 @@ namespace RaveningToad
                 // special case player controls (menu, inventory, etc.)
                 else if (Player.pause)
                 {
-                    if (keyPress != null)
+                    if (keyPress != null && Player.mainmenu == true)
                     {
                         if (keyPress.Key == RLKey.Escape)
                         {

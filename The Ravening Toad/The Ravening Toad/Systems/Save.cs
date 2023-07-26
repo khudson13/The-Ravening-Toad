@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using The_Ravening_Toad.Core;
 using System.Collections;
+using RaveningToad;
 
 namespace The_Ravening_Toad.Systems
 {
@@ -25,6 +26,10 @@ namespace The_Ravening_Toad.Systems
                 writer.WriteLine(player.Meat);
                 writer.WriteLine(player.Health);
                 writer.WriteLine(player.MaxHealth);
+                writer.WriteLine(player.X);
+                writer.WriteLine(player.Y);
+                
+                writer.WriteLine(Game.seed);
 
             }
         }

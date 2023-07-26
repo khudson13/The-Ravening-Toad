@@ -14,7 +14,6 @@ namespace The_Ravening_Toad.Core
     public class Actor : IActor, IDrawable, IScheduleable
     {
         // IActor
-        // IActor
         private int _attack;
         private int _attackChance;
         private int _awareness;
