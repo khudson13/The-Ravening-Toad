@@ -214,6 +214,7 @@ namespace RaveningToad
                         else if (keyPress.Key == RLKey.Number2)
                         {
                             Load.loadGame(Player);
+                            CommandSystem = new CommandSystem();
                             MessageLog.Add("Game Loaded");
                             Player.pause = false;
                             Player.mainmenu = false;

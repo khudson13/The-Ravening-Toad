@@ -143,10 +143,8 @@ namespace The_Ravening_Toad.Systems
             CreateStairs();
 
             // put the player in the center of the first room
-            if (!Game.Load.loading)
-            {
-                PlacePlayer();
-            }
+            PlacePlayer();
+
 
             // sprinkle in monsters
             if (Game.Load.loading)
@@ -279,16 +277,24 @@ namespace The_Ravening_Toad.Systems
         // Find the center of the first room and place Player
         private void PlacePlayer()
         {
-            Player player = Game.Player;
-            if (player == null)
+            if (Game.Load.loading)
             {
-                player = new Player();
+                Player player = Game.Load.player;
+                _map.AddPlayer(player);
             }
+            else
+            {
+                Player player = Game.Player;
+                if (player == null)
+                {
+                    player = new Player();
+                }
 
-            player.X = _map.Rooms[0].Center.X;
-            player.Y = _map.Rooms[0].Center.Y;
+                player.X = _map.Rooms[0].Center.X;
+                player.Y = _map.Rooms[0].Center.Y;
 
-            _map.AddPlayer(player);
+                _map.AddPlayer(player);
+            }
         }
     }
 }

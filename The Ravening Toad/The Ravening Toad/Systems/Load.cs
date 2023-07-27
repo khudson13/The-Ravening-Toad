@@ -20,6 +20,7 @@ namespace The_Ravening_Toad.Systems
         public List<Door> Doors { get; set; }
         public List<Monster> Monsters { get; set; }
         public List<bool> CellExplored { get; set; }
+        public Player player;
 
         public Load() 
         {
@@ -28,9 +29,10 @@ namespace The_Ravening_Toad.Systems
             CellExplored = new List<bool>();
         }
 
-        public bool loadGame(Player player)
+        public bool loadGame(Player playerparam)
         {
             loading = true;
+            player = playerparam; 
             using (StreamReader reader = new StreamReader("Save Files\\Save1.txt"))
             {
                 if (bool.Parse(reader.ReadLine()))
