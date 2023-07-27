@@ -123,6 +123,10 @@ namespace RaveningToad
             // Prepare menus
             MainMenu = new MainMenu();
 
+            // Create Save/Load Systems
+            Save = new Save();
+            Load = new Load();
+
             // Create map
             MapGenerator mapGenerator = new MapGenerator(mapWidth, mapHeight, 20, 13, 7, mapLevel);
             ToadMap = mapGenerator.CreateMap();
@@ -130,10 +134,6 @@ namespace RaveningToad
 
             // Create Command System
             CommandSystem = new CommandSystem();
-
-            // Create Save/Load Systems
-            Save = new Save();
-            Load = new Load();
 
             //**************
             // AND ACTION! *

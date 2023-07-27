@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using The_Ravening_Toad.Core;
 using System.Collections;
 using RaveningToad;
+using RogueSharp;
 
 namespace The_Ravening_Toad.Systems
 {
@@ -17,7 +18,8 @@ namespace The_Ravening_Toad.Systems
 
             using (StreamWriter writer = new StreamWriter("Save Files\\Save1.txt"))
             {
-                
+
+                writer.WriteLine(true);
                 writer.WriteLine(player.Attack);
                 writer.WriteLine(player.AttackChance);
                 writer.WriteLine(player.Awareness);
@@ -30,6 +32,25 @@ namespace The_Ravening_Toad.Systems
                 writer.WriteLine(player.Y);
                 
                 writer.WriteLine(Game.seed);
+                writer.WriteLine(Game.ToadMap.Doors.Count);
+                for (int i = 0; i < Game.ToadMap.Doors.Count; ++i)
+                {
+                    writer.WriteLine(Game.ToadMap.Doors[i].X);
+                    writer.WriteLine(Game.ToadMap.Doors[i].Y);
+                    writer.WriteLine(Game.ToadMap.Doors[i].IsOpen);
+                }
+                writer.WriteLine(Game.ToadMap.monsters.Count);
+                for (int i = 0; i < Game.ToadMap.monsters.Count; ++i)
+                {
+                    writer.WriteLine(Game.ToadMap.monsters[i].Name);
+                    writer.WriteLine(Game.ToadMap.monsters[i].Health);
+                    writer.WriteLine(Game.ToadMap.monsters[i].X);
+                    writer.WriteLine(Game.ToadMap.monsters[i].Y);
+                }
+                foreach (Cell cell in Game.ToadMap.GetAllCells())
+                {
+                    writer.WriteLine(cell.IsExplored);
+                }
 
             }
         }

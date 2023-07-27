@@ -24,7 +24,7 @@ namespace The_Ravening_Toad.Core
         public Stairs StairsDown { get; set; }
 
         // List of monsters
-        private readonly List<Monster> _monsters;
+        public List<Monster> monsters;
 
         public ToadMap()
         {
@@ -32,12 +32,12 @@ namespace The_Ravening_Toad.Core
             // Initialize all lists for new dungeon
             Rooms = new List<Rectangle>();
             Doors = new List<Door>();
-            _monsters = new List<Monster>();
+            monsters = new List<Monster>();
         }
 
         public void AddMonster(Monster monster)
         {
-            _monsters.Add(monster);
+            monsters.Add(monster);
             // set monster location not walkable
             SetIsWalkable(monster.X, monster.Y, false);
             Game.SchedulingSystem.Add(monster);
@@ -96,7 +96,7 @@ namespace The_Ravening_Toad.Core
             int i = 0;
 
             // Iterate through and draw monsters
-            foreach (Monster monster in _monsters)
+            foreach (Monster monster in monsters)
             {
                 monster.Draw(mapConsole, this);
                 // When monster in FoV also draw their stats
@@ -117,7 +117,7 @@ namespace The_Ravening_Toad.Core
 
         public Monster GetMonsterAt(int x, int y)
         {
-            return _monsters.FirstOrDefault(m => m.X == x && m.Y == y);
+            return monsters.FirstOrDefault(m => m.X == x && m.Y == y);
         }
 
         // Look for a random location in the room that is walkable.
@@ -157,7 +157,7 @@ namespace The_Ravening_Toad.Core
 
         public void RemoveMonster(Monster monster)
         {
-            _monsters.Remove(monster);
+            monsters.Remove(monster);
             SetIsWalkable(monster.X, monster.Y, true);
             Game.SchedulingSystem.Remove(monster);
         }

@@ -128,18 +128,38 @@ namespace The_Ravening_Toad.Systems
             }
 
             // Add doors
-            foreach (Rectangle room in _map.Rooms)
+            if (Game.Load.loading)
             {
-                CreateDoors(room);
+                _map.Doors = Game.Load.Doors;
+            }
+            else
+            {
+                foreach (Rectangle room in _map.Rooms)
+                {
+                    CreateDoors(room);
+                }
             }
 
             CreateStairs();
 
             // put the player in the center of the first room
-            PlacePlayer();
+            if (!Game.Load.loading)
+            {
+                PlacePlayer();
+            }
 
             // sprinkle in monsters
-            PlaceMonsters();
+            if (Game.Load.loading)
+            {
+                foreach (Monster monster in Game.Load.Monsters)
+                {
+                    _map.AddMonster(monster);
+                }
+            }
+            else
+            {
+                PlaceMonsters();
+            }
 
             return _map;
         }
