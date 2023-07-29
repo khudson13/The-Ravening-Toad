@@ -213,12 +213,21 @@ namespace RaveningToad
                         }
                         else if (keyPress.Key == RLKey.Number2)
                         {
-                            Load.loadGame(Player);
-                            CommandSystem = new CommandSystem();
-                            MessageLog.Add("Game Loaded");
-                            Player.pause = false;
-                            Player.mainmenu = false;
-                            _renderRequired = true;
+                            if (Load.loadGame(Player))
+                            {
+                                CommandSystem = new CommandSystem();
+                                MessageLog.Add("Game Loaded");
+                                Player.pause = false;
+                                Player.mainmenu = false;
+                                _renderRequired = true;
+                            }
+                            else
+                            {
+                                MessageLog.Add("LOAD FAILED");
+                                Player.pause = false;
+                                Player.mainmenu = false;
+                                _renderRequired = true;
+                            }
                         }
                         else if (keyPress.Key == RLKey.Number3)
                         {
