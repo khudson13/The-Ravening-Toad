@@ -10,7 +10,7 @@ namespace The_Ravening_Toad.Systems
     public class MainMenu
     {
         private string[] choices = { "1 = Save", "2 = Load", "3 = Exit" };
-        // Draw each line of the log to the console
+        // Draw each option to the console
         public void Draw(RLConsole console)
         {
             //console.Clear();

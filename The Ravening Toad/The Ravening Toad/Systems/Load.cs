@@ -37,6 +37,7 @@ namespace The_Ravening_Toad.Systems
             {
                 if (bool.Parse(reader.ReadLine()))
                 {
+                    player.Name = reader.ReadLine();
                     player.Attack = int.Parse(reader.ReadLine());
                     player.AttackChance = int.Parse(reader.ReadLine());
                     player.Awareness = int.Parse(reader.ReadLine());

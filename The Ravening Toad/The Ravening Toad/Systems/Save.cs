@@ -13,13 +13,14 @@ namespace The_Ravening_Toad.Systems
 {
     public class Save
     {
-        public void saveGame(Player player)
+        public void saveGame(Player player, int selection)
         {
-
-            using (StreamWriter writer = new StreamWriter("Save Files\\Save1.txt"))
+            string filename = "Save Files\\Save" + selection + ".txt";
+            using (StreamWriter writer = new StreamWriter(filename))
             {
 
                 writer.WriteLine(true);
+                writer.WriteLine(player.Name);
                 writer.WriteLine(player.Attack);
                 writer.WriteLine(player.AttackChance);
                 writer.WriteLine(player.Awareness);

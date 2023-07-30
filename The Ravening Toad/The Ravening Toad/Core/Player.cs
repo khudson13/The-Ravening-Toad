@@ -13,6 +13,7 @@ namespace The_Ravening_Toad.Core
     public class Player : Actor
     {
         private bool _mainmenu = false;
+        private bool _savemenu = false;
         private bool _pause = false;
 
         public bool mainmenu
@@ -24,6 +25,18 @@ namespace The_Ravening_Toad.Core
             set
             {
                 _mainmenu = value;
+            }
+        }
+
+        public bool savemenu
+        {
+            get
+            {
+                return _savemenu;
+            }
+            set
+            {
+                _savemenu = value;
             }
         }
 
