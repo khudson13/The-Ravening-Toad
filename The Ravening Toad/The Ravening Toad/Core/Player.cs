@@ -14,6 +14,7 @@ namespace The_Ravening_Toad.Core
     {
         private bool _mainmenu = false;
         private bool _savemenu = false;
+        private bool _loadmenu = false;
         private bool _pause = false;
 
         public bool mainmenu
@@ -37,6 +38,18 @@ namespace The_Ravening_Toad.Core
             set
             {
                 _savemenu = value;
+            }
+        }
+
+        public bool loadmenu
+        {
+            get
+            {
+                return _loadmenu;
+            }
+            set
+            {
+                _loadmenu = value;
             }
         }
 

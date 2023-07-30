@@ -50,6 +50,7 @@ namespace RaveningToad
         public static MessageLog MessageLog { get; private set; }
         public static MainMenu MainMenu { get; private set; }
         public static SaveMenu SaveMenu { get; private set; }
+        public static LoadMenu LoadMenu { get; private set; }
 
         public static SchedulingSystem SchedulingSystem { get; private set; }
 
@@ -124,6 +125,7 @@ namespace RaveningToad
             // Prepare menus
             MainMenu = new MainMenu();
             SaveMenu = new SaveMenu();
+            LoadMenu = new LoadMenu();
 
             // Create Save/Load Systems
             Save = new Save();
@@ -197,7 +199,7 @@ namespace RaveningToad
                 // special case player controls (menu, inventory, etc.)
                 else if (Player.pause)
                 {
-                    if (keyPress != null && Player.mainmenu == true)
+                    if (keyPress != null && Player.mainmenu)
                     {
                         if (keyPress.Key == RLKey.Escape)
                         {
@@ -213,28 +215,16 @@ namespace RaveningToad
                         }
                         else if (keyPress.Key == RLKey.Number2)
                         {
-                            if (Load.loadGame(Player))
-                            {
-                                CommandSystem = new CommandSystem();
-                                MessageLog.Add("Game Loaded");
-                                Player.pause = false;
-                                Player.mainmenu = false;
-                                _renderRequired = true;
-                            }
-                            else
-                            {
-                                MessageLog.Add("LOAD FAILED!");
-                                Player.pause = false;
-                                Player.mainmenu = false;
-                                _renderRequired = true;
-                            }
+                            Player.loadmenu = true;
+                            Player.mainmenu = false;
+                            _renderRequired = true;
                         }
                         else if (keyPress.Key == RLKey.Number3)
                         {
                             _rootConsole.Close();
                         }
                     }
-                    if (keyPress != null && Player.savemenu == true)
+                    if (keyPress != null && Player.savemenu)
                     {
                         if (keyPress.Key == RLKey.Up)
                         {
@@ -260,6 +250,49 @@ namespace RaveningToad
                             Player.pause = false;
                             Player.savemenu = false;
                             _renderRequired = true;
+                        }
+                        else if (keyPress.Key == RLKey.Escape)
+                        {
+                            Player.savemenu = false;
+                            Player.mainmenu = true;
+                            _renderRequired = true;
+                        }
+                    }
+                    if (keyPress != null && Player.loadmenu)
+                    {
+                        if (keyPress.Key == RLKey.Up)
+                        {
+                            if (LoadMenu.selection > 0)
+                            {
+                                --LoadMenu.selection;
+                            }
+                            _renderRequired = true;
+                        }
+                        else if (keyPress.Key == RLKey.Down)
+                        {
+                            if (LoadMenu.selection < 9)
+                            {
+                                ++LoadMenu.selection;
+                            }
+                            _renderRequired = true;
+                        }
+                        else if (keyPress.Key == RLKey.Enter)
+                        {
+                            if (Load.loadGame(Player, LoadMenu.selection))
+                            {
+                                CommandSystem = new CommandSystem();
+                                MessageLog.Add("Game Loaded");
+                                Player.pause = false;
+                                Player.loadmenu = false;
+                                _renderRequired = true;
+                            }
+                            else
+                            {
+                                MessageLog.Add("LOAD FAILED!");
+                                Player.pause = false;
+                                Player.loadmenu = false;
+                                _renderRequired = true;
+                            }
                         }
                         else if (keyPress.Key == RLKey.Escape)
                         {
@@ -316,6 +349,11 @@ namespace RaveningToad
                 if (Player.savemenu)
                 {
                     SaveMenu.Draw(_inventoryConsole);
+                }
+                // if load menu open, then draw it
+                if (Player.loadmenu)
+                {
+                    LoadMenu.Draw(_inventoryConsole);
                 }
 
                 // Blit the sub consoles to the root console in the correct locations

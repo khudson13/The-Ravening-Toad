@@ -29,11 +29,12 @@ namespace The_Ravening_Toad.Systems
             CellExplored = new List<bool>();
         }
 
-        public bool loadGame(Player playerparam)
+        public bool loadGame(Player playerparam, int selection)
         {
             loading = true;
-            player = playerparam; 
-            using (StreamReader reader = new StreamReader("Save Files\\Save1.txt"))
+            player = playerparam;
+            string filename = "Save Files\\Save" + selection + ".txt";
+            using (StreamReader reader = new StreamReader(filename))
             {
                 if (bool.Parse(reader.ReadLine()))
                 {

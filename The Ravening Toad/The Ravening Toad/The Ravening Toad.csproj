@@ -71,6 +71,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Systems\CommandSystem.cs" />
     <Compile Include="Systems\Load.cs" />
+    <Compile Include="Systems\LoadMenu.cs" />
     <Compile Include="Systems\MainMenu.cs" />
     <Compile Include="Systems\MapGenerator.cs" />
     <Compile Include="Systems\MessageLog.cs" />
