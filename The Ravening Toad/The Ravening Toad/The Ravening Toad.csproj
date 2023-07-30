@@ -78,6 +78,7 @@
     <Compile Include="Systems\Save.cs" />
     <Compile Include="Systems\SaveMenu.cs" />
     <Compile Include="Systems\SchedulingSystem.cs" />
+    <Compile Include="Systems\StartScreen.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

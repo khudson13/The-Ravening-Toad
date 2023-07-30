@@ -16,6 +16,7 @@ namespace The_Ravening_Toad.Core
         private bool _savemenu = false;
         private bool _loadmenu = false;
         private bool _pause = false;
+        private string _location = string.Empty;
 
         public bool mainmenu
         {
@@ -62,6 +63,18 @@ namespace The_Ravening_Toad.Core
             set
             {
                 _pause = value;
+            }
+        }
+
+        public string location
+        {
+            get
+            {
+                return _location;
+            }
+            set
+            {
+                _location = value;
             }
         }
 

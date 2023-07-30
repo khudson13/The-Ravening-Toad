@@ -51,6 +51,7 @@ namespace RaveningToad
         public static MainMenu MainMenu { get; private set; }
         public static SaveMenu SaveMenu { get; private set; }
         public static LoadMenu LoadMenu { get; private set; }
+        public static StartScreen StartScreen { get; private set; }
 
         public static SchedulingSystem SchedulingSystem { get; private set; }
 
@@ -123,6 +124,7 @@ namespace RaveningToad
             SchedulingSystem = new SchedulingSystem();
 
             // Prepare menus
+            StartScreen = new StartScreen();
             MainMenu = new MainMenu();
             SaveMenu = new SaveMenu();
             LoadMenu = new LoadMenu();
@@ -329,7 +331,14 @@ namespace RaveningToad
                 _inventoryConsole.Clear();
 
                 // Draw the map
-                ToadMap.Draw(_mapConsole, _statConsole);
+                if (Player.location == "dungeon")
+                {
+                    ToadMap.Draw(_mapConsole, _statConsole);
+                }
+                else if (StartScreen.active)
+                {
+                    StartScreen.Draw(_mapConsole);
+                }
 
                 // and draw the player
                 Player.Draw(_mapConsole, ToadMap);
