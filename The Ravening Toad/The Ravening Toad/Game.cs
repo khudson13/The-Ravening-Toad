@@ -334,14 +334,14 @@ namespace RaveningToad
                 if (Player.location == "dungeon")
                 {
                     ToadMap.Draw(_mapConsole, _statConsole);
+
+                    // and draw the player
+                    Player.Draw(_mapConsole, ToadMap);
                 }
                 else if (StartScreen.active)
                 {
                     StartScreen.Draw(_mapConsole);
                 }
-
-                // and draw the player
-                Player.Draw(_mapConsole, ToadMap);
 
                 // and draw the console
                 MessageLog.Draw(_messageConsole);
