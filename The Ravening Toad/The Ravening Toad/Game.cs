@@ -1,6 +1,7 @@
 ﻿using RLNET;
 using RogueSharp.Random;
 using System;
+using System.IO;
 using The_Ravening_Toad.Core;
 using The_Ravening_Toad.Systems;
 
@@ -212,12 +213,14 @@ namespace RaveningToad
                         else if (keyPress.Key == RLKey.Number1)
                         {
                             Player.savemenu = true;
+                            SaveMenu.PopulateMenu();
                             Player.mainmenu = false;
                             _renderRequired = true;
                         }
                         else if (keyPress.Key == RLKey.Number2)
                         {
                             Player.loadmenu = true;
+                            LoadMenu.PopulateMenu();
                             Player.mainmenu = false;
                             _renderRequired = true;
                         }
@@ -278,7 +281,7 @@ namespace RaveningToad
                             }
                             _renderRequired = true;
                         }
-                        else if (keyPress.Key == RLKey.Enter)
+                        else if (keyPress.Key == RLKey.Enter && !LoadMenu.delete)
                         {
                             if (Load.loadGame(Player, LoadMenu.selection))
                             {
@@ -298,10 +301,34 @@ namespace RaveningToad
                                 _renderRequired = true;
                             }
                         }
+                        else if (keyPress.Key == RLKey.Enter && LoadMenu.delete)
+                        {
+                            if (LoadMenu.choices[LoadMenu.selection] == "really delete?")
+                            {
+                                string filename = "Save Files\\Save" + LoadMenu.selection + ".txt";
+                                using (StreamWriter writer = new StreamWriter(filename))
+                                {
+
+                                    writer.WriteLine(false);  
+                                }
+                                LoadMenu.PopulateMenu();
+                                _renderRequired = true;
+                            }
+                            else
+                            {
+                                LoadMenu.choices[LoadMenu.selection] = "really delete?";
+                                _renderRequired = true;
+                            }
+                        }
                         else if (keyPress.Key == RLKey.Escape)
                         {
-                            Player.savemenu = false;
-                            Player.mainmenu = true;
+                            LoadMenu.PopulateMenu();
+                            Player.loadmenu = false;
+                            LoadMenu.delete = false;
+                            if (!StartScreen.active)
+                            {
+                                Player.mainmenu = true;
+                            }
                             _renderRequired = true;
                         }
                     }
@@ -320,6 +347,12 @@ namespace RaveningToad
                             _renderRequired = true;
                         }
                         else if (keyPress.Key == RLKey.Number3)
+                        {
+                            Player.loadmenu = true;
+                            LoadMenu.delete = true;
+                            _renderRequired = true;
+                        }
+                        else if (keyPress.Key == RLKey.Number4)
                         {
                             _rootConsole.Close();
                         }

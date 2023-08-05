@@ -11,7 +11,10 @@ namespace The_Ravening_Toad.Systems
     public class LoadMenu
     {
         public int selection = 0;
-        private string[] _choices = new string[10];
+        public bool delete = false;
+        public string[] choices = new string[10];
+
+
 
         public LoadMenu()
         {
@@ -21,15 +24,15 @@ namespace The_Ravening_Toad.Systems
         public void Draw(RLConsole console)
         {
 
-            for (int i = 0; i < _choices.Length; i++)
+            for (int i = 0; i < choices.Length; i++)
             {
                 if (i == selection)
                 {
-                    console.Print(1, i + 1, _choices[i], RLColor.Yellow);
+                    console.Print(1, i + 1, choices[i], RLColor.Yellow);
                 }
                 else
                 {
-                    console.Print(1, i + 1, _choices[i], RLColor.White);
+                    console.Print(1, i + 1, choices[i], RLColor.White);
                 }
             }
         }
@@ -38,18 +41,18 @@ namespace The_Ravening_Toad.Systems
         {
             string[] filename = { @"Save Files", "" };
             StreamReader reader;
-            for (int i = 0; i < _choices.Length; ++i)
+            for (int i = 0; i < choices.Length; ++i)
             {
                 filename[1] = "Save" + (i) + ".txt";
                 reader = new StreamReader(Path.Combine(filename));
 
                 if (bool.Parse(reader.ReadLine()))
                 {
-                    _choices[i] = reader.ReadLine();
+                    choices[i] = reader.ReadLine();
                 }
                 else
                 {
-                    _choices[i] = "empty";
+                    choices[i] = "empty";
                 }
             }
         }
