@@ -12,7 +12,7 @@ namespace The_Ravening_Toad.Core
 {
     public class Player : Actor
     {
-        private bool _mainmenu = true;
+        private bool _mainmenu = false;
         private bool _savemenu = false;
         private bool _loadmenu = false;
         private bool _pause = true;

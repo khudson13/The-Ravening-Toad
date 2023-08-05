@@ -286,6 +286,8 @@ namespace RaveningToad
                                 MessageLog.Add("Game Loaded");
                                 Player.pause = false;
                                 Player.loadmenu = false;
+                                StartScreen.active = false;
+                                Player.location = "dungeon";
                                 _renderRequired = true;
                             }
                             else
@@ -301,6 +303,25 @@ namespace RaveningToad
                             Player.savemenu = false;
                             Player.mainmenu = true;
                             _renderRequired = true;
+                        }
+                    }
+                    if (keyPress != null && StartScreen.active && !Player.loadmenu)
+                    {
+                        if (keyPress.Key == RLKey.Number1)
+                        {
+                            StartScreen.active = false;
+                            Player.location = "dungeon";
+                            Player.pause = false;
+                            _renderRequired = true;
+                        }
+                        else if (keyPress.Key == RLKey.Number2)
+                        {
+                            Player.loadmenu = true;
+                            _renderRequired = true;
+                        }
+                        else if (keyPress.Key == RLKey.Number3)
+                        {
+                            _rootConsole.Close();
                         }
                     }
                 }
