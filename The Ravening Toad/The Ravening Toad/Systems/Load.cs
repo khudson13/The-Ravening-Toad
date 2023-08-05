@@ -53,15 +53,15 @@ namespace The_Ravening_Toad.Systems
                     Game.seed = int.Parse(reader.ReadLine());
                     Game.Random = new DotNetRandom(Game.seed);
                     count = int.Parse(reader.ReadLine());
+                    Doors.Clear();
                     for (int i = 0; i < count; ++i)
                     {
-                        var door = new Door
+                        Doors.Add(new Door
                         {
                             X = int.Parse(reader.ReadLine()),
                             Y = int.Parse(reader.ReadLine()),
                             IsOpen = bool.Parse(reader.ReadLine())
-                        };
-                        Doors.Add(door);
+                        });
                     }
                     count = int.Parse(reader.ReadLine());
                     for (int i = 0; i < count; ++i)
