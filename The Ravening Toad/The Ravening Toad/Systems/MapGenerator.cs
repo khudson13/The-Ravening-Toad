@@ -265,7 +265,7 @@ namespace The_Ravening_Toad.Systems
                         if (randomRoomLocation.X != -1 && randomRoomLocation.Y != -1)
                         {
                             // Temporarily hard code this monster to be created at level 1
-                            var monster = FilthRat.Create();
+                            var monster = DirtyRat.Create();
                             monster.X = randomRoomLocation.X;
                             monster.Y = randomRoomLocation.Y;
                             _map.AddMonster(monster);

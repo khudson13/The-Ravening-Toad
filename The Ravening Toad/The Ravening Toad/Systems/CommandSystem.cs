@@ -106,9 +106,9 @@ namespace The_Ravening_Toad.Systems
             StringBuilder attackMessage = new StringBuilder();
             StringBuilder defenseMessage = new StringBuilder();
 
-            int hits = ResolveAttack(attacker, defender, attackMessage);
+            bool hits = ResolveAttack(attacker, defender, attackMessage);
 
-            int blocks = ResolveDefense(defender, hits, attackMessage, defenseMessage);
+            //int blocks = ResolveDefense(defender, hits, attackMessage, defenseMessage);
 
             Game.MessageLog.Add(attackMessage.ToString());
             if (!string.IsNullOrWhiteSpace(defenseMessage.ToString()))
@@ -116,38 +116,32 @@ namespace The_Ravening_Toad.Systems
                 Game.MessageLog.Add(defenseMessage.ToString());
             }
 
-            int damage = hits - blocks;
-
-            ResolveDamage(defender, damage);
+            //int damage = hits - blocks;
+            
+            ResolveDamage(defender, hits, attacker.damage);
+            
         }
 
 
-        private static int ResolveAttack(Actor attacker, Actor defender, StringBuilder attackMessage)
+        private static bool ResolveAttack(Actor attacker, Actor defender, StringBuilder attackMessage)
         {
-            int hits = 0;
+            //int hits = 0;
 
-            attackMessage.AppendFormat("{0} attacks {1} and rolls: ", attacker.Name, defender.Name);
+            attackMessage.AppendFormat("{0} attacks {1}", attacker.Name, defender.Name);
 
             // Roll a number of 100-sided dice equal to the Attack value of the attacking actor
-            DiceExpression attackDice = new DiceExpression().Dice(attacker.Attack, 100);
+            DiceExpression attackDice = new DiceExpression().Dice(1, attacker.Attack);
             DiceResult attackResult = attackDice.Roll();
 
-            // Look at the face value of each single die that was rolled
-            foreach (TermResult termResult in attackResult.Results)
-            {
-                attackMessage.Append(termResult.Value + ", ");
-                // Compare the value to 100 minus the attack chance and add a hit if it's greater
-                if (termResult.Value >= 100 - attacker.AttackChance)
-                {
-                    hits++;
-                }
-            }
+            // Roll a number of 100-sided dice equal to the Defense value of the defendering actor
+            DiceExpression defenseDice = new DiceExpression().Dice(1, defender.Defense);
+            DiceResult defenseResult = defenseDice.Roll();
 
-            return hits;
+            return attackResult.Value >= defenseResult.Value;
         }
 
 
-        private static int ResolveDefense(Actor defender, int hits, StringBuilder attackMessage, StringBuilder defenseMessage)
+        /*private static int ResolveDefense(Actor defender, int hits, StringBuilder attackMessage, StringBuilder defenseMessage)
         {
             int blocks = 0;
 
@@ -178,12 +172,12 @@ namespace The_Ravening_Toad.Systems
             }
 
             return blocks;
-        }
+        }*/
 
         // Apply any damage that wasn't blocked to the defender
-        private static void ResolveDamage(Actor defender, int damage)
+        private static void ResolveDamage(Actor defender, bool hits, int damage)
         {
-            if (damage > 0)
+            if (hits)
             {
                 defender.Health = defender.Health - damage;
 
@@ -196,7 +190,7 @@ namespace The_Ravening_Toad.Systems
             }
             else
             {
-                Game.MessageLog.Add($"  {defender.Name} blocked all damage");
+                Game.MessageLog.Add($"  {defender.Name} avoided all damage");
             }
         }
 
@@ -212,6 +206,8 @@ namespace The_Ravening_Toad.Systems
                 Game.ToadMap.RemoveMonster((Monster)defender);
 
                 Game.MessageLog.Add($"  {defender.Name} died leaving {defender.Meat} delicious(?) meat");
+
+                Game.Player.Meat += defender.Meat;
             }
         }
     }

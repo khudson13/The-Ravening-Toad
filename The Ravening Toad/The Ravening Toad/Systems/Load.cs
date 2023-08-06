@@ -69,8 +69,8 @@ namespace The_Ravening_Toad.Systems
                         string name = reader.ReadLine();
                         switch (name)
                         {
-                            case ("Filth Rat"):
-                                var monster = FilthRat.Create();
+                            case ("Dirty Rat"):
+                                var monster = DirtyRat.Create();
                                 monster.Health = int.Parse(reader.ReadLine());
                                 monster.X = int.Parse(reader.ReadLine());
                                 monster.Y = int.Parse(reader.ReadLine());

@@ -8,23 +8,24 @@ using RogueSharp.DiceNotation;
 
 namespace The_Ravening_Toad.Monsters
 {
-    public class FilthRat : Monster
+    public class DirtyRat : Monster
     {
-        public static FilthRat Create()
+        public static DirtyRat Create()
         {
-            int health = Dice.Roll("2D5");
-            return new FilthRat
+            int health = Dice.Roll("1D5");
+            return new DirtyRat
             {
-                Attack = Dice.Roll("1D3"),
+                Attack = 10,
                 AttackChance = Dice.Roll("25D3"),
+                damage = 1,
                 Awareness = 10,
                 Color = Colors.FilthRatColor,
-                Defense = Dice.Roll("1D3"),
+                Defense = 12,
                 DefenseChance = Dice.Roll("10D4"),
-                Meat = Dice.Roll("5D5"),
+                Meat = 1,
                 Health = health,
                 MaxHealth = health,
-                Name = "Filth Rat",
+                Name = "Dirty Rat",
                 Speed = 14,
                 Symbol = 'r'
             };

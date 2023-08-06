@@ -24,6 +24,7 @@ namespace The_Ravening_Toad.Core
         private int _maxHealth;
         private string _name;
         private int _speed;
+        public int damage;
 
         public int Attack
         {
