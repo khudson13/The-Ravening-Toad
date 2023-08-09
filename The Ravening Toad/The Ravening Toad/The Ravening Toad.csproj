@@ -74,6 +74,7 @@
     <Compile Include="Systems\LoadMenu.cs" />
     <Compile Include="Systems\MainMenu.cs" />
     <Compile Include="Systems\MapGenerator.cs" />
+    <Compile Include="Systems\MenuControls.cs" />
     <Compile Include="Systems\MessageLog.cs" />
     <Compile Include="Systems\Save.cs" />
     <Compile Include="Systems\SaveMenu.cs" />

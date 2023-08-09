@@ -1,8 +1,10 @@
 ﻿using RaveningToad;
+using RLNET;
 using RogueSharp;
 using RogueSharp.DiceNotation;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -122,59 +124,24 @@ namespace The_Ravening_Toad.Systems
             
         }
 
-
         private static bool ResolveAttack(Actor attacker, Actor defender, StringBuilder attackMessage)
         {
             //int hits = 0;
 
             attackMessage.AppendFormat("{0} attacks {1}", attacker.Name, defender.Name);
 
-            // Roll a number of 100-sided dice equal to the Attack value of the attacking actor
+            // Roll attack value
             DiceExpression attackDice = new DiceExpression().Dice(1, attacker.Attack);
             DiceResult attackResult = attackDice.Roll();
 
-            // Roll a number of 100-sided dice equal to the Defense value of the defendering actor
+            // Roll defense value
             DiceExpression defenseDice = new DiceExpression().Dice(1, defender.Defense);
             DiceResult defenseResult = defenseDice.Roll();
 
             return attackResult.Value >= defenseResult.Value;
         }
 
-
-        /*private static int ResolveDefense(Actor defender, int hits, StringBuilder attackMessage, StringBuilder defenseMessage)
-        {
-            int blocks = 0;
-
-            if (hits > 0)
-            {
-                attackMessage.AppendFormat("scoring {0} hits.", hits);
-                defenseMessage.AppendFormat("  {0} defends and rolls: ", defender.Name);
-
-                // Roll a number of 100-sided dice equal to the Defense value of the defendering actor
-                DiceExpression defenseDice = new DiceExpression().Dice(defender.Defense, 100);
-                DiceResult defenseRoll = defenseDice.Roll();
-
-                // Look at the face value of each single die that was rolled
-                foreach (TermResult termResult in defenseRoll.Results)
-                {
-                    defenseMessage.Append(termResult.Value + ", ");
-                    // Compare the value to 100 minus the defense chance and add a block if it's greater
-                    if (termResult.Value >= 100 - defender.DefenseChance)
-                    {
-                        blocks++;
-                    }
-                }
-                defenseMessage.AppendFormat("resulting in {0} blocks.", blocks);
-            }
-            else
-            {
-                attackMessage.Append("and misses completely.");
-            }
-
-            return blocks;
-        }*/
-
-        // Apply any damage that wasn't blocked to the defender
+        // Apply damage to the defender
         private static void ResolveDamage(Actor defender, bool hits, int damage)
         {
             if (hits)

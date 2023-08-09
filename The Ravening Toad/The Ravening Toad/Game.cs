@@ -46,7 +46,8 @@ namespace RaveningToad
         public static Player Player { get; set; }
         public static ToadMap ToadMap { get; set; }
 
-        public static CommandSystem CommandSystem { get; private set; }
+        public static CommandSystem CommandSystem { get; set; }
+        public static MenuControls MenuControls { get; set; }
 
         public static MessageLog MessageLog { get; private set; }
         public static MainMenu MainMenu { get; private set; }
@@ -141,6 +142,7 @@ namespace RaveningToad
 
             // Create Command System
             CommandSystem = new CommandSystem();
+            MenuControls = new MenuControls();
 
             //**************
             // AND ACTION! *
@@ -149,6 +151,12 @@ namespace RaveningToad
             _rootConsole.Run();
         }
 
+        // exit game
+        public static void ExitGame()
+        {
+            _rootConsole.Close();
+        }
+        
         // Event handler for RLNET's Update event
         private static void OnRootConsoleUpdate(object sender, UpdateEventArgs e)
         {
@@ -199,163 +207,13 @@ namespace RaveningToad
                         _renderRequired = true;
                     }
                 }
-                // special case player controls (menu, inventory, etc.)
+                // menu input
                 else if (Player.pause)
                 {
-                    if (keyPress != null && Player.mainmenu)
+                    if (keyPress != null)
                     {
-                        if (keyPress.Key == RLKey.Escape)
-                        {
-                            Player.pause = false;
-                            Player.mainmenu = false;
-                            _renderRequired = true;
-                        }
-                        else if (keyPress.Key == RLKey.Number1)
-                        {
-                            Player.savemenu = true;
-                            SaveMenu.PopulateMenu();
-                            Player.mainmenu = false;
-                            _renderRequired = true;
-                        }
-                        else if (keyPress.Key == RLKey.Number2)
-                        {
-                            Player.loadmenu = true;
-                            LoadMenu.PopulateMenu();
-                            Player.mainmenu = false;
-                            _renderRequired = true;
-                        }
-                        else if (keyPress.Key == RLKey.Number3)
-                        {
-                            _rootConsole.Close();
-                        }
-                    }
-                    if (keyPress != null && Player.savemenu)
-                    {
-                        if (keyPress.Key == RLKey.Up)
-                        {
-                            if (SaveMenu.selection > 0)
-                            {
-                                --SaveMenu.selection;
-                            }
-                            _renderRequired = true;
-                        }
-                        else if (keyPress.Key == RLKey.Down)
-                        {
-                            if (SaveMenu.selection < 9)
-                            {
-                                ++SaveMenu.selection;
-                            }
-                            _renderRequired = true;
-                        }
-                        else if (keyPress.Key == RLKey.Enter)
-                        {
-                            Save.saveGame(Player, SaveMenu.selection);
-                            SaveMenu.PopulateMenu();
-                            MessageLog.Add("Game Saved");
-                            Player.pause = false;
-                            Player.savemenu = false;
-                            _renderRequired = true;
-                        }
-                        else if (keyPress.Key == RLKey.Escape)
-                        {
-                            Player.savemenu = false;
-                            Player.mainmenu = true;
-                            _renderRequired = true;
-                        }
-                    }
-                    if (keyPress != null && Player.loadmenu)
-                    {
-                        if (keyPress.Key == RLKey.Up)
-                        {
-                            if (LoadMenu.selection > 0)
-                            {
-                                --LoadMenu.selection;
-                            }
-                            _renderRequired = true;
-                        }
-                        else if (keyPress.Key == RLKey.Down)
-                        {
-                            if (LoadMenu.selection < 9)
-                            {
-                                ++LoadMenu.selection;
-                            }
-                            _renderRequired = true;
-                        }
-                        else if (keyPress.Key == RLKey.Enter && !LoadMenu.delete)
-                        {
-                            if (Load.loadGame(Player, LoadMenu.selection))
-                            {
-                                CommandSystem = new CommandSystem();
-                                MessageLog.Add("Game Loaded");
-                                Player.pause = false;
-                                Player.loadmenu = false;
-                                StartScreen.active = false;
-                                Player.location = "dungeon";
-                                _renderRequired = true;
-                            }
-                            else
-                            {
-                                MessageLog.Add("LOAD FAILED!");
-                                Player.pause = false;
-                                Player.loadmenu = false;
-                                _renderRequired = true;
-                            }
-                        }
-                        else if (keyPress.Key == RLKey.Enter && LoadMenu.delete)
-                        {
-                            if (LoadMenu.choices[LoadMenu.selection] == "really delete?")
-                            {
-                                string filename = "Save Files\\Save" + LoadMenu.selection + ".txt";
-                                using (StreamWriter writer = new StreamWriter(filename))
-                                {
-
-                                    writer.WriteLine(false);  
-                                }
-                                LoadMenu.PopulateMenu();
-                                _renderRequired = true;
-                            }
-                            else
-                            {
-                                LoadMenu.choices[LoadMenu.selection] = "really delete?";
-                                _renderRequired = true;
-                            }
-                        }
-                        else if (keyPress.Key == RLKey.Escape)
-                        {
-                            LoadMenu.PopulateMenu();
-                            Player.loadmenu = false;
-                            LoadMenu.delete = false;
-                            if (!StartScreen.active)
-                            {
-                                Player.mainmenu = true;
-                            }
-                            _renderRequired = true;
-                        }
-                    }
-                    if (keyPress != null && StartScreen.active && !Player.loadmenu)
-                    {
-                        if (keyPress.Key == RLKey.Number1)
-                        {
-                            StartScreen.active = false;
-                            Player.location = "dungeon";
-                            Player.pause = false;
-                            _renderRequired = true;
-                        }
-                        else if (keyPress.Key == RLKey.Number2)
-                        {
-                            Player.loadmenu = true;
-                            _renderRequired = true;
-                        }
-                        else if (keyPress.Key == RLKey.Number3)
-                        {
-                            Player.loadmenu = true;
-                            LoadMenu.delete = true;
-                            _renderRequired = true;
-                        }
-                        else if (keyPress.Key == RLKey.Number4)
-                        {
-                            _rootConsole.Close();
-                        }
+                        MenuControls.MenuControl(keyPress.Key);
+                        _renderRequired = true;
                     }
                 }
 
