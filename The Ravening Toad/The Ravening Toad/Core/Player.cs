@@ -16,7 +16,7 @@ namespace The_Ravening_Toad.Core
         private bool _savemenu = false;
         private bool _loadmenu = false;
         private bool _pause = true;
-        private string _location = "";
+        private string _location = "start";
 
         public bool mainmenu
         {

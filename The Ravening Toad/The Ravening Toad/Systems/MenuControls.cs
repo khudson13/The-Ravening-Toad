@@ -92,7 +92,6 @@ namespace The_Ravening_Toad.Systems
                         Game.MessageLog.Add("Game Loaded");
                         Game.Player.pause = false;
                         Game.Player.loadmenu = false;
-                        Game.StartScreen.active = false;
                         Game.Player.location = "dungeon";
                     }
                     else
@@ -124,17 +123,16 @@ namespace The_Ravening_Toad.Systems
                     Game.LoadMenu.PopulateMenu();
                     Game.Player.loadmenu = false;
                     Game.LoadMenu.delete = false;
-                    if (!Game.StartScreen.active)
+                    if (Game.Player.location != "start")
                     {
                         Game.Player.mainmenu = true;
                     }
                 }
             }
-            if (key != null && Game.StartScreen.active && !Game.Player.loadmenu)
+            if (Game.Player.location == "start" && !Game.Player.loadmenu)
             {
                 if (key == RLKey.Number1)
                 {
-                    Game.StartScreen.active = false;
                     Game.Player.location = "dungeon";
                     Game.Player.pause = false;
                 }

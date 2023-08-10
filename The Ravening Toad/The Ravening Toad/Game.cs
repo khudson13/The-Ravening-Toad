@@ -250,7 +250,7 @@ namespace RaveningToad
                     // and draw the player
                     Player.Draw(_mapConsole, ToadMap);
                 }
-                else if (StartScreen.active)
+                else if (Player.location == "start")
                 {
                     StartScreen.Draw(_mapConsole);
                 }

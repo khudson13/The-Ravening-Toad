@@ -10,19 +10,6 @@ namespace The_Ravening_Toad.Systems
 {
     public class StartScreen
     {
-        private bool _active = true;
-
-        public bool active
-        {
-            get
-            {
-                return _active;
-            }
-            set
-            {
-                _active = value;
-            }
-        }
         public void Draw(RLConsole console)
         {
             
@@ -31,7 +18,6 @@ namespace The_Ravening_Toad.Systems
             console.Print(15, 16, "2 = load game", RLColor.Yellow);
             console.Print(15, 17, "3 = delete game", RLColor.Yellow);
             console.Print(15, 18, "4 = exit", RLColor.Yellow);
-
         }
     }
 }
