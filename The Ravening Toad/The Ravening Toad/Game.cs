@@ -54,6 +54,7 @@ namespace RaveningToad
         public static SaveMenu SaveMenu { get; private set; }
         public static LoadMenu LoadMenu { get; private set; }
         public static StartScreen StartScreen { get; private set; }
+        public static ToadCafe ToadCafe { get; private set; }
 
         public static SchedulingSystem SchedulingSystem { get; private set; }
 
@@ -139,6 +140,7 @@ namespace RaveningToad
             MapGenerator mapGenerator = new MapGenerator(mapWidth, mapHeight, 20, 13, 7, mapLevel);
             ToadMap = mapGenerator.CreateMap();
             ToadMap.UpdatePlayerFieldOfView();
+            ToadCafe = new ToadCafe();
 
             // Create Command System
             CommandSystem = new CommandSystem();
@@ -166,7 +168,6 @@ namespace RaveningToad
             //**********************
             bool didPlayerAct = false;
             RLKeyPress keyPress = _rootConsole.Keyboard.GetKeyPress();
-
             if (CommandSystem.IsPlayerTurn)
             {
                 // primary player controls
@@ -216,7 +217,7 @@ namespace RaveningToad
                         _renderRequired = true;
                     }
                 }
-
+                
                 if (didPlayerAct)
                 {
                     _renderRequired = true;
