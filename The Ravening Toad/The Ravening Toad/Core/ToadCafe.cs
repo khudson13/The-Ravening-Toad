@@ -1,5 +1,6 @@
 ﻿using RaveningToad;
 using RLNET;
+using RogueSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,10 +17,16 @@ namespace The_Ravening_Toad.Core
         public string stove = "none";           // type of cooking surface
         public string oven = "none";            // type of oven
         public string storage = "none";         // ingredient storage
-        public List<IRecipe> recipes;    
+        public List<IRecipe> recipes;           // known recipes
+        public List<IRecipe> viableRecipes;     // recipes which can be made right now
+        public List<int> readytoserve;          // how many of a given recipe already on hand, indexes matched to viableRecipes
         
         public ToadCafe()
         {
+            recipes = new List<IRecipe>();
+            viableRecipes = new List<IRecipe>();
+            readytoserve = new List<int>();
+
             recipes.Add(new MeatWad());
         }
 
@@ -38,7 +45,7 @@ namespace The_Ravening_Toad.Core
                         ++Y;
                         break;
                     case 1:
-                        console.Print(13, Y, "You have" + tables + "tables available", RLColor.Yellow);
+                        console.Print(13, Y, "You have" + tables + "tables available, seating 2 customers each", RLColor.Yellow);
                         ++Y;
                         break;
                     case 2:
@@ -64,10 +71,45 @@ namespace The_Ravening_Toad.Core
                 if (IsViableRecipe(meal))
                 {
                     console.Print(13, Y, count + "= prepare " + meal.name, RLColor.Yellow);
+                    viableRecipes.Add(meal);
+                    readytoserve.Add(0);
                     ++Y;
                     ++count;
                 }
             }
+        }
+
+        public bool sellMostValuable()
+        {
+            int index = 0;      // index of most valuable meal on hand
+
+            // outta food
+            if (readytoserve.Count == 0)
+            {
+                return false;
+            }
+
+            // find most valuable food
+            for (int i = 0; i < viableRecipes.Count; ++i)
+            {
+                if (readytoserve[i] > 0 && viableRecipes[i].value > viableRecipes[index].value)
+                {
+                    index = i;
+                } 
+            }
+
+            // sell the food
+            --readytoserve[index];
+            if (readytoserve[index] == 0)
+            {
+                readytoserve.RemoveAt(index);
+                viableRecipes.RemoveAt(index);
+            }
+
+            // pay the player
+            Game.Player.Cash += viableRecipes[index].value;
+            
+            return true;
         }
 
         private bool IsViableRecipe(IRecipe recipe)

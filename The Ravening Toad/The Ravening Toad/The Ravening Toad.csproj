@@ -59,6 +59,7 @@
     <Compile Include="Core\Door.cs" />
     <Compile Include="Core\Monster.cs" />
     <Compile Include="Core\Player.cs" />
+    <Compile Include="Core\Recipe.cs" />
     <Compile Include="Core\Stairs.cs" />
     <Compile Include="Core\ToadCafe.cs" />
     <Compile Include="Core\ToadMap.cs" />

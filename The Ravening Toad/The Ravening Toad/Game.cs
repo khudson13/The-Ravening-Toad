@@ -197,8 +197,10 @@ namespace RaveningToad
                             ToadMap = mapGenerator.CreateMap();
                             MessageLog = new MessageLog();
                             CommandSystem = new CommandSystem();
-                            _rootConsole.Title = $"The Ravening Toad - Level {mapLevel}";
-                            didPlayerAct = true;
+                            Player.pause = true;
+                            Player.location = "cafe";
+                            //_rootConsole.Title = $"The Ravening Toad - Level {mapLevel}";
+                            //didPlayerAct = true;
                         }
                     }
                     else if (keyPress.Key == RLKey.Escape)

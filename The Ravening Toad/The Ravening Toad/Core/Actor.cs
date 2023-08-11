@@ -20,6 +20,7 @@ namespace The_Ravening_Toad.Core
         private int _defense;
         private int _defenseChance;
         private int _meat;
+        private int _cash;
         private int _health;
         private int _maxHealth;
         private string _name;
@@ -59,6 +60,18 @@ namespace The_Ravening_Toad.Core
             set
             {
                 _awareness = value;
+            }
+        }
+
+        public int Cash
+        {
+            get
+            {
+                return _cash;
+            }
+            set
+            {
+                _cash = value;
             }
         }
 

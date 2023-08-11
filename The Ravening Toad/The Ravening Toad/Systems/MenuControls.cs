@@ -14,6 +14,9 @@ namespace The_Ravening_Toad.Systems
     {
         public void MenuControl(RLKey key)
         {
+            //************
+            // MAIN MENU *
+            //************
             if (Game.Player.mainmenu)
             {
                 if (key == RLKey.Escape)
@@ -38,6 +41,10 @@ namespace The_Ravening_Toad.Systems
                     Game.ExitGame();
                 }
             }
+            
+            //************
+            // SAVE MENU *
+            //************
             if (Game.Player.savemenu)
             {
                 if (key == RLKey.Up)
@@ -68,6 +75,10 @@ namespace The_Ravening_Toad.Systems
                     Game.Player.mainmenu = true;
                 }
             }
+
+            //************
+            // LOAD MENU *
+            //************
             if (Game.Player.loadmenu)
             {
                 if (key == RLKey.Up)
@@ -129,6 +140,10 @@ namespace The_Ravening_Toad.Systems
                     }
                 }
             }
+
+            //*************
+            // START MENU *
+            //*************
             if (Game.Player.location == "start" && !Game.Player.loadmenu)
             {
                 if (key == RLKey.Number1)
@@ -148,6 +163,22 @@ namespace The_Ravening_Toad.Systems
                 else if (key == RLKey.Number4)
                 {
                     Game.ExitGame();
+                }
+            }
+
+            //************
+            // CAFE MENU *
+            //************
+            if (Game.Player.location == "cafe")
+            {
+                if (key == RLKey.Number1)
+                {
+                    for (int i = 0; i < (Game.ToadCafe.tables * 2); ++i)
+                    {
+                        Game.ToadCafe.sellMostValuable();
+                    }
+                    Game.Player.location = "dungeon";
+                    Game.Player.pause = false;
                 }
             }
         }

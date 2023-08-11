@@ -88,6 +88,7 @@ namespace The_Ravening_Toad.Core
             Defense = 20;
             DefenseChance = 40;
             Meat = 0;
+            Cash = 0;
             Health = 100;
             MaxHealth = 100;
             Name = "The Toad";
@@ -102,6 +103,7 @@ namespace The_Ravening_Toad.Core
             statConsole.Print(1, 5, $"Attack:  {Attack}", Colors.Text);
             statConsole.Print(1, 7, $"Defense: {Defense}", Colors.Text);
             statConsole.Print(1, 9, $"Meat:    {Meat}", Colors.Text);
+            statConsole.Print(1, 11, $"Cash:    {Cash}", Colors.Text);
         }
     }
 }

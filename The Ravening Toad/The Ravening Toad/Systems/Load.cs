@@ -45,6 +45,7 @@ namespace The_Ravening_Toad.Systems
                     player.Defense = int.Parse(reader.ReadLine());
                     player.DefenseChance = int.Parse(reader.ReadLine());
                     player.Meat = int.Parse(reader.ReadLine());
+                    player.Cash = int.Parse(reader.ReadLine());
                     player.Health = int.Parse(reader.ReadLine());
                     player.MaxHealth = int.Parse(reader.ReadLine());
                     player.X = int.Parse(reader.ReadLine());

@@ -27,6 +27,7 @@ namespace The_Ravening_Toad.Systems
                 writer.WriteLine(player.Defense);
                 writer.WriteLine(player.DefenseChance);
                 writer.WriteLine(player.Meat);
+                writer.WriteLine(player.Cash);
                 writer.WriteLine(player.Health);
                 writer.WriteLine(player.MaxHealth);
                 writer.WriteLine(player.X);
