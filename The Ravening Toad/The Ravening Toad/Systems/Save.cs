@@ -49,7 +49,7 @@ namespace The_Ravening_Toad.Systems
                     writer.WriteLine(Game.ToadMap.monsters[i].X);
                     writer.WriteLine(Game.ToadMap.monsters[i].Y);
                 }
-                foreach (Cell cell in Game.ToadMap.GetAllCells())
+                foreach (ICell cell in Game.ToadMap.GetAllCells())
                 {
                     writer.WriteLine(cell.IsExplored);
                 }

@@ -131,6 +131,10 @@ namespace The_Ravening_Toad.Systems
             if (Game.Load.loading)
             {
                 _map.Doors = Game.Load.Doors;
+                foreach (Door Door in Game.Load.Doors)
+                {
+                    _map.SetCellProperties(Door.X, Door.Y, false, true);
+                }
             }
             else
             {

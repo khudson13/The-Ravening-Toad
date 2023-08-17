@@ -1,6 +1,7 @@
 ﻿using RLNET;
 using RogueSharp.Random;
 using System;
+using System.Data;
 using System.IO;
 using The_Ravening_Toad.Core;
 using The_Ravening_Toad.Interfaces;
@@ -194,7 +195,8 @@ namespace RaveningToad
                     {
                         if (ToadMap.CanMoveDownToNextLevel())
                         {
-                            MapGenerator mapGenerator = new MapGenerator(mapWidth, mapHeight, 20, 13, 7, ++mapLevel);
+                            MapGenerator mapGenerator = new MapGenerator(mapWidth, mapHeight, 20, 13, 7, mapLevel);
+                            ToadMap.Clear();
                             ToadMap = mapGenerator.CreateMap();
                             MessageLog = new MessageLog();
                             CommandSystem = new CommandSystem();

@@ -110,6 +110,9 @@ namespace The_Ravening_Toad.Core
                 } 
             }
 
+            // pay the player
+            Game.Player.Cash += viableRecipes[index].value;
+
             // sell the food
             Game.MessageLog.Add($"{viableRecipes[index].name} sold for {viableRecipes[index].value} gold");
             --readytoserve[index];
@@ -119,8 +122,6 @@ namespace The_Ravening_Toad.Core
                 viableRecipes.RemoveAt(index);
             }
 
-            // pay the player
-            Game.Player.Cash += viableRecipes[index].value;
             
             return true;
         }

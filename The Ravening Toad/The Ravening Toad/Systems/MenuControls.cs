@@ -179,12 +179,13 @@ namespace The_Ravening_Toad.Systems
                     }
                     Game.Player.location = "dungeon";
                     Game.Player.pause = false;
+                    Game.MessageLog.Add($"{Game.Player.Name} has returned to the dungeon!");
                 }
                 else if (key == RLKey.Number2)
                 {
                     Game.Player.Meat -= 6;
                     ++Game.ToadCafe.readytoserve[0];
-                    Game.MessageLog.Add($"The Toad prepared a Wad of Raw Meat! Delicious!");
+                    Game.MessageLog.Add($"The Toad prepared a {Game.ToadCafe.viableRecipes[0].name}! Delicious!");
                 }
             }
         }

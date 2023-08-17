@@ -65,6 +65,7 @@ namespace The_Ravening_Toad.Systems
                         });
                     }
                     count = int.Parse(reader.ReadLine());
+                    Monsters.Clear();
                     for (int i = 0; i < count; ++i)
                     {
                         string name = reader.ReadLine();
@@ -84,7 +85,7 @@ namespace The_Ravening_Toad.Systems
                     MapGenerator mapGenerator = new MapGenerator(Game.mapWidth, Game.mapHeight, 20, 13, 7, Game.mapLevel);
                     Game.ToadMap = mapGenerator.CreateMap();
                     Game.ToadMap.UpdatePlayerFieldOfView();
-                    foreach (Cell cell in Game.ToadMap.GetAllCells())
+                    foreach (ICell cell in Game.ToadMap.GetAllCells())
                     {
                         Game.ToadMap.SetCellProperties(cell.X, cell.Y, cell.IsTransparent, cell.IsWalkable, bool.Parse(reader.ReadLine()));
                     }
