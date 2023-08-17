@@ -195,6 +195,8 @@ namespace RaveningToad
                     {
                         if (ToadMap.CanMoveDownToNextLevel())
                         {
+                            seed = (int)DateTime.UtcNow.Ticks;
+                            Random = new DotNetRandom(seed);
                             MapGenerator mapGenerator = new MapGenerator(mapWidth, mapHeight, 20, 13, 7, mapLevel);
                             ToadMap.Clear();
                             ToadMap = mapGenerator.CreateMap();
