@@ -3,6 +3,7 @@ using RogueSharp.Random;
 using System;
 using System.IO;
 using The_Ravening_Toad.Core;
+using The_Ravening_Toad.Interfaces;
 using The_Ravening_Toad.Systems;
 
 namespace RaveningToad
@@ -199,8 +200,7 @@ namespace RaveningToad
                             CommandSystem = new CommandSystem();
                             Player.pause = true;
                             Player.location = "cafe";
-                            //_rootConsole.Title = $"The Ravening Toad - Level {mapLevel}";
-                            //didPlayerAct = true;
+                            MessageLog.Add($"{Player.Name} has returned to the cafe");
                         }
                     }
                     else if (keyPress.Key == RLKey.Escape)
@@ -256,6 +256,10 @@ namespace RaveningToad
                 else if (Player.location == "start")
                 {
                     StartScreen.Draw(_mapConsole);
+                }
+                else if (Player.location == "cafe")
+                {
+                    ToadCafe.Draw(_mapConsole);
                 }
 
                 // and draw the console

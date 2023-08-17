@@ -20,12 +20,14 @@ namespace The_Ravening_Toad.Core
         public List<IRecipe> recipes;           // known recipes
         public List<IRecipe> viableRecipes;     // recipes which can be made right now
         public List<int> readytoserve;          // how many of a given recipe already on hand, indexes matched to viableRecipes
-        
+        public List<int> readytomake;           // like readytoserve,but how many can be made with ingredients on hand
+
         public ToadCafe()
         {
             recipes = new List<IRecipe>();
             viableRecipes = new List<IRecipe>();
             readytoserve = new List<int>();
+            readytomake = new List<int>();
 
             recipes.Add(new MeatWad());
         }
@@ -41,11 +43,11 @@ namespace The_Ravening_Toad.Core
                 switch (i)
                 {
                     case 0:
-                        console.Print(13, Y, "You have" + Game.Player.Meat + "fresh meat", RLColor.Yellow);
+                        console.Print(13, Y, "You have " + Game.Player.Meat + " fresh meat", RLColor.Yellow);
                         ++Y;
                         break;
                     case 1:
-                        console.Print(13, Y, "You have" + tables + "tables available, seating 2 customers each", RLColor.Yellow);
+                        console.Print(13, Y, "You have " + tables + " tables available, seating 2 customers each", RLColor.Yellow);
                         ++Y;
                         break;
                     case 2:
@@ -65,26 +67,36 @@ namespace The_Ravening_Toad.Core
 
             ++Y;
             console.Print(13, Y, "1 = sell food and return to dungeon", RLColor.Yellow);
+            ++Y;
             int count = 2;
             foreach (var meal in recipes)
             {
                 if (IsViableRecipe(meal))
                 {
-                    console.Print(13, Y, count + "= prepare " + meal.name, RLColor.Yellow);
                     viableRecipes.Add(meal);
+                    readytomake.Add(meal.meat / Game.Player.Meat);
                     readytoserve.Add(0);
+                    console.Print(13, Y, count + "= prepare " + meal.name + "(" + Game.Player.Meat / viableRecipes.Last().meat + ")", RLColor.Yellow);
                     ++Y;
                     ++count;
                 }
             }
         }
 
-        public bool sellMostValuable()
+        public bool SellMostValuable()
         {
             int index = 0;      // index of most valuable meal on hand
 
             // outta food
-            if (readytoserve.Count == 0)
+            int count = 0;
+            foreach (int x in readytoserve)
+            {
+                if (x > 0)
+                {
+                    ++count;
+                }
+            }
+            if (count == 0)
             {
                 return false;
             }
@@ -99,6 +111,7 @@ namespace The_Ravening_Toad.Core
             }
 
             // sell the food
+            Game.MessageLog.Add($"{viableRecipes[index].name} sold for {viableRecipes[index].value} gold");
             --readytoserve[index];
             if (readytoserve[index] == 0)
             {

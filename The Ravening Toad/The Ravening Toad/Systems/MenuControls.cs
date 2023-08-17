@@ -175,10 +175,16 @@ namespace The_Ravening_Toad.Systems
                 {
                     for (int i = 0; i < (Game.ToadCafe.tables * 2); ++i)
                     {
-                        Game.ToadCafe.sellMostValuable();
+                        Game.ToadCafe.SellMostValuable();
                     }
                     Game.Player.location = "dungeon";
                     Game.Player.pause = false;
+                }
+                else if (key == RLKey.Number2)
+                {
+                    Game.Player.Meat -= 6;
+                    ++Game.ToadCafe.readytoserve[0];
+                    Game.MessageLog.Add($"The Toad prepared a Wad of Raw Meat! Delicious!");
                 }
             }
         }
