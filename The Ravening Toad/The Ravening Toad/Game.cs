@@ -266,11 +266,14 @@ namespace RaveningToad
                     ToadCafe.Draw(_mapConsole);
                 }
 
-                // and draw the console
-                MessageLog.Draw(_messageConsole);
+                if (Player.location != "start")
+                {
+                    // and draw the console
+                    MessageLog.Draw(_messageConsole);
 
-                // and draw stats
-                Player.DrawStats(_statConsole);
+                    // and draw stats
+                    Player.DrawStats(_statConsole);
+                }
 
                 // if main menu open, then draw it
                 if (Player.mainmenu)
