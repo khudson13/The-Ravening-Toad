@@ -1,4 +1,5 @@
 ﻿using RLNET;
+using RogueSharp;
 using RogueSharp.Random;
 using System;
 using System.Data;
