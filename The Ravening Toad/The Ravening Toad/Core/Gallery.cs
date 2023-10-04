@@ -1,4 +1,5 @@
-﻿using RLNET;
+﻿using OpenTK.Graphics.ES11;
+using RLNET;
 using RogueSharp;
 using System;
 using System.Collections.Generic;
@@ -8,20 +9,22 @@ using System.Threading.Tasks;
 
 namespace The_Ravening_Toad.Core
 {
-    public class Gallery
+    public class Gallery : Map
     {
         private string _filename = "";
         private RLRootConsole _frame;
-        private  RLConsole _picture;
-        private Map _image;
+        private RLConsole _picture;
 
         public void setFilename(string filename)
         {
             _filename = filename;
             _frame = new RLRootConsole(_filename, 100, 70, 16, 64, 1f, "picature");
-            _image = new Map();
-            _image.Initialize(16, 64);
-            
+            _frame.SetChar(0, 1, 1);
+        }
+
+        public void Draw()
+        {
+            _frame.Draw();
         }
     }
 }
