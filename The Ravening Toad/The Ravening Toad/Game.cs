@@ -17,17 +17,17 @@ namespace RaveningToad
         // measured in 8x8 tiles  *
         //*************************
         // Main Screen
-        private static readonly int _screenWidth = 100;
-        private static readonly int _screenHeight = 70;
+        private static readonly int _screenWidth = 150;
+        private static readonly int _screenHeight = 90;
         private static RLRootConsole _rootConsole;
 
         // Map Window
-        public static readonly int mapWidth = 80;
-        public static readonly int mapHeight = 48;
+        public static readonly int mapWidth = 130;
+        public static readonly int mapHeight = 68;
         private static RLConsole _mapConsole;
 
         // Message Window
-        private static readonly int _messageWidth = 80;
+        private static readonly int _messageWidth = 130;
         private static readonly int _messageHeight = 11;
         private static RLConsole _messageConsole;
 
@@ -37,7 +37,7 @@ namespace RaveningToad
         private static RLConsole _statConsole;
 
         // Inventory Window
-        private static readonly int _inventoryWidth = 80;
+        private static readonly int _inventoryWidth = 130;
         private static readonly int _inventoryHeight = 11;
         private static RLConsole _inventoryConsole;
 
@@ -140,7 +140,7 @@ namespace RaveningToad
             Load = new Load();
 
             // Create map
-            MapGenerator mapGenerator = new MapGenerator(mapWidth, mapHeight, 20, 13, 7, mapLevel);
+            MapGenerator mapGenerator = new MapGenerator(mapWidth, mapHeight, 50, 13, 7, mapLevel);
             ToadMap = mapGenerator.CreateMap();
             ToadMap.UpdatePlayerFieldOfView();
             ToadCafe = new ToadCafe();
