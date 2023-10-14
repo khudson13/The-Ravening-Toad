@@ -22,7 +22,12 @@ namespace RaveningToad
         private static RLRootConsole _rootConsole;
 
         // Map Window
-        public static readonly int mapWidth = 130;
+        public static readonly int startWidth = 150; 
+        public static readonly int startHeight = 98; 
+        private static RLConsole _startConsole;
+
+        // Map Window
+        public static readonly int mapWidth = 130; 
         public static readonly int mapHeight = 68;
         private static RLConsole _mapConsole;
 
@@ -93,6 +98,7 @@ namespace RaveningToad
             _rootConsole = new RLRootConsole(fontFileName, _screenWidth, _screenHeight,
               8, 8, 1f, consoleTitle);
             // Initialize sub consoles and Blit to root console
+            _startConsole = new RLConsole(startWidth, startHeight);
             _mapConsole = new RLConsole(mapWidth, mapHeight);
             _messageConsole = new RLConsole(_messageWidth, _messageHeight);
             _statConsole = new RLConsole(_statWidth, _statHeight);
@@ -260,7 +266,7 @@ namespace RaveningToad
                 }
                 else if (Player.location == "start")
                 {
-                    StartScreen.Draw(_mapConsole);
+                    StartScreen.Draw(_startConsole);
                 }
                 else if (Player.location == "cafe")
                 {
@@ -292,15 +298,23 @@ namespace RaveningToad
                     LoadMenu.Draw(_inventoryConsole);
                 }
 
-                // Blit the sub consoles to the root console in the correct locations
-                RLConsole.Blit(_mapConsole, 0, 0, mapWidth, mapHeight,
-                  _rootConsole, 0, _inventoryHeight);
-                RLConsole.Blit(_statConsole, 0, 0, _statWidth, _statHeight,
-                  _rootConsole, mapWidth, 0);
-                RLConsole.Blit(_messageConsole, 0, 0, _messageWidth, _messageHeight,
-                  _rootConsole, 0, _screenHeight - _messageHeight);
-                RLConsole.Blit(_inventoryConsole, 0, 0, _inventoryWidth, _inventoryHeight,
-                  _rootConsole, 0, 0);
+                if (Player.location == "start")
+                {
+                    RLConsole.Blit(_startConsole, 0, 0, startWidth, startHeight,
+                        _rootConsole, 0, 0);
+                }
+                else
+                {
+                    // Blit the sub consoles to the root console in the correct locations
+                    RLConsole.Blit(_mapConsole, 0, 0, mapWidth, mapHeight,
+                      _rootConsole, 0, _inventoryHeight);
+                    RLConsole.Blit(_statConsole, 0, 0, _statWidth, _statHeight,
+                      _rootConsole, mapWidth, 0);
+                    RLConsole.Blit(_messageConsole, 0, 0, _messageWidth, _messageHeight,
+                      _rootConsole, 0, _screenHeight - _messageHeight);
+                    RLConsole.Blit(_inventoryConsole, 0, 0, _inventoryWidth, _inventoryHeight,
+                      _rootConsole, 0, 0);
+                }
 
                 // Tell RLNET to draw the console
                 _rootConsole.Draw();
