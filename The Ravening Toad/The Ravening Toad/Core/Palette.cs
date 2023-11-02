@@ -37,6 +37,8 @@ namespace The_Ravening_Toad.Core
         public static RLColor ComplimentDarkest = new RLColor(71, 56, 45);
 
         // DETAIL PALETTE
+        public static RLColor AgedHardwood = new RLColor(140, 125, 110);
+        public static RLColor BetterBlood = new RLColor(136, 8, 8);
         public static RLColor Dark = new RLColor(20, 12, 28);
         public static RLColor OldBlood = new RLColor(68, 36, 52);
         public static RLColor DeepWater = new RLColor(48, 52, 109);
