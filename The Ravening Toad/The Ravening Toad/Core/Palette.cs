@@ -50,10 +50,16 @@ namespace The_Ravening_Toad.Core
         public static RLColor Water = new RLColor(89, 125, 206);
         public static RLColor BrightWood = new RLColor(210, 125, 44);
         public static RLColor Metal = new RLColor(133, 149, 161);
+        public static RLColor Silver = new RLColor(120, 120, 120);
         public static RLColor Grass = new RLColor(109, 170, 44);
         public static RLColor Skin = new RLColor(210, 170, 153);
         public static RLColor Sky = new RLColor(109, 194, 202);
         public static RLColor Sun = new RLColor(218, 212, 94);
         public static RLColor Light = new RLColor(222, 238, 214);
+        public static RLColor PlateRim = new RLColor(190, 190, 190);
+        public static RLColor Plate = new RLColor(170, 170, 170);
+        public static RLColor DarkGreen = new RLColor(0, 60, 0);
+        public static RLColor ToadGreen = new RLColor(0, 90, 0);
+        public static RLColor DarkAmber = new RLColor(213, 54, 0);
     }
 }
