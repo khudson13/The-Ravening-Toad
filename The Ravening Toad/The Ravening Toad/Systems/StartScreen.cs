@@ -13,17 +13,6 @@ namespace The_Ravening_Toad.Systems
     {                
         public void Draw(RLConsole console)
         {
-            /*
-            console.Print(13, 10, "THE RAVENING TOAD", RLColor.Yellow);
-            console.Print(15, 15, "1 = new game", RLColor.Yellow);
-            console.Print(15, 16, "2 = load game", RLColor.Yellow);
-            console.Print(15, 17, "3 = delete game", RLColor.Yellow);
-            console.Print(15, 18, "4 = exit", RLColor.Yellow);
-            */
-
-            //console.Print(30, 25, "-----", RLColor.Green);
-            //console.Print(70, 25, "-----", RLColor.Green);
-
             //**************************************
             // COLOR CODES FOR TITLE SCREEN        *
             // SEE BELOW FOR ORIGINAL IMAGE LAYOUT *
@@ -321,6 +310,20 @@ namespace The_Ravening_Toad.Systems
             ++y;
             charLine = @"******************************************************************************************************************************************************";
             printTable(y, charLine, console);
+
+            // print start menu
+            int menu_x = 64;
+            int menu_y = 65;
+            console.Print(menu_x, menu_y - 1, "                 ", RLColor.Yellow);
+            console.Print(menu_x, menu_y, " 1 = new game    ", RLColor.Yellow); ++menu_y;
+            console.Print(menu_x, menu_y, "                 ", RLColor.Yellow); ++menu_y;
+            console.Print(menu_x, menu_y, " 2 = load game   ", RLColor.Yellow); ++menu_y;
+            console.Print(menu_x, menu_y, "                 ", RLColor.Yellow); ++menu_y;
+            console.Print(menu_x, menu_y, " 3 = delete game ", RLColor.Yellow); ++menu_y;
+            console.Print(menu_x, menu_y, "                 ", RLColor.Yellow); ++menu_y;
+            console.Print(menu_x, menu_y, " 4 = exit        ", RLColor.Yellow); ++menu_y;
+            console.Print(menu_x, menu_y, "                 ", RLColor.Yellow); ++menu_y;
+
         }
 
         private void printTable(int y, string charLine, RLConsole console)
@@ -330,7 +333,7 @@ namespace The_Ravening_Toad.Systems
             {
                 if (c == '*')
                 {
-                    console.Print(x, y, "-", Palette.AgedHardwood);
+                    console.Print(x, y, "-", Palette.Oak);
                 }
                 else if (c == '/' || c == '\\' || c == '-')
                 {

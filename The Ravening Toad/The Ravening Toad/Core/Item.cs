@@ -12,34 +12,37 @@ namespace The_Ravening_Toad.Core
 {
     public class Item : IItem, IDrawable
     {
-        //IItem
+        //********
+        // IItem *
+        //********
+
+        // vars
+        protected string _name;
         protected bool _consumable;
         protected bool _throwable;
-        protected ItemTypes _ItemType;
+        protected ItemType _ItemType;
 
-        public bool consumable
-        { 
-            get { return _consumable; } 
+        // getters
+        public string Name { get { return _name; } }
+        public bool consumable{ get { return _consumable; } }
+        public bool throwable{ get { return _throwable; } }
+        public ItemType ItemType{ get { return _ItemType; } }
 
-        }
-        public bool throwable
-        { 
-            get { return _throwable; } 
-
-        }
-        public ItemTypes ItemType
-        { 
-            get { return _ItemType; } 
-        }
-
+        // methods
         public void Consume() { }
         public void Hurl() { }
 
-        //IDrawable
+        //************
+        // IDrawable *
+        //************
+
+        // vars
         private RLColor _color;
         private char _symbol;
         private int _X;
         private int _Y;
+
+        // getters & setters
         public RLColor Color
         {
             get { return _color; }
@@ -61,6 +64,7 @@ namespace The_Ravening_Toad.Core
             set { _Y = value; }
         }
 
+        // methods
         public void Draw(RLConsole console, IMap map)
         {
             // Don't draw actors in cells that haven't been explored

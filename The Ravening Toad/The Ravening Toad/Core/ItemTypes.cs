@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace The_Ravening_Toad.Core
 {
-    enum ItemType
+    public enum ItemType
     {
         Food,
         Drink,

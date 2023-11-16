@@ -41,6 +41,7 @@ namespace The_Ravening_Toad.Core
         public static RLColor BetterBlood = new RLColor(136, 8, 8);
         public static RLColor Dark = new RLColor(20, 12, 28);
         public static RLColor OldBlood = new RLColor(68, 36, 52);
+        public static RLColor Oak = new RLColor(216, 181, 137);
         public static RLColor DeepWater = new RLColor(48, 52, 109);
         public static RLColor OldStone = new RLColor(78, 74, 78);
         public static RLColor Wood = new RLColor(133, 76, 48);
@@ -59,7 +60,7 @@ namespace The_Ravening_Toad.Core
         public static RLColor PlateRim = new RLColor(190, 190, 190);
         public static RLColor Plate = new RLColor(170, 170, 170);
         public static RLColor DarkGreen = new RLColor(0, 60, 0);
-        public static RLColor ToadGreen = new RLColor(0, 90, 0);
+        public static RLColor ToadGreen = new RLColor(124, 252, 0);
         public static RLColor DarkAmber = new RLColor(213, 54, 0);
     }
 }
