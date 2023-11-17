@@ -17,24 +17,24 @@ namespace The_Ravening_Toad.Systems
             //************
             // MAIN MENU *
             //************
-            if (Game.Player.mainmenu)
+            if (Game.Player.Mainmenu)
             {
                 if (key == RLKey.Escape)
                 {
-                    Game.Player.pause = false;
-                    Game.Player.mainmenu = false;
+                    Game.Player.Pause = false;
+                    Game.Player.Mainmenu = false;
                 }
                 else if (key == RLKey.Number1)
                 {
-                    Game.Player.savemenu = true;
+                    Game.Player.Savemenu = true;
                     Game.SaveMenu.PopulateMenu();
-                    Game.Player.mainmenu = false;
+                    Game.Player.Mainmenu = false;
                 }
                 else if (key == RLKey.Number2)
                 {
-                    Game.Player.loadmenu = true;
+                    Game.Player.Loadmenu = true;
                     Game.LoadMenu.PopulateMenu();
-                    Game.Player.mainmenu = false;
+                    Game.Player.Mainmenu = false;
                 }
                 else if (key == RLKey.Number3)
                 {
@@ -45,7 +45,7 @@ namespace The_Ravening_Toad.Systems
             //************
             // SAVE MENU *
             //************
-            if (Game.Player.savemenu)
+            if (Game.Player.Savemenu)
             {
                 if (key == RLKey.Up)
                 {
@@ -66,20 +66,20 @@ namespace The_Ravening_Toad.Systems
                     Game.Save.saveGame(Game.Player, Game.SaveMenu.selection);
                     Game.SaveMenu.PopulateMenu();
                     Game.MessageLog.Add("Game Saved");
-                    Game.Player.pause = false;
-                    Game.Player.savemenu = false;
+                    Game.Player.Pause = false;
+                    Game.Player.Savemenu = false;
                 }
                 else if (key == RLKey.Escape)
                 {
-                    Game.Player.savemenu = false;
-                    Game.Player.mainmenu = true;
+                    Game.Player.Savemenu = false;
+                    Game.Player.Mainmenu = true;
                 }
             }
 
             //************
             // LOAD MENU *
             //************
-            if (Game.Player.loadmenu)
+            if (Game.Player.Loadmenu)
             {
                 if (key == RLKey.Up)
                 {
@@ -101,15 +101,15 @@ namespace The_Ravening_Toad.Systems
                     {
                         Game.CommandSystem = new CommandSystem();
                         Game.MessageLog.Add("Game Loaded");
-                        Game.Player.pause = false;
-                        Game.Player.loadmenu = false;
-                        Game.Player.location = "dungeon";
+                        Game.Player.Pause = false;
+                        Game.Player.Loadmenu = false;
+                        Game.Player.Location = "dungeon";
                     }
                     else
                     {
                         Game.MessageLog.Add("LOAD FAILED!");
-                        Game.Player.pause = false;
-                        Game.Player.loadmenu = false;
+                        Game.Player.Pause = false;
+                        Game.Player.Loadmenu = false;
                     }
                 }
                 else if (key == RLKey.Enter && Game.LoadMenu.delete)
@@ -132,11 +132,11 @@ namespace The_Ravening_Toad.Systems
                 else if (key == RLKey.Escape)
                 {
                     Game.LoadMenu.PopulateMenu();
-                    Game.Player.loadmenu = false;
+                    Game.Player.Loadmenu = false;
                     Game.LoadMenu.delete = false;
-                    if (Game.Player.location != "start")
+                    if (Game.Player.Location != "start")
                     {
-                        Game.Player.mainmenu = true;
+                        Game.Player.Mainmenu = true;
                     }
                 }
             }
@@ -144,20 +144,20 @@ namespace The_Ravening_Toad.Systems
             //*************
             // START MENU *
             //*************
-            if (Game.Player.location == "start" && !Game.Player.loadmenu)
+            if (Game.Player.Location == "start" && !Game.Player.Loadmenu)
             {
                 if (key == RLKey.Number1)
                 {
-                    Game.Player.location = "dungeon";
-                    Game.Player.pause = false;
+                    Game.Player.Location = "dungeon";
+                    Game.Player.Pause = false;
                 }
                 else if (key == RLKey.Number2)
                 {
-                    Game.Player.loadmenu = true;
+                    Game.Player.Loadmenu = true;
                 }
                 else if (key == RLKey.Number3)
                 {
-                    Game.Player.loadmenu = true;
+                    Game.Player.Loadmenu = true;
                     Game.LoadMenu.delete = true;
                 }
                 else if (key == RLKey.Number4)
@@ -169,7 +169,7 @@ namespace The_Ravening_Toad.Systems
             //************
             // CAFE MENU *
             //************
-            if (Game.Player.location == "cafe")
+            if (Game.Player.Location == "cafe")
             {
                 if (key == RLKey.Number1)
                 {
@@ -177,8 +177,8 @@ namespace The_Ravening_Toad.Systems
                     {
                         Game.ToadCafe.SellMostValuable();
                     }
-                    Game.Player.location = "dungeon";
-                    Game.Player.pause = false;
+                    Game.Player.Location = "dungeon";
+                    Game.Player.Pause = false;
                     Game.MessageLog.Add($"{Game.Player.Name} has returned to the dungeon!");
                 }
                 else if (key == RLKey.Number2)

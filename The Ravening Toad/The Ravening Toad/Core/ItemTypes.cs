@@ -15,4 +15,13 @@ namespace The_Ravening_Toad.Core
         Lacquer,
         Grenade
     }
+
+    public enum ItemID
+    {
+        S_Health,
+        M_Health,
+        L_Health,
+
+        NULL
+    }
 }

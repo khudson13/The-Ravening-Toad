@@ -16,6 +16,7 @@ namespace The_Ravening_Toad.Items
             _consumable = true;
             _throwable = false;
             _ItemType = ItemType.Potion;
+            _ID = ItemID.L_Health;
             Color = RLNET.RLColor.White;
             Symbol = '[';
         }

@@ -21,12 +21,14 @@ namespace The_Ravening_Toad.Core
         protected bool _consumable;
         protected bool _throwable;
         protected ItemType _ItemType;
+        protected ItemID _ID;
 
         // getters
         public string Name { get { return _name; } }
         public bool consumable{ get { return _consumable; } }
         public bool throwable{ get { return _throwable; } }
         public ItemType ItemType{ get { return _ItemType; } }
+        public ItemID ItemID { get { return _ID; } }
 
         // methods
         public void Consume() { }

@@ -12,6 +12,7 @@ namespace The_Ravening_Toad.Interfaces
         string Name { get; }
         bool consumable { get; }
         bool throwable { get; }
+        ItemID ItemID { get; }
         ItemType ItemType { get; }
         void Consume();
         void Hurl();

@@ -17,65 +17,49 @@ namespace The_Ravening_Toad.Core
         private bool _loadmenu = false;
         private bool _pause = true;
         private string _location = "start";
+        private int[] _inventory = new int[(int)ItemID.NULL]; // indexed by ItemID enum, each entry is the number of that item owned
 
-        public bool mainmenu
+        public void addItem(ItemID ID, int amount)
         {
-            get
+            _inventory[(int)ID] += amount;
+        }
+        public void subtractItem(ItemID ID, int amount = 1)
+        {
+            if (_inventory[(int)ID] >= amount)
             {
-                return _mainmenu;
-            }
-            set
-            {
-                _mainmenu = value;
+                _inventory[(int)ID] -= amount;
             }
         }
+        public int[] getInventory() { return _inventory; }
 
-        public bool savemenu
+        public bool Mainmenu
         {
-            get
-            {
-                return _savemenu;
-            }
-            set
-            {
-                _savemenu = value;
-            }
+            get{ return _mainmenu; }
+            set{ _mainmenu = value; }
         }
 
-        public bool loadmenu
+        public bool Savemenu
         {
-            get
-            {
-                return _loadmenu;
-            }
-            set
-            {
-                _loadmenu = value;
-            }
+            get{ return _savemenu; }
+            set{ _savemenu = value; }
         }
 
-        public bool pause
+        public bool Loadmenu
         {
-            get
-            {
-                return _pause;
-            }
-            set
-            {
-                _pause = value;
-            }
+            get{ return _loadmenu; }
+            set{ _loadmenu = value; }
         }
 
-        public string location
+        public bool Pause
         {
-            get
-            {
-                return _location;
-            }
-            set
-            {
-                _location = value;
-            }
+            get{ return _pause; }
+            set{ _pause = value; }
+        }
+
+        public string Location
+        {
+            get{ return _location; }
+            set{ _location = value; }
         }
 
         public Player()
@@ -94,6 +78,12 @@ namespace The_Ravening_Toad.Core
             Name = "The Toad";
             Speed = 10;
             Symbol = '@';
+
+            // temporary starting inventory for testing
+            for (int i = 0; i < _inventory.Length; ++i)
+            {
+                _inventory[i] = 1;
+            }
         }
 
         public void DrawStats(RLConsole statConsole)

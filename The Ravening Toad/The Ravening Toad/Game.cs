@@ -180,7 +180,7 @@ namespace RaveningToad
             if (CommandSystem.IsPlayerTurn)
             {
                 // primary player controls
-                if (keyPress != null && !Player.pause)
+                if (keyPress != null && !Player.Pause)
                 {
                     if (keyPress.Key == RLKey.Up)
                     {
@@ -209,20 +209,20 @@ namespace RaveningToad
                             ToadMap = mapGenerator.CreateMap();
                             MessageLog = new MessageLog();
                             CommandSystem = new CommandSystem();
-                            Player.pause = true;
-                            Player.location = "cafe";
+                            Player.Pause = true;
+                            Player.Location = "cafe";
                             MessageLog.Add($"{Player.Name} has returned to the cafe");
                         }
                     }
                     else if (keyPress.Key == RLKey.Escape)
                     {
-                        Player.pause = true;
-                        Player.mainmenu = true;
+                        Player.Pause = true;
+                        Player.Mainmenu = true;
                         _renderRequired = true;
                     }
                 }
                 // menu input
-                else if (Player.pause)
+                else if (Player.Pause)
                 {
                     if (keyPress != null)
                     {
@@ -257,23 +257,23 @@ namespace RaveningToad
                 _inventoryConsole.Clear();
 
                 // Draw the map
-                if (Player.location == "dungeon")
+                if (Player.Location == "dungeon")
                 {
                     ToadMap.Draw(_mapConsole, _statConsole);
 
                     // and draw the player
                     Player.Draw(_mapConsole, ToadMap);
                 }
-                else if (Player.location == "start")
+                else if (Player.Location == "start")
                 {
                     StartScreen.Draw(_startConsole);
                 }
-                else if (Player.location == "cafe")
+                else if (Player.Location == "cafe")
                 {
                     ToadCafe.Draw(_mapConsole);
                 }
 
-                if (Player.location != "start")
+                if (Player.Location != "start")
                 {
                     // and draw the console
                     MessageLog.Draw(_messageConsole);
@@ -283,22 +283,22 @@ namespace RaveningToad
                 }
 
                 // if main menu open, then draw it
-                if (Player.mainmenu)
+                if (Player.Mainmenu)
                 {
                     MainMenu.Draw(_inventoryConsole);
                 }
                 // if save menu open, then draw it
-                if (Player.savemenu)
+                if (Player.Savemenu)
                 {
                     SaveMenu.Draw(_inventoryConsole);
                 }
                 // if load menu open, then draw it
-                if (Player.loadmenu)
+                if (Player.Loadmenu)
                 {
                     LoadMenu.Draw(_inventoryConsole);
                 }
 
-                if (Player.location == "start")
+                if (Player.Location == "start")
                 {
                     RLConsole.Blit(_startConsole, 0, 0, startWidth, startHeight,
                         _rootConsole, 0, 0);
