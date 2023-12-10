@@ -19,18 +19,22 @@ namespace The_Ravening_Toad.Core
         private string _location = "start";
         private int[] _inventory = new int[(int)ItemID.NULL]; // indexed by ItemID enum, each entry is the number of that item owned
 
-        public void addItem(ItemID ID, int amount)
+        public void AddItem(ItemID ID, int amount)
         {
             _inventory[(int)ID] += amount;
         }
-        public void subtractItem(ItemID ID, int amount = 1)
+        public void SubtractItem(ItemID ID, int amount = 1)
         {
             if (_inventory[(int)ID] >= amount)
             {
                 _inventory[(int)ID] -= amount;
             }
         }
-        public int[] getInventory() { return _inventory; }
+        public int GetItemAmmount(ItemID ID)
+        {
+            return _inventory[(int)ID];
+        }
+        public int[] GetInventory() { return _inventory; }
 
         public bool Mainmenu
         {

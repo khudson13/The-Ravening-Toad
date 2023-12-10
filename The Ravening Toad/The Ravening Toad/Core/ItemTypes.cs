@@ -18,6 +18,7 @@ namespace The_Ravening_Toad.Core
 
     public enum ItemID
     {
+        // don't forget to update ItemIDtoString() in ItemsMenu.cs when adding to this
         S_Health,
         M_Health,
         L_Health,
