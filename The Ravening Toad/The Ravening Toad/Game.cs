@@ -61,6 +61,7 @@ namespace RaveningToad
         public static MainMenu MainMenu { get; private set; }
         public static SaveMenu SaveMenu { get; private set; }
         public static LoadMenu LoadMenu { get; private set; }
+        public static ItemsMenu ItemsMenu { get; private set; }
         public static StartScreen StartScreen { get; private set; }
         public static ToadCafe ToadCafe { get; private set; }
 
@@ -140,6 +141,7 @@ namespace RaveningToad
             MainMenu = new MainMenu();
             SaveMenu = new SaveMenu();
             LoadMenu = new LoadMenu();
+            ItemsMenu = new ItemsMenu();
 
             // Create Save/Load Systems
             Save = new Save();
@@ -261,6 +263,8 @@ namespace RaveningToad
                 {
                     ToadMap.Draw(_mapConsole, _statConsole);
 
+                    // draw items menu
+                    ItemsMenu.Draw(_inventoryConsole);
                     // and draw the player
                     Player.Draw(_mapConsole, ToadMap);
                 }

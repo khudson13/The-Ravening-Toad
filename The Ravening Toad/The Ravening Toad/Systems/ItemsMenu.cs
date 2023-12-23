@@ -14,7 +14,7 @@ namespace The_Ravening_Toad.Systems
 
         private int[] _inventory = new int[(int)ItemID.NULL];   // copy of player inventory used for display
         private int _current_index = 0;                         // currently selected item
-        private readonly int x = 20;                            // x and y coods for selected item
+        private readonly int x = 50;                            // x and y coods for selected item
         private readonly int y = 5;                             
 
         public void Draw(RLConsole console)
@@ -22,8 +22,15 @@ namespace The_Ravening_Toad.Systems
             // selected item
             console.Print(x, y, ItemIDtoString((ItemID)_current_index), RLColor.Yellow);
             // previous item
-
+            if (_current_index - 1 >= 0)
+            {
+                console.Print(x - 10, y + 1, ItemIDtoString((ItemID)(_current_index - 1)), RLColor.Gray);
+            }
             // next item
+            if (_current_index + 1 <= _inventory.Length)
+            {
+                console.Print(x + 10, y + 1, ItemIDtoString((ItemID)(_current_index + 1)), RLColor.Gray);
+            }
         }
 
         public string ItemIDtoString(ItemID itemID)
@@ -38,19 +45,6 @@ namespace The_Ravening_Toad.Systems
                     return "L_Health";
                 default:
                     return "NULL";
-            }
-        }
-
-
-        private string[] choices = { "1 = Save", "2 = Load", "3 = Exit" };
-        // Draw each option to the console
-        public void fDraw(RLConsole console)
-        {
-            //console.Clear();
-
-            for (int i = 0; i < choices.Length; i++)
-            {
-                console.Print(1, i + 1, choices[i], RLColor.White);
             }
         }
     }
