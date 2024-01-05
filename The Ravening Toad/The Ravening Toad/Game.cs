@@ -184,6 +184,7 @@ namespace RaveningToad
                 // primary player controls
                 if (keyPress != null && !Player.Pause)
                 {
+                    // DIRECTION CONTROLS
                     if (keyPress.Key == RLKey.Up)
                     {
                         didPlayerAct = CommandSystem.MovePlayer(Direction.Up);
@@ -200,6 +201,24 @@ namespace RaveningToad
                     {
                         didPlayerAct = CommandSystem.MovePlayer(Direction.Right);
                     }
+                    // ITEM CONTROLS
+                    else if (keyPress.Key == RLKey.E)
+                    {
+                        if (ItemsMenu.current_index < ItemsMenu.GetInventorySize() - 1)
+                        {
+                            ++ItemsMenu.current_index;
+                            _renderRequired = true;
+                        }
+                    }
+                    else if (keyPress.Key == RLKey.Q)
+                    {
+                        if (ItemsMenu.current_index > 0)
+                        {
+                            --ItemsMenu.current_index;
+                            _renderRequired = true;
+                        }
+                    }
+                    // USE EXIT
                     else if (keyPress.Key == RLKey.Period)
                     {
                         if (ToadMap.CanMoveDownToNextLevel())
@@ -216,6 +235,7 @@ namespace RaveningToad
                             MessageLog.Add($"{Player.Name} has returned to the cafe");
                         }
                     }
+                    // OPEN MENU
                     else if (keyPress.Key == RLKey.Escape)
                     {
                         Player.Pause = true;
