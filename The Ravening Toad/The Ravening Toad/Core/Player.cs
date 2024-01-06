@@ -17,7 +17,7 @@ namespace The_Ravening_Toad.Core
         private bool _loadmenu = false;
         private bool _pause = true;
         private string _location = "start";
-        private int[] _inventory = new int[(int)ItemID.NULL]; // indexed by ItemID enum, each entry is the number of that item owned
+        private int[] _inventory = new int[(int)ItemID.END_USABLE]; // indexed by ItemID enum, each entry is the number of that item owned
 
         public void AddItem(ItemID ID, int amount)
         {

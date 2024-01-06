@@ -21,7 +21,7 @@ namespace The_Ravening_Toad.Items
             Symbol = '[';
         }
 
-        new public void Consume()
+        new public void Activate()
         {
             Game.Player.Health = Game.Player.MaxHealth;
         }

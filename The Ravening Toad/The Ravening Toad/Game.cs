@@ -134,14 +134,7 @@ namespace RaveningToad
             //******************************
 
             // Create Scheduling System
-            SchedulingSystem = new SchedulingSystem();
-
-            // Prepare menus
-            StartScreen = new StartScreen();
-            MainMenu = new MainMenu();
-            SaveMenu = new SaveMenu();
-            LoadMenu = new LoadMenu();
-            ItemsMenu = new ItemsMenu();
+            SchedulingSystem = new SchedulingSystem();            
 
             // Create Save/Load Systems
             Save = new Save();
@@ -152,6 +145,13 @@ namespace RaveningToad
             ToadMap = mapGenerator.CreateMap();
             ToadMap.UpdatePlayerFieldOfView();
             ToadCafe = new ToadCafe();
+
+            // Prepare menus
+            StartScreen = new StartScreen();
+            MainMenu = new MainMenu();
+            SaveMenu = new SaveMenu();
+            LoadMenu = new LoadMenu();
+            ItemsMenu = new ItemsMenu();
 
             // Create Command System
             CommandSystem = new CommandSystem();
@@ -204,19 +204,49 @@ namespace RaveningToad
                     // ITEM CONTROLS
                     else if (keyPress.Key == RLKey.E)
                     {
+                        // select next item with non-zero quantity
                         if (ItemsMenu.current_index < ItemsMenu.GetInventorySize() - 1)
                         {
+                            int temp = ItemsMenu.current_index;
                             ++ItemsMenu.current_index;
-                            _renderRequired = true;
+                            while (ItemsMenu.GetQuantity(ItemsMenu.current_index) == 0 && ItemsMenu.current_index < ItemsMenu.GetInventorySize() - 1)
+                            {
+                                ++ItemsMenu.current_index;
+                            }
+                            if (ItemsMenu.GetQuantity(ItemsMenu.current_index) == 0)
+                            {
+                                ItemsMenu.current_index = temp;
+                            }
+                            else
+                            {
+                                _renderRequired = true;
+                            }
                         }
                     }
                     else if (keyPress.Key == RLKey.Q)
                     {
+                        // select previous item with non-zero quantity
                         if (ItemsMenu.current_index > 0)
                         {
+                            int temp = ItemsMenu.current_index;
                             --ItemsMenu.current_index;
-                            _renderRequired = true;
+                            while (ItemsMenu.GetQuantity(ItemsMenu.current_index) == 0 && ItemsMenu.current_index > 0)
+                            {
+                                --ItemsMenu.current_index;
+                            }
+                            if (ItemsMenu.GetQuantity(ItemsMenu.current_index) == 0)
+                            {
+                                ItemsMenu.current_index = temp;
+                            }
+                            else
+                            {
+                                _renderRequired = true;
+                            }
                         }
+                    }
+                    else if (keyPress.Key == RLKey.Space)
+                    {
+                        ItemsMenu.ActivateItem();
                     }
                     // USE EXIT
                     else if (keyPress.Key == RLKey.Period)

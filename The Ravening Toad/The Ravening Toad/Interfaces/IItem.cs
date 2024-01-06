@@ -10,11 +10,10 @@ namespace The_Ravening_Toad.Interfaces
     public interface IItem
     {
         string Name { get; }
-        bool consumable { get; }
-        bool throwable { get; }
+        //bool consumable { get; }
+        //bool throwable { get; }
         ItemID ItemID { get; }
         ItemType ItemType { get; }
-        void Consume();
-        void Hurl();
+        void Activate();
     }
 }

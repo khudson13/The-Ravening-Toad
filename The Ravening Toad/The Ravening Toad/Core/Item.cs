@@ -25,14 +25,13 @@ namespace The_Ravening_Toad.Core
 
         // getters
         public string Name { get { return _name; } }
-        public bool consumable{ get { return _consumable; } }
-        public bool throwable{ get { return _throwable; } }
+        //public bool consumable{ get { return _consumable; } }
+        //public bool throwable{ get { return _throwable; } }
         public ItemType ItemType{ get { return _ItemType; } }
         public ItemID ItemID { get { return _ID; } }
 
         // methods
-        public void Consume() { }
-        public void Hurl() { }
+        public void Activate() { }
 
         //************
         // IDrawable *
@@ -83,7 +82,8 @@ namespace The_Ravening_Toad.Core
             else
             {
                 // When not in field-of-view just draw a normal floor
-                console.Set(X, Y, Colors.Floor, Colors.FloorBackground, '.');
+                //console.Set(X, Y, Colors.Floor, Colors.FloorBackground, '.');
+                return;
             }
         }
     }
