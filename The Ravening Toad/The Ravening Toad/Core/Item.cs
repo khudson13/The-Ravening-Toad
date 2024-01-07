@@ -17,11 +17,11 @@ namespace The_Ravening_Toad.Core
         //********
 
         // vars
-        protected string _name;
-        protected bool _consumable;
-        protected bool _throwable;
-        protected ItemType _ItemType;
-        protected ItemID _ID;
+        static protected string _name;
+        static protected bool _consumable;
+        static protected bool _throwable;
+        static protected ItemType _ItemType;
+        static protected ItemID _ID;
 
         // getters
         public string Name { get { return _name; } }

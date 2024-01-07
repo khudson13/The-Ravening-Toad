@@ -13,15 +13,13 @@ namespace The_Ravening_Toad.Items
         public HealthPotion_Large()
         {
             _name = "Full Health Potion";
-            _consumable = true;
-            _throwable = false;
             _ItemType = ItemType.Potion;
             _ID = ItemID.L_Health;
             Color = RLNET.RLColor.White;
             Symbol = '[';
         }
 
-        new public void Activate()
+        new static public void Activate()
         {
             Game.Player.Health = Game.Player.MaxHealth;
         }

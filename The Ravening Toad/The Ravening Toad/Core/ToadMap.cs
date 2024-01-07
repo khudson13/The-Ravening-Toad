@@ -100,10 +100,13 @@ namespace The_Ravening_Toad.Core
             {
                 monster.Draw(mapConsole, this);
                 // When monster in FoV also draw their stats
+                // also, update visible monster list
+                Game.Player.visible_monsters.Clear();
                 if (IsInFov(monster.X, monster.Y))
                 {
                     // Pass index to DrawStats and increment it afterwards
                     monster.DrawStats(statConsole, i);
+                    Game.Player.visible_monsters.Add(monster);
                     i++;
                 }
             }

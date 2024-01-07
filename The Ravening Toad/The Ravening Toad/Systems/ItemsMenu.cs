@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using The_Ravening_Toad.Core;
+using The_Ravening_Toad.Items;
 
 namespace The_Ravening_Toad.Systems
 {
@@ -19,11 +20,6 @@ namespace The_Ravening_Toad.Systems
         public int current_index = 0;                                                   // currently selected item
         private readonly int x = 50;                                                    // x and y coods for selected item
         private readonly int y = 5;                             
-
-        public ItemsMenu()
-        {
-            // POPULATE ITEM DEFINITIONS ARRAY
-        }
 
         public void Draw(RLConsole console)
         {
@@ -95,6 +91,39 @@ namespace The_Ravening_Toad.Systems
                 default:
                     return "";
             }
-        }        
+        }
+        
+        public bool ThrowItem(ItemID item)
+        {
+            // SELECTARGET AND THROW ITEM, HOW TO ILLUMINATE CURRENT SELECTION?
+            // Nothing there
+            if (!Game.Player.visible_monsters.Any())
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public ItemsMenu()
+        {
+            // POPULATE ITEM DEFINITIONS ARRAY
+            for (int i = 0; i < (int)ItemID.END_USABLE; ++i)
+            {
+                switch (i){
+                    case (int)ItemID.S_Health:
+                        _item_definitions[i] = new HealthPotion_Small();
+                        break;
+                    case (int)ItemID.M_Health:
+                        _item_definitions[i] = new HealthPotion_Medium();
+                        break;
+                    case ((int)ItemID.L_Health):
+                        _item_definitions[i] = new HealthPotion_Large();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
     }
 }
