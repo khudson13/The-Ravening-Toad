@@ -73,6 +73,7 @@
     <Compile Include="Interfaces\IItem.cs" />
     <Compile Include="Interfaces\IRecipe.cs" />
     <Compile Include="Interfaces\IScheduleable.cs" />
+    <Compile Include="Items\Grenade.cs" />
     <Compile Include="Items\HealthPotion_Large.cs" />
     <Compile Include="Items\HealthPotion_Medium.cs" />
     <Compile Include="Items\HealthPotion_Small.cs" />

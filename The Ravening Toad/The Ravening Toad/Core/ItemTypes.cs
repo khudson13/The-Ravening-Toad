@@ -22,6 +22,7 @@ namespace The_Ravening_Toad.Core
         S_Health,
         M_Health,
         L_Health,
+        Grenade,
 
         END_USABLE, // items beyond this point can't be used in dungeon and don't appear in inventory menu
 

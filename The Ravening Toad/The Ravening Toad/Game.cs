@@ -273,10 +273,19 @@ namespace RaveningToad
                         _renderRequired = true;
                     }
                 }
-                // menu input
+                // if paused
                 else if (Player.Pause)
                 {
-                    if (keyPress != null)
+                    // set target for throw
+                    if (ItemsMenu.targeting)
+                    {
+                        if (keyPress != null)
+                        {
+
+                        }
+                    }
+                    // menu input
+                    else if (keyPress != null)
                     {
                         MenuControls.MenuControl(keyPress.Key);
                         _renderRequired = true;

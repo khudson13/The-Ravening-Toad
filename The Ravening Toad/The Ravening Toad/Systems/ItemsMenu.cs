@@ -17,6 +17,8 @@ namespace The_Ravening_Toad.Systems
         private int[] _inventory = Game.Player.GetInventory();                          // copy of player inventory used for display
         private readonly Item[] _item_definitions = new Item[(int)ItemID.END_USABLE];   // access item functionality here, items indexed in same order as _inventory for ease of use
         private bool _inventory_empty = false;                                          // is inventory empty
+        public bool targeting = false;                                                  // currently selecting target for throw
+        private int target = 0;                                                         // index of current target in visible monsters
         public int current_index = 0;                                                   // currently selected item
         private readonly int x = 50;                                                    // x and y coods for selected item
         private readonly int y = 5;                             
@@ -93,16 +95,53 @@ namespace The_Ravening_Toad.Systems
             }
         }
         
-        public bool ThrowItem(ItemID item)
+        public bool CanTarget(RLConsole statconsole)
         {
-            // SELECTARGET AND THROW ITEM, HOW TO ILLUMINATE CURRENT SELECTION?
-            // Nothing there
+            // returns whether or not targets exist and sets targeting mode
             if (!Game.Player.visible_monsters.Any())
             {
                 return false;
             }
-
+            target = 0;
+            statconsole.SetBackColor(Game.Player.visible_monsters[0].X, Game.Player.visible_monsters[target].Y, RLColor.Red);
+            Game.Player.Pause = true;
+            targeting = true;
             return true;
+        }
+
+        // navigate targeting selection
+        public void ChooseTarget(RLConsole statconsole, RLKey key)
+        {
+            if (key == RLKey.W || key == RLKey.D)
+            {
+                if (target == Game.Player.visible_monsters.Count - 1)
+                {
+                    target = 0;
+                }
+                else
+                {
+                    ++target;
+                }
+                statconsole.SetBackColor(Game.Player.visible_monsters[0].X, Game.Player.visible_monsters[target].Y, RLColor.Red);
+            }
+            else if (key == RLKey.S || key == RLKey.A)
+            {
+                if (target == 0)
+                {
+                    target = Game.Player.visible_monsters.Count - 1;
+                }
+                else
+                {
+                    --target;
+                }
+                statconsole.SetBackColor(Game.Player.visible_monsters[0].X, Game.Player.visible_monsters[target].Y, RLColor.Red);
+            }
+            else if (key == RLKey.Space)
+            {
+                _item_definitions[current_index].Activate();
+            }
+
+            
         }
 
         public ItemsMenu()
@@ -119,6 +158,9 @@ namespace The_Ravening_Toad.Systems
                         break;
                     case ((int)ItemID.L_Health):
                         _item_definitions[i] = new HealthPotion_Large();
+                        break;
+                    case ((int)ItemID.Grenade):
+                        _item_definitions[i] = new Grenade();
                         break;
                     default:
                         break;
