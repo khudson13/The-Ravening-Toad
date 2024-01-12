@@ -24,6 +24,7 @@ namespace The_Ravening_Toad.Items
         new public void Activate()
         {
             Game.Player.Health += 5;
+            Game.ItemsMenu.DeductItem();
         }
     }
 }

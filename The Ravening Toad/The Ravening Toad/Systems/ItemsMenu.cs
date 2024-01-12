@@ -18,7 +18,7 @@ namespace The_Ravening_Toad.Systems
         private readonly Item[] _item_definitions = new Item[(int)ItemID.END_USABLE];   // access item functionality here, items indexed in same order as _inventory for ease of use
         private bool _inventory_empty = false;                                          // is inventory empty
         public bool targeting = false;                                                  // currently selecting target for throw
-        private int target = 0;                                                         // index of current target in visible monsters
+        public int target = 0;                                                         // index of current target in visible monsters
         public int current_index = 0;                                                   // currently selected item
         private readonly int x = 50;                                                    // x and y coods for selected item
         private readonly int y = 5;                             
@@ -33,15 +33,35 @@ namespace The_Ravening_Toad.Systems
             {
                 // selected item
                 console.Print(x, y, ItemIDtoString((ItemID)current_index), RLColor.Yellow);
-                // previous item
-                if (current_index - 1 >= 0)
+
+                // previous item                
+                int index_to_print = current_index - 1;
+                while (index_to_print >= 0)
                 {
-                    console.Print(x - 10, y + 1, ItemIDtoString((ItemID)(current_index - 1)), RLColor.Gray);
+                    if (_inventory[index_to_print] > 0)
+                    {
+                        console.Print(x - 10, y + 1, ItemIDtoString((ItemID)(index_to_print)), RLColor.Gray);
+                        index_to_print = -1;
+                    }
+                    else
+                    {
+                        --index_to_print;
+                    }
                 }
+
                 // next item
-                if (current_index + 1 <= _inventory.Length)
+                index_to_print = current_index + 1;
+                while (index_to_print < _inventory.Length)
                 {
-                    console.Print(x + 10, y + 1, ItemIDtoString((ItemID)(current_index + 1)), RLColor.Gray);
+                    if (_inventory[index_to_print] > 0)
+                    {
+                        console.Print(x + 10, y + 1, ItemIDtoString((ItemID)(index_to_print)), RLColor.Gray);
+                        index_to_print = _inventory.Length;
+                    }
+                    else
+                    {
+                        ++index_to_print;
+                    }
                 }
             }
         }
@@ -49,6 +69,10 @@ namespace The_Ravening_Toad.Systems
         public void ActivateItem()
         {
             _item_definitions[current_index].Activate();
+        }
+
+        public void DeductItem()
+        {
             --_inventory[current_index];
             if (_inventory[current_index] == 0)
             {
@@ -60,7 +84,7 @@ namespace The_Ravening_Toad.Systems
                 {
                     while (_inventory[current_index] == 0 && current_index > 0)
                     {
-                        --current_index;                        
+                        --current_index;
                     }
                     if (_inventory[current_index] == 0)
                     {
@@ -90,6 +114,8 @@ namespace The_Ravening_Toad.Systems
                     return "M_Health";
                 case ItemID.L_Health:
                     return "L_Health";
+                case ItemID.Grenade:
+                    return "Grenade";
                 default:
                     return "";
             }
@@ -139,9 +165,7 @@ namespace The_Ravening_Toad.Systems
             else if (key == RLKey.Space)
             {
                 _item_definitions[current_index].Activate();
-            }
-
-            
+            }            
         }
 
         public ItemsMenu()

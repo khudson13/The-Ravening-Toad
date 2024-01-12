@@ -22,6 +22,7 @@ namespace The_Ravening_Toad.Items
         new static public void Activate()
         {
             Game.Player.Health = Game.Player.MaxHealth;
+            Game.ItemsMenu.DeductItem();
         }
     }
 }

@@ -4,6 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/*
+ * IMPORTANT
+ * 
+ * when adding new items update the following:
+ * 
+ * this enum
+ * ItemsMenu ItemIDtoString() && constructor
+ * 
+ * make sure to remove item from inventory in item's Activate()
+ */
+
 namespace The_Ravening_Toad.Core
 {
     public enum ItemType

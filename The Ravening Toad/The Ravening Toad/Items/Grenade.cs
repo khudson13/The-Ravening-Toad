@@ -22,13 +22,30 @@ namespace The_Ravening_Toad.Items
 
         new static public void Activate()
         {
+            // if not targeting, start targeting
             if (!Game.ItemsMenu.targeting)
             {
                 Game.ItemsMenu.targeting = true;
             }
+
+            // second activation, once target has been selected
             else
             {
-                // damage in area of effect
+                foreach(Monster monster in Game.Player.visible_monsters)
+                {
+                    // set values for area of effect
+                    int left_of_monster = Game.Player.visible_monsters[Game.ItemsMenu.target].X - 1;
+                    int right_of_monster = Game.Player.visible_monsters[Game.ItemsMenu.target].X + 1;
+                    int above_monster = Game.Player.visible_monsters[Game.ItemsMenu.target].Y - 1;
+                    int below_monster = Game.Player.visible_monsters[Game.ItemsMenu.target].Y + 1;
+
+                    // damage every monster in area of effect
+                    if ((monster.X >= left_of_monster && monster.X <= right_of_monster) && (monster.Y <= below_monster && monster.Y >= above_monster))
+                    {
+                        monster.Health -= 5;
+                    }
+                }
+                Game.ItemsMenu.DeductItem();
             }
         }
     }
