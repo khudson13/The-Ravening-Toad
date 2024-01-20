@@ -92,6 +92,7 @@ namespace The_Ravening_Toad.Systems
                     }
                 }
             }
+            _inventory = Game.Player.GetInventory();
         }
 
         public int GetInventorySize()
@@ -175,20 +176,34 @@ namespace The_Ravening_Toad.Systems
             {
                 switch (i){
                     case (int)ItemID.S_Health:
+                        Console.WriteLine((int)ItemID.S_Health);
+                        Console.WriteLine(i);
                         _item_definitions[i] = new HealthPotion_Small();
                         break;
                     case (int)ItemID.M_Health:
+                        Console.WriteLine((int)ItemID.M_Health);
+                        Console.WriteLine(i);
                         _item_definitions[i] = new HealthPotion_Medium();
                         break;
                     case ((int)ItemID.L_Health):
+                        Console.WriteLine((int)ItemID.L_Health);
+                        Console.WriteLine(i);
                         _item_definitions[i] = new HealthPotion_Large();
                         break;
                     case ((int)ItemID.Grenade):
+                        Console.WriteLine((int)ItemID.Grenade);
+                        Console.WriteLine(i);
                         _item_definitions[i] = new Grenade();
                         break;
                     default:
                         break;
                 }
+            }
+            foreach (Item x in _item_definitions)
+            {
+                Console.WriteLine(x.ToString());
+                Console.WriteLine(ItemIDtoString(x.ItemID));
+                Console.WriteLine(x.Name);
             }
         }
     }

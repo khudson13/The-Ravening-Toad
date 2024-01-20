@@ -25,7 +25,7 @@ namespace The_Ravening_Toad.Items
             // if not targeting, start targeting
             if (!Game.ItemsMenu.targeting)
             {
-                Game.ItemsMenu.targeting = true;
+                Game.ItemsMenu.CanTarget(Game._statConsole);
             }
 
             // second activation, once target has been selected

@@ -39,7 +39,7 @@ namespace RaveningToad
         // Stats Window
         private static readonly int _statWidth = 20;
         private static readonly int _statHeight = 70;
-        private static RLConsole _statConsole;
+        public static RLConsole _statConsole;
 
         // Inventory Window
         private static readonly int _inventoryWidth = 130;
@@ -281,7 +281,7 @@ namespace RaveningToad
                     {
                         if (keyPress != null)
                         {
-
+                            ItemsMenu.ChooseTarget(_statConsole, keyPress.Key);
                         }
                     }
                     // menu input
