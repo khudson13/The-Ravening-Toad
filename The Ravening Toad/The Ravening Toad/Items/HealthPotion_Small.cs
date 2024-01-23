@@ -27,5 +27,10 @@ namespace The_Ravening_Toad.Items
             Game.Player.Health += 1;
             Game.ItemsMenu.DeductItem();
         }
+
+        public override string ToString()
+        {
+            return "Small Health Potion";
+        }
     }
 }

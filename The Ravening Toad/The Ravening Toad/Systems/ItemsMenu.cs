@@ -18,7 +18,7 @@ namespace The_Ravening_Toad.Systems
         private readonly Item[] _item_definitions = new Item[(int)ItemID.END_USABLE];   // access item functionality here, items indexed in same order as _inventory for ease of use
         private bool _inventory_empty = false;                                          // is inventory empty
         public bool targeting = false;                                                  // currently selecting target for throw
-        public int target = 0;                                                         // index of current target in visible monsters
+        public int target = 0;                                                          // index of current target in visible monsters
         public int current_index = 0;                                                   // currently selected item
         private readonly int x = 50;                                                    // x and y coods for selected item
         private readonly int y = 5;                             
@@ -171,40 +171,51 @@ namespace The_Ravening_Toad.Systems
 
         public ItemsMenu()
         {
+            _item_definitions[(int)ItemID.S_Health] = new HealthPotion_Small();
+            _item_definitions[(int)ItemID.M_Health] = new HealthPotion_Medium();
+            _item_definitions[(int)ItemID.L_Health] = new HealthPotion_Large();
+            _item_definitions[(int)ItemID.Grenade] = new Grenade();
             // POPULATE ITEM DEFINITIONS ARRAY
-            for (int i = 0; i < (int)ItemID.END_USABLE; ++i)
+            /*for (int i = 0; i < (int)ItemID.END_USABLE; ++i)
             {
                 switch (i){
                     case (int)ItemID.S_Health:
                         Console.WriteLine((int)ItemID.S_Health);
                         Console.WriteLine(i);
                         _item_definitions[i] = new HealthPotion_Small();
+                        Console.WriteLine(ItemIDtoString(_item_definitions[i].ItemID));
                         break;
                     case (int)ItemID.M_Health:
                         Console.WriteLine((int)ItemID.M_Health);
                         Console.WriteLine(i);
                         _item_definitions[i] = new HealthPotion_Medium();
+                        Console.WriteLine(ItemIDtoString(_item_definitions[i].ItemID));
                         break;
                     case ((int)ItemID.L_Health):
                         Console.WriteLine((int)ItemID.L_Health);
                         Console.WriteLine(i);
                         _item_definitions[i] = new HealthPotion_Large();
+                        Console.WriteLine(ItemIDtoString(_item_definitions[i].ItemID));
                         break;
                     case ((int)ItemID.Grenade):
                         Console.WriteLine((int)ItemID.Grenade);
                         Console.WriteLine(i);
                         _item_definitions[i] = new Grenade();
+                        Console.WriteLine(ItemIDtoString(_item_definitions[i].ItemID));
                         break;
                     default:
                         break;
                 }
-            }
+            }*/
             foreach (Item x in _item_definitions)
             {
                 Console.WriteLine(x.ToString());
                 Console.WriteLine(ItemIDtoString(x.ItemID));
                 Console.WriteLine(x.Name);
             }
+
+            Item _health = new HealthPotion_Small();
+            Console.WriteLine(ItemIDtoString(_health.ItemID));
         }
     }
 }
