@@ -20,7 +20,7 @@ namespace The_Ravening_Toad.Items
             Symbol = '}';
         }
 
-        new static public void Activate()
+        public override void Activate()
         {
             // if not targeting, start targeting
             if (!Game.ItemsMenu.targeting)

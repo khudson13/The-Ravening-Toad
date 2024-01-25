@@ -9,7 +9,7 @@ using RaveningToad;
 
 namespace The_Ravening_Toad.Items
 {
-    public class HealthPotion_Small : Item
+    public static class HealthPotion_Small : Item
     {
         public HealthPotion_Small()
         {
@@ -22,7 +22,7 @@ namespace The_Ravening_Toad.Items
             Symbol = '[';
         }
 
-        new public void Activate()
+        public override void Activate()
         {
             Game.Player.Health += 1;
             Game.ItemsMenu.DeductItem();

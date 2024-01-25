@@ -15,7 +15,7 @@ namespace The_Ravening_Toad.Systems
         // prints items to screen in a rotating wheel, and processes item activations
 
         private int[] _inventory = Game.Player.GetInventory();                          // copy of player inventory used for display
-        private readonly Item[] _item_definitions = new Item[(int)ItemID.END_USABLE];   // access item functionality here, items indexed in same order as _inventory for ease of use
+        private Item[] _item_definitions = new Item[(int)ItemID.END_USABLE];            // access item functionality here, items indexed in same order as _inventory for ease of use
         private bool _inventory_empty = false;                                          // is inventory empty
         public bool targeting = false;                                                  // currently selecting target for throw
         public int target = 0;                                                          // index of current target in visible monsters
@@ -169,7 +169,7 @@ namespace The_Ravening_Toad.Systems
             }            
         }
 
-        public ItemsMenu()
+        /*public ItemsMenu()
         {
             _item_definitions[(int)ItemID.S_Health] = new HealthPotion_Small();
             _item_definitions[(int)ItemID.M_Health] = new HealthPotion_Medium();
@@ -207,6 +207,7 @@ namespace The_Ravening_Toad.Systems
                         break;
                 }
             }*/
+        /*
             foreach (Item x in _item_definitions)
             {
                 Console.WriteLine(x.ToString());
@@ -216,6 +217,6 @@ namespace The_Ravening_Toad.Systems
 
             Item _health = new HealthPotion_Small();
             Console.WriteLine(ItemIDtoString(_health.ItemID));
-        }
+        }*/
     }
 }

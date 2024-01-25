@@ -10,7 +10,7 @@ using The_Ravening_Toad.Interfaces;
 
 namespace The_Ravening_Toad.Core
 {
-    public class Item : IItem, IDrawable
+    public abstract class Item : IItem, IDrawable
     {
         //********
         // IItem *
@@ -27,11 +27,12 @@ namespace The_Ravening_Toad.Core
         public string Name { get { return _name; } }
         //public bool consumable{ get { return _consumable; } }
         //public bool throwable{ get { return _throwable; } }
-        public ItemType ItemType{ get { return _ItemType; } }
+        public ItemType ItemType { get { return _ItemType; } }
         public ItemID ItemID { get { return _ID; } }
 
         // methods
-        public void Activate() { }
+        public Item() { }
+        public virtual void Activate() { }
 
         //************
         // IDrawable *

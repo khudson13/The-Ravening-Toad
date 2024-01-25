@@ -21,7 +21,7 @@ namespace The_Ravening_Toad.Items
             Symbol = '[';
         }
 
-        new public void Activate()
+        public override void Activate()
         {
             Game.Player.Health += 5;
             Game.ItemsMenu.DeductItem();

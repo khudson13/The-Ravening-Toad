@@ -19,7 +19,7 @@ namespace The_Ravening_Toad.Items
             Symbol = '[';
         }
 
-        new static public void Activate()
+        public override void Activate()
         {
             Game.Player.Health = Game.Player.MaxHealth;
             Game.ItemsMenu.DeductItem();
