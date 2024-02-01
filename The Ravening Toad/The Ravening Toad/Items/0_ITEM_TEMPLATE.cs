@@ -3,48 +3,34 @@ using RogueSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
-using The_Ravening_Toad.Interfaces;
+using The_Ravening_Toad.Core;
 
-namespace The_Ravening_Toad.Core
+namespace The_Ravening_Toad.Items
 {
-    public abstract class Item : IItem, IDrawable
+    // THIS IS ONLY FOR COPY/PASTE WHEN ADDING ITEMS
+    // DO NOT INSTANTIATE
+    internal class _0_ITEM_TEMPLATE
     {
-        //********
-        // IItem *
-        //********
-
         // vars
-        protected string _name;
-        protected bool _consumable;
-        protected bool _throwable;
-        protected ItemType _ItemType;
-        protected ItemID _ID;
-
-        // getters
-        public string Name { get { return _name; } }
-        //public bool consumable{ get { return _consumable; } }
-        //public bool throwable{ get { return _throwable; } }
-        public ItemType ItemType { get { return _ItemType; } }
-        public ItemID ItemID { get { return _ID; } }
-
-        // methods
-        public Item() { }
-        public virtual void Activate() { }
-
-        //************
-        // IDrawable *
-        //************
-
-        // vars
+        static protected string _name;
+        static protected bool _consumable;
+        static protected bool _throwable;
+        static protected ItemType _ItemType;
+        static protected ItemID _ID;
         private RLColor _color;
         private char _symbol;
         private int _X;
         private int _Y;
 
+        // methods
+        public virtual void Activate() { }
+
         // getters & setters
+        public string Name { get { return _name; } }
+        public ItemType ItemType { get { return _ItemType; } }
+        public ItemID ItemID { get { return _ID; } }
         public RLColor Color
         {
             get { return _color; }
@@ -55,7 +41,7 @@ namespace The_Ravening_Toad.Core
             get { return _symbol; }
             set { _symbol = value; }
         }
-        public int X 
+        public int X
         {
             get { return _X; }
             set { _X = value; }

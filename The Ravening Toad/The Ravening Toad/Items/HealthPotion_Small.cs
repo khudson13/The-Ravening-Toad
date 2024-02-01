@@ -9,7 +9,7 @@ using RaveningToad;
 
 namespace The_Ravening_Toad.Items
 {
-    public static class HealthPotion_Small : Item
+    public class HealthPotion_Small : Item
     {
         public HealthPotion_Small()
         {
@@ -28,9 +28,6 @@ namespace The_Ravening_Toad.Items
             Game.ItemsMenu.DeductItem();
         }
 
-        public override string ToString()
-        {
-            return "Small Health Potion";
-        }
+
     }
 }
