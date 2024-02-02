@@ -171,10 +171,6 @@ namespace The_Ravening_Toad.Systems
 
         public ItemsMenu()
         {
-            /*_item_definitions[(int)ItemID.S_Health] = new HealthPotion_Small();
-            _item_definitions[(int)ItemID.M_Health] = new HealthPotion_Medium();
-            _item_definitions[(int)ItemID.L_Health] = new HealthPotion_Large();
-            _item_definitions[(int)ItemID.Grenade] = new Grenade();*/
             // POPULATE ITEM DEFINITIONS LIST
             int i = 0;
             foreach (Item x in _item_definitions)
@@ -216,12 +212,7 @@ namespace The_Ravening_Toad.Systems
                 Console.WriteLine(x.ToString());
                 Console.WriteLine(ItemIDtoString(x.ItemID));
                 Console.WriteLine(x.Name);
-            }
-
-            //Console.WriteLine(ItemIDtoString(_item_definitions[0].ItemID));
-            //Console.WriteLine(ItemIDtoString(_item_definitions[1].ItemID));
-            //Console.WriteLine(ItemIDtoString(_item_definitions[2].ItemID));
-            //Console.WriteLine(ItemIDtoString(_item_definitions[3].ItemID));
+            } 
 
             Item _health = new HealthPotion_Small();
             Console.WriteLine(ItemIDtoString(_health.ItemID));
