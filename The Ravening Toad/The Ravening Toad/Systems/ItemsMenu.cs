@@ -177,28 +177,16 @@ namespace The_Ravening_Toad.Systems
             {
                 switch (i){
                     case (int)ItemID.S_Health:
-                        Console.WriteLine((int)ItemID.S_Health);
-                        Console.WriteLine(i);
                         _item_definitions[i] = new HealthPotion_Small();
-                        Console.WriteLine(ItemIDtoString(_item_definitions[i].ItemID));
                         break;
                     case (int)ItemID.M_Health:
-                        Console.WriteLine((int)ItemID.M_Health);
-                        Console.WriteLine(i);
                         _item_definitions[i] = new HealthPotion_Medium();
-                        Console.WriteLine(ItemIDtoString(_item_definitions[i].ItemID));
                         break;
                     case ((int)ItemID.L_Health):
-                        Console.WriteLine((int)ItemID.L_Health);
-                        Console.WriteLine(i);
                         _item_definitions[i] = new HealthPotion_Large();
-                        Console.WriteLine(ItemIDtoString(_item_definitions[i].ItemID));
                         break;
                     case ((int)ItemID.Grenade):
-                        Console.WriteLine((int)ItemID.Grenade);
-                        Console.WriteLine(i);
                         _item_definitions[i] = new Grenade();
-                        Console.WriteLine(ItemIDtoString(_item_definitions[i].ItemID));
                         break;
                     default:
                         break;
@@ -206,20 +194,6 @@ namespace The_Ravening_Toad.Systems
                 
                 ++i;
             }
-
-            foreach (Item x in _item_definitions)
-            {
-                Console.WriteLine(x.ToString());
-                Console.WriteLine(ItemIDtoString(x.ItemID));
-                Console.WriteLine(x.Name);
-            } 
-
-            Item _health = new HealthPotion_Small();
-            Console.WriteLine(ItemIDtoString(_health.ItemID));
-            Item _MHealth = new HealthPotion_Medium();
-            Console.WriteLine(ItemIDtoString(_MHealth.ItemID));
-            Console.WriteLine(ItemIDtoString(_health.ItemID));
-            Console.WriteLine(ItemIDtoString(_item_definitions[0].ItemID));
         }
     }
 }
