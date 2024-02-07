@@ -96,12 +96,14 @@ namespace The_Ravening_Toad.Core
             int i = 0;
 
             // Iterate through and draw monsters
+            // clear visible mosters prior to updating
+            Game.Player.visible_monsters.Clear();
             foreach (Monster monster in monsters)
             {
                 monster.Draw(mapConsole, this);
                 // When monster in FoV also draw their stats
                 // also, update visible monster list
-                Game.Player.visible_monsters.Clear();
+                
                 if (IsInFov(monster.X, monster.Y))
                 {
                     // Pass index to DrawStats and increment it afterwards
@@ -109,6 +111,7 @@ namespace The_Ravening_Toad.Core
                     Game.Player.visible_monsters.Add(monster);
                     i++;
                 }
+                
             }
         }
 

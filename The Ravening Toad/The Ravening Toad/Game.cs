@@ -247,6 +247,7 @@ namespace RaveningToad
                     else if (keyPress.Key == RLKey.Space)
                     {
                         ItemsMenu.ActivateItem();
+                        _renderRequired = true;
                     }
                     // USE EXIT
                     else if (keyPress.Key == RLKey.Period)
