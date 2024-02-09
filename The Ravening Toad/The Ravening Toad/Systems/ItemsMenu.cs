@@ -137,7 +137,7 @@ namespace The_Ravening_Toad.Systems
         }
 
         // navigate targeting selection
-        public void ChooseTarget(RLConsole statconsole, RLKey key)
+        public void ChooseTarget(RLConsole mapconsole, RLKey key)
         {
             if (key == RLKey.W || key == RLKey.D)
             {
@@ -149,7 +149,7 @@ namespace The_Ravening_Toad.Systems
                 {
                     ++target;
                 }
-                statconsole.SetBackColor(Game.Player.visible_monsters[0].X, Game.Player.visible_monsters[target].Y, RLColor.Red);
+                mapconsole.SetBackColor(Game.Player.visible_monsters[0].X, Game.Player.visible_monsters[target].Y, RLColor.Red);
             }
             else if (key == RLKey.S || key == RLKey.A)
             {
@@ -161,7 +161,7 @@ namespace The_Ravening_Toad.Systems
                 {
                     --target;
                 }
-                statconsole.SetBackColor(Game.Player.visible_monsters[0].X, Game.Player.visible_monsters[target].Y, RLColor.Red);
+                mapconsole.SetBackColor(Game.Player.visible_monsters[0].X, Game.Player.visible_monsters[target].Y, RLColor.Red);
             }
             else if (key == RLKey.Space)
             {

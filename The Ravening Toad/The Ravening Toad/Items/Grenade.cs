@@ -25,7 +25,7 @@ namespace The_Ravening_Toad.Items
             // if not targeting, start targeting
             if (!Game.ItemsMenu.targeting)
             {
-                Game.ItemsMenu.CanTarget(Game._statConsole);
+                Game.ItemsMenu.CanTarget(Game._mapConsole);
             }
 
             // second activation, once target has been selected
@@ -45,6 +45,8 @@ namespace The_Ravening_Toad.Items
                         monster.Health -= 5;
                     }
                 }
+                Game.ItemsMenu.targeting = false;
+                Game.Player.Pause = false;
                 Game.ItemsMenu.DeductItem();
             }
         }
