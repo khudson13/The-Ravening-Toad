@@ -172,8 +172,8 @@ namespace The_Ravening_Toad.Systems
             }
             else if (key == RLKey.Space)
             {
-                _item_definitions[current_index].Activate();
                 Console.WriteLine("ACTIVATING");
+                _item_definitions[current_index].Activate();                
             }            
         }
 

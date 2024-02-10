@@ -142,7 +142,7 @@ namespace The_Ravening_Toad.Systems
         }
 
         // Apply damage to the defender
-        private static void ResolveDamage(Actor defender, bool hits, int damage)
+        public static void ResolveDamage(Actor defender, bool hits, int damage)
         {
             if (hits)
             {

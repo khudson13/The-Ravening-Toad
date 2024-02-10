@@ -31,18 +31,21 @@ namespace The_Ravening_Toad.Items
             // second activation, once target has been selected
             else
             {
-                foreach(Monster monster in Game.Player.visible_monsters)
-                {
-                    // set values for area of effect
-                    int left_of_monster = Game.Player.visible_monsters[Game.ItemsMenu.target].X - 1;
-                    int right_of_monster = Game.Player.visible_monsters[Game.ItemsMenu.target].X + 1;
-                    int above_monster = Game.Player.visible_monsters[Game.ItemsMenu.target].Y - 1;
-                    int below_monster = Game.Player.visible_monsters[Game.ItemsMenu.target].Y + 1;
+                Console.WriteLine("BOOM");
 
+                // set values for area of effect
+                int left_of_monster = Game.Player.visible_monsters[Game.ItemsMenu.target].X - 1;
+                int right_of_monster = Game.Player.visible_monsters[Game.ItemsMenu.target].X + 1;
+                int above_monster = Game.Player.visible_monsters[Game.ItemsMenu.target].Y - 1;
+                int below_monster = Game.Player.visible_monsters[Game.ItemsMenu.target].Y + 1;
+
+                foreach (Monster monster in Game.Player.visible_monsters)
+                {            
                     // damage every monster in area of effect
                     if ((monster.X >= left_of_monster && monster.X <= right_of_monster) && (monster.Y <= below_monster && monster.Y >= above_monster))
                     {
                         monster.Health -= 5;
+                        CommandSystem.ResolveDamage(monster, true, 5);
                     }
                 }
                 Game.ItemsMenu.targeting = false;
