@@ -282,7 +282,8 @@ namespace RaveningToad
                     {
                         if (keyPress != null)
                         {
-                            ItemsMenu.ChooseTarget(_statConsole, keyPress.Key);
+                            ItemsMenu.ChooseTarget(keyPress.Key);
+                            _renderRequired = true;
                         }
                     }
                     // menu input

@@ -161,6 +161,8 @@ namespace The_Ravening_Toad.Core
 
         // IDrawable
         public RLColor Color { get; set; }
+        public RLColor BackColor { get; set; }
+        public RLColor DefaultBackColor { get; set; }
         public char Symbol { get; set; }
         public int X { get; set; }
         public int Y { get; set; }
@@ -176,7 +178,7 @@ namespace The_Ravening_Toad.Core
             // Only draw the actor with the color and symbol when they are in field-of-view
             if (map.IsInFov(X, Y))
             {
-                console.Set(X, Y, Color, Colors.FloorBackgroundFov, Symbol);
+                console.Set(X, Y, Color, BackColor, Symbol);
             }
             else
             {

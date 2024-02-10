@@ -20,6 +20,8 @@ namespace The_Ravening_Toad.Monsters
                 damage = 1,
                 Awareness = 10,
                 Color = Colors.FilthRatColor,
+                BackColor = Colors.FloorBackgroundFov,
+                DefaultBackColor = Colors.FloorBackgroundFov,
                 Defense = 12,
                 DefenseChance = Dice.Roll("10D4"),
                 Meat = 1,

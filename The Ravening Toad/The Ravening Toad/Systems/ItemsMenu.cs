@@ -122,57 +122,51 @@ namespace The_Ravening_Toad.Systems
             }
         }
         
-        public bool CanTarget(RLConsole statconsole)
+        public bool CanTarget()
         {
             // returns whether or not targets exist and sets targeting mode
             if (!Game.Player.visible_monsters.Any())
             {
-                Console.WriteLine("FAIL TO TARGET");
                 return false;                
             }
             target = 0;
-            Console.WriteLine("TARGETING");
-            Console.WriteLine("Target: " + Game.ItemsMenu.target);
-            statconsole.SetBackColor(Game.Player.visible_monsters[0].X, Game.Player.visible_monsters[target].Y, RLColor.Red);
+            Game.Player.visible_monsters[0].BackColor = RLColor.Red;
             Game.Player.Pause = true;
             targeting = true;
             return true;
         }
 
         // navigate targeting selection
-        public void ChooseTarget(RLConsole mapconsole, RLKey key)
+        public void ChooseTarget(RLKey key)
         {
+            Game.Player.visible_monsters[target].BackColor = Game.Player.visible_monsters[target].DefaultBackColor;
             if (key == RLKey.W || key == RLKey.D)
             {
                 if (target == Game.Player.visible_monsters.Count - 1)
                 {
                     target = 0;
-                    Console.WriteLine("Target: " + Game.ItemsMenu.target);
                 }
                 else
                 {
                     ++target;
-                    Console.WriteLine("Target: " + Game.ItemsMenu.target);
                 }
-                mapconsole.SetBackColor(Game.Player.visible_monsters[0].X, Game.Player.visible_monsters[target].Y, RLColor.Red);
+                Game.Player.visible_monsters[target].BackColor = RLColor.Red;
             }
             else if (key == RLKey.S || key == RLKey.A)
             {
                 if (target == 0)
                 {
                     target = Game.Player.visible_monsters.Count - 1;
-                    Console.WriteLine("Target: " + Game.ItemsMenu.target);
                 }
                 else
                 {
                     --target;
-                    Console.WriteLine("Target: " + Game.ItemsMenu.target);
                 }
-                mapconsole.SetBackColor(Game.Player.visible_monsters[0].X, Game.Player.visible_monsters[target].Y, RLColor.Red);
+                Game.Player.visible_monsters[target].BackColor = RLColor.Red;
             }
             else if (key == RLKey.Space)
             {
-                Console.WriteLine("ACTIVATING");
+                Game.Player.visible_monsters[target].BackColor = Game.Player.visible_monsters[target].DefaultBackColor;
                 _item_definitions[current_index].Activate();                
             }            
         }
