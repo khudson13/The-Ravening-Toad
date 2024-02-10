@@ -127,9 +127,12 @@ namespace The_Ravening_Toad.Systems
             // returns whether or not targets exist and sets targeting mode
             if (!Game.Player.visible_monsters.Any())
             {
-                return false;
+                Console.WriteLine("FAIL TO TARGET");
+                return false;                
             }
             target = 0;
+            Console.WriteLine("TARGETING");
+            Console.WriteLine("Target: " + Game.ItemsMenu.target);
             statconsole.SetBackColor(Game.Player.visible_monsters[0].X, Game.Player.visible_monsters[target].Y, RLColor.Red);
             Game.Player.Pause = true;
             targeting = true;
@@ -144,10 +147,12 @@ namespace The_Ravening_Toad.Systems
                 if (target == Game.Player.visible_monsters.Count - 1)
                 {
                     target = 0;
+                    Console.WriteLine("Target: " + Game.ItemsMenu.target);
                 }
                 else
                 {
                     ++target;
+                    Console.WriteLine("Target: " + Game.ItemsMenu.target);
                 }
                 mapconsole.SetBackColor(Game.Player.visible_monsters[0].X, Game.Player.visible_monsters[target].Y, RLColor.Red);
             }
@@ -156,16 +161,19 @@ namespace The_Ravening_Toad.Systems
                 if (target == 0)
                 {
                     target = Game.Player.visible_monsters.Count - 1;
+                    Console.WriteLine("Target: " + Game.ItemsMenu.target);
                 }
                 else
                 {
                     --target;
+                    Console.WriteLine("Target: " + Game.ItemsMenu.target);
                 }
                 mapconsole.SetBackColor(Game.Player.visible_monsters[0].X, Game.Player.visible_monsters[target].Y, RLColor.Red);
             }
             else if (key == RLKey.Space)
             {
                 _item_definitions[current_index].Activate();
+                Console.WriteLine("ACTIVATING");
             }            
         }
 
