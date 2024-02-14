@@ -17,17 +17,29 @@ namespace The_Ravening_Toad.Core
         public string stove = "none";           // type of cooking surface
         public string oven = "none";            // type of oven
         public string storage = "none";         // ingredient storage
-        public List<IRecipe> recipes;           // known recipes
-        public List<IRecipe> viableRecipes;     // recipes which can be made right now
+
+        // ** NOT SURE IF THIS IS THE RIGHT WAY TO ORGANIZE RECIPES **
+        // Currently it's a list of objects containing recipe data and
+        // separate lists for prepared units. Those separate lists shouls
+        // probably be integrated into the recipe list. Like, let the main
+        // recipe list contain data for how many can be made and how many
+        // there actually are. Maybe the already prepared recipes should go
+        // in a list of their own, so they can be deleted when depleted and
+        // checked for rotting when the Toad leaves the cafe.
+
+        public List<Recipe> recipes;            // known recipes
+        public List<Recipe> viableRecipes;      // recipes which can be made right now
         public List<int> readytoserve;          // how many of a given recipe already on hand, indexes matched to viableRecipes
         public List<int> readytomake;           // like readytoserve,but how many can be made with ingredients on hand
+        private int[] ingredients;              // Stores ingredient quantities, indexed by ingredients enum.
 
         public ToadCafe()
         {
-            recipes = new List<IRecipe>();
-            viableRecipes = new List<IRecipe>();
+            recipes = new List<Recipe>();
+            viableRecipes = new List<Recipe>();
             readytoserve = new List<int>();
             readytomake = new List<int>();
+            ingredients = new int[(int)Ingredient.NULL];
 
             recipes.Add(new MeatWad());
         }

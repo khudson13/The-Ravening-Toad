@@ -30,12 +30,27 @@ namespace The_Ravening_Toad.Core
     public enum ItemID
     {
         // don't forget to update ItemIDtoString() in ItemsMenu.cs when adding to this
+        POTIONS,
         S_Health,
         M_Health,
         L_Health,
+
+        WEAPONS,
         Grenade,
 
         END_USABLE, // items beyond this point can't be used in dungeon and don't appear in inventory menu
+
+        NULL
+    }
+
+    // organized by perishable and non-perishable, and alphabetized
+    public enum Ingredient
+    {
+        PERISHABLE,
+        Raw_Ratmeat,
+
+        NON_PERISHABLE,
+        Pickled_Ratmeat,
 
         NULL
     }

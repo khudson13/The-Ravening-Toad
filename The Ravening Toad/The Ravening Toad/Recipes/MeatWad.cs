@@ -11,11 +11,19 @@ namespace The_Ravening_Toad.Recipes
     {
         public MeatWad()
         {
-            name = "Wad of Raw Meat";  // name of recipe
-            value = 1;                 // profit from sale
-            meat = 6;                  // required meat for cooking
-            stove = "none";            // no stove required
-            oven = "none";             // no oven required
+            _name = "Wad of Raw Meat";  // name of recipe            
+            _value = 1;                 // profit from sale
+            _meat = 6;                  // required meat for cooking
+            _stove = "none";            // no stove required
+            _oven = "none";             // no oven required
+
+            // needed ingredients
+            // 3 raw rat meat
+            _ingredients = new List<Ingredient>();
+            for (int i = 0; i < 3; i++)
+            {
+                _ingredients.Add(Ingredient.Raw_Ratmeat);
+            }
         }
     }
 }
