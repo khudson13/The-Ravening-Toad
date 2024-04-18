@@ -15,6 +15,7 @@ namespace The_Ravening_Toad.Core
         protected int _meat;
         protected string _stove;
         protected string _oven;
+        protected string _description;
 
         public string name
         {

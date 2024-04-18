@@ -32,13 +32,13 @@ namespace RaveningToad
         public static RLConsole _mapConsole;
 
         // Message Window
-        private static readonly int _messageWidth = 130;
+        private static readonly int _messageWidth = 150;
         private static readonly int _messageHeight = 11;
         public static RLConsole _messageConsole;
 
         // Stats Window
         private static readonly int _statWidth = 20;
-        private static readonly int _statHeight = 70;
+        private static readonly int _statHeight = 79;
         public static RLConsole _statConsole;
 
         // Inventory Window

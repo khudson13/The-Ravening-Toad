@@ -7,6 +7,12 @@ using System.Text;
 using System.Threading.Tasks;
 
 // Here be the player object
+// Find all player data here
+
+// This is also where Game.cs looks to find out what the game state should be
+// * Whether a menu is open
+// * Which menu is open
+// * Game location i.e. dungeon, cafe, startscreen, etc
 
 namespace The_Ravening_Toad.Core
 {

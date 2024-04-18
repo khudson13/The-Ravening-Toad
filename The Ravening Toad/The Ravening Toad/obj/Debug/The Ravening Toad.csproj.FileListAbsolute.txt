@@ -23,3 +23,27 @@ C:\Users\Kendall\Desktop\The-Ravening-Toad\The Ravening Toad\The Ravening Toad\b
 C:\Users\Kendall\Desktop\The-Ravening-Toad\The Ravening Toad\The Ravening Toad\bin\Debug\Save Files\Save7.txt
 C:\Users\Kendall\Desktop\The-Ravening-Toad\The Ravening Toad\The Ravening Toad\bin\Debug\Save Files\Save8.txt
 C:\Users\Kendall\Desktop\The-Ravening-Toad\The Ravening Toad\The Ravening Toad\bin\Debug\Save Files\Save9.txt
+D:\Repos\The-Ravening-Toad\The Ravening Toad\The Ravening Toad\bin\Debug\Save Files\Save1.txt
+D:\Repos\The-Ravening-Toad\The Ravening Toad\The Ravening Toad\bin\Debug\Save Files\Save10.txt
+D:\Repos\The-Ravening-Toad\The Ravening Toad\The Ravening Toad\bin\Debug\Save Files\Save2.txt
+D:\Repos\The-Ravening-Toad\The Ravening Toad\The Ravening Toad\bin\Debug\Save Files\Save3.txt
+D:\Repos\The-Ravening-Toad\The Ravening Toad\The Ravening Toad\bin\Debug\Save Files\Save4.txt
+D:\Repos\The-Ravening-Toad\The Ravening Toad\The Ravening Toad\bin\Debug\Save Files\Save5.txt
+D:\Repos\The-Ravening-Toad\The Ravening Toad\The Ravening Toad\bin\Debug\Save Files\Save6.txt
+D:\Repos\The-Ravening-Toad\The Ravening Toad\The Ravening Toad\bin\Debug\Save Files\Save7.txt
+D:\Repos\The-Ravening-Toad\The Ravening Toad\The Ravening Toad\bin\Debug\Save Files\Save8.txt
+D:\Repos\The-Ravening-Toad\The Ravening Toad\The Ravening Toad\bin\Debug\Save Files\Save9.txt
+D:\Repos\The-Ravening-Toad\The Ravening Toad\The Ravening Toad\bin\Debug\terminal8x8.png
+D:\Repos\The-Ravening-Toad\The Ravening Toad\The Ravening Toad\bin\Debug\The Ravening Toad.exe.config
+D:\Repos\The-Ravening-Toad\The Ravening Toad\The Ravening Toad\bin\Debug\The Ravening Toad.exe
+D:\Repos\The-Ravening-Toad\The Ravening Toad\The Ravening Toad\bin\Debug\The Ravening Toad.pdb
+D:\Repos\The-Ravening-Toad\The Ravening Toad\The Ravening Toad\bin\Debug\OpenTK.dll
+D:\Repos\The-Ravening-Toad\The Ravening Toad\The Ravening Toad\bin\Debug\RLNET.dll
+D:\Repos\The-Ravening-Toad\The Ravening Toad\The Ravening Toad\bin\Debug\RogueSharp.dll
+D:\Repos\The-Ravening-Toad\The Ravening Toad\The Ravening Toad\bin\Debug\OpenTK.xml
+D:\Repos\The-Ravening-Toad\The Ravening Toad\The Ravening Toad\bin\Debug\OpenTK.dll.config
+D:\Repos\The-Ravening-Toad\The Ravening Toad\The Ravening Toad\obj\Debug\The Ravening Toad.csproj.AssemblyReference.cache
+D:\Repos\The-Ravening-Toad\The Ravening Toad\The Ravening Toad\obj\Debug\The Ravening Toad.csproj.CoreCompileInputs.cache
+D:\Repos\The-Ravening-Toad\The Ravening Toad\The Ravening Toad\obj\Debug\The Rave.E2D15E63.Up2Date
+D:\Repos\The-Ravening-Toad\The Ravening Toad\The Ravening Toad\obj\Debug\The Ravening Toad.exe
+D:\Repos\The-Ravening-Toad\The Ravening Toad\The Ravening Toad\obj\Debug\The Ravening Toad.pdb
