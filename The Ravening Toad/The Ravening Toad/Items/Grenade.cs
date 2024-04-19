@@ -49,7 +49,7 @@ namespace The_Ravening_Toad.Items
                     }
                 }
                 Game.ItemsMenu.targeting = false;
-                Game.Player.Pause = false;
+                Game.GameState.pause = false;
                 Game.ItemsMenu.DeductItem();
             }
         }

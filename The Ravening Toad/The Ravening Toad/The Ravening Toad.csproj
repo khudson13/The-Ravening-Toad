@@ -57,6 +57,7 @@
     <Compile Include="Core\Colors.cs" />
     <Compile Include="Core\Direction.cs" />
     <Compile Include="Core\Door.cs" />
+    <Compile Include="Core\GameState.cs" />
     <Compile Include="Core\Item.cs" />
     <Compile Include="Core\ItemTypes.cs" />
     <Compile Include="Core\Monster.cs" />

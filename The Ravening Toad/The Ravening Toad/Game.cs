@@ -64,6 +64,7 @@ namespace RaveningToad
         public static ItemsMenu ItemsMenu { get; private set; }
         public static StartScreen StartScreen { get; private set; }
         public static ToadCafe ToadCafe { get; private set; }
+        public static GameState GameState { get; set; }
 
         public static SchedulingSystem SchedulingSystem { get; private set; }
 
@@ -156,6 +157,7 @@ namespace RaveningToad
             // Create Command System
             CommandSystem = new CommandSystem();
             MenuControls = new MenuControls();
+            GameState = new GameState();
 
             //**************
             // AND ACTION! *
@@ -182,7 +184,7 @@ namespace RaveningToad
             if (CommandSystem.IsPlayerTurn)
             {
                 // primary player controls
-                if (keyPress != null && !Player.Pause)
+                if (keyPress != null && !GameState.pause)
                 {
                     // DIRECTION CONTROLS
                     if (keyPress.Key == RLKey.Up || keyPress.Key == RLKey.W)
@@ -261,21 +263,21 @@ namespace RaveningToad
                             ToadMap = mapGenerator.CreateMap();
                             MessageLog = new MessageLog();
                             CommandSystem = new CommandSystem();
-                            Player.Pause = true;
-                            Player.Location = "cafe";
+                            GameState.pause = true;
+                            GameState.location = "cafe";
                             MessageLog.Add($"{Player.Name} has returned to the cafe");
                         }
                     }
                     // OPEN MENU
                     else if (keyPress.Key == RLKey.Escape)
                     {
-                        Player.Pause = true;
-                        Player.Mainmenu = true;
+                        GameState.pause = true;
+                        GameState.mainmenu = true;
                         _renderRequired = true;
                     }
                 }
                 // if paused
-                else if (Player.Pause)
+                else if (GameState.pause)
                 {
                     // set target for throw
                     if (ItemsMenu.targeting)
@@ -320,7 +322,7 @@ namespace RaveningToad
                 _inventoryConsole.Clear();
 
                 // Draw the map
-                if (Player.Location == "dungeon")
+                if (GameState.location == "dungeon")
                 {
                     ToadMap.Draw(_mapConsole, _statConsole);
 
@@ -329,16 +331,16 @@ namespace RaveningToad
                     // and draw the player
                     Player.Draw(_mapConsole, ToadMap);
                 }
-                else if (Player.Location == "start")
+                else if (GameState.location == "start")
                 {
                     StartScreen.Draw(_startConsole);
                 }
-                else if (Player.Location == "cafe")
+                else if (GameState.location == "cafe")
                 {
                     ToadCafe.Draw(_mapConsole);
                 }
 
-                if (Player.Location != "start")
+                if (GameState.location != "start")
                 {
                     // and draw the console
                     MessageLog.Draw(_messageConsole);
@@ -348,22 +350,22 @@ namespace RaveningToad
                 }
 
                 // if main menu open, then draw it
-                if (Player.Mainmenu)
+                if (GameState.mainmenu)
                 {
                     MainMenu.Draw(_inventoryConsole);
                 }
                 // if save menu open, then draw it
-                if (Player.Savemenu)
+                if (GameState.savemenu)
                 {
                     SaveMenu.Draw(_inventoryConsole);
                 }
                 // if load menu open, then draw it
-                if (Player.Loadmenu)
+                if (GameState.loadmenu)
                 {
                     LoadMenu.Draw(_inventoryConsole);
                 }
 
-                if (Player.Location == "start")
+                if (GameState.location == "start")
                 {
                     RLConsole.Blit(_startConsole, 0, 0, startWidth, startHeight,
                         _rootConsole, 0, 0);

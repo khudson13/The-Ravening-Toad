@@ -131,7 +131,7 @@ namespace The_Ravening_Toad.Systems
             }
             target = 0;
             Game.Player.visible_monsters[0].BackColor = RLColor.Red;
-            Game.Player.Pause = true;
+            Game.GameState.pause = true;
             targeting = true;
             return true;
         }

@@ -18,11 +18,6 @@ namespace The_Ravening_Toad.Core
 {
     public class Player : Actor
     {
-        private bool _mainmenu = false;
-        private bool _savemenu = false;
-        private bool _loadmenu = false;
-        private bool _pause = true;
-        private string _location = "start";
         private int[] _inventory = new int[(int)ItemID.END_USABLE]; // indexed by ItemID enum, each entry is the number of that item owned
         public List<Monster> visible_monsters = new List<Monster>();
 
@@ -42,36 +37,6 @@ namespace The_Ravening_Toad.Core
             return _inventory[(int)ID];
         }
         public int[] GetInventory() { return _inventory; }
-
-        public bool Mainmenu
-        {
-            get{ return _mainmenu; }
-            set{ _mainmenu = value; }
-        }
-
-        public bool Savemenu
-        {
-            get{ return _savemenu; }
-            set{ _savemenu = value; }
-        }
-
-        public bool Loadmenu
-        {
-            get{ return _loadmenu; }
-            set{ _loadmenu = value; }
-        }
-
-        public bool Pause
-        {
-            get{ return _pause; }
-            set{ _pause = value; }
-        }
-
-        public string Location
-        {
-            get{ return _location; }
-            set{ _location = value; }
-        }
 
         public Player()
         {
