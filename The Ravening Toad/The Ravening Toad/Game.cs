@@ -48,9 +48,9 @@ namespace RaveningToad
 
         public static int mapLevel = 1;
 
-        //************************
-        // DEFINE BASIC ELEMENTS *
-        //************************
+        //******************************
+        // DEFINE PRIMARY GAME OBJECTS *
+        //******************************
         public static Player Player { get; set; }
         public static ToadMap ToadMap { get; set; }
 
@@ -90,16 +90,15 @@ namespace RaveningToad
             seed = (int)DateTime.UtcNow.Ticks;
             Random = new DotNetRandom(seed);
 
-            //*****************************
-            // INITIALIZE CONSOLE WINDOWS *
-            // using RLNet                *
-            //*****************************
+            //***********************************
+            // INITIALIZE RLNet CONSOLE WINDOWS *
+            //***********************************
             // Title for top of console
             string consoleTitle = $"The Ravening Toad - Seed {seed}";
             // RLNet creates root console with the font, 8x8 tiles
             _rootConsole = new RLRootConsole(fontFileName, _screenWidth, _screenHeight,
               8, 8, 1f, consoleTitle);
-            // Initialize sub consoles and Blit to root console
+            // Initialize sub consoles : Blit to root console currently happens in OnRootConsoleRender()
             _startConsole = new RLConsole(startWidth, startHeight);
             _mapConsole = new RLConsole(mapWidth, mapHeight);
             _messageConsole = new RLConsole(_messageWidth, _messageHeight);
@@ -246,6 +245,7 @@ namespace RaveningToad
                             }
                         }
                     }
+                    // activate selected item
                     else if (keyPress.Key == RLKey.Space)
                     {
                         ItemsMenu.ActivateItem();
