@@ -9,11 +9,13 @@ namespace The_Ravening_Toad.Interfaces
 {
     public interface IRecipe
     {
-        string name { get; }
-        List<Ingredient> ingredients { get; }
-        int value { get; }
-        int meat { get; }
-        string stove { get; }
-        string oven { get; }
+        string Name { get; }
+        List<Ingredient> Ingredients { get; }
+        int Value { get; }
+        int Meat { get; }
+        string Stove { get; }
+        string Oven { get; }
+        int ReadyToMake { get; set; }   // only used in cafe
+        int OnHand {  get; set; }       // only used in cafe
     }
 }

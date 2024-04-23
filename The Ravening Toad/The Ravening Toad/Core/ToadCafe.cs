@@ -18,14 +18,7 @@ namespace The_Ravening_Toad.Core
         public string oven = "none";            // type of oven
         public string storage = "none";         // ingredient storage
 
-        // ** NOT SURE IF THIS IS THE RIGHT WAY TO ORGANIZE RECIPES **
-        // Currently it's a list of objects containing recipe data and
-        // separate lists for prepared units. Those separate lists shouls
-        // probably be integrated into the recipe list. Like, let the main
-        // recipe list contain data for how many can be made and how many
-        // there actually are. Maybe the already prepared recipes should go
-        // in a list of their own, so they can be deleted when depleted and
-        // checked for rotting when the Toad leaves the cafe.
+        // **READYTOMAKE AND READYTOSERVE ARE BEING MIGRATED INTO THEIR SPECIFIC RECIPE FILES, TO BE UPDATED WHEN RETURNING TO CAFE OR COOKING**
 
         public List<Recipe> recipes;            // known recipes
         public List<Recipe> viableRecipes;      // recipes which can be made right now
@@ -86,9 +79,9 @@ namespace The_Ravening_Toad.Core
                 if (IsViableRecipe(meal))
                 {
                     viableRecipes.Add(meal);
-                    readytomake.Add(meal.meat / Game.Player.Meat);
+                    readytomake.Add(meal.Meat / Game.Player.Meat);
                     readytoserve.Add(0);
-                    console.Print(13, Y, count + "= prepare " + meal.name + "(" + Game.Player.Meat / viableRecipes.Last().meat + ")", RLColor.Yellow);
+                    console.Print(13, Y, count + "= prepare " + meal.Name + "(" + Game.Player.Meat / viableRecipes.Last().Meat + ")", RLColor.Yellow);
                     ++Y;
                     ++count;
                 }
@@ -116,17 +109,17 @@ namespace The_Ravening_Toad.Core
             // find most valuable food
             for (int i = 0; i < viableRecipes.Count; ++i)
             {
-                if (readytoserve[i] > 0 && viableRecipes[i].value > viableRecipes[index].value)
+                if (readytoserve[i] > 0 && viableRecipes[i].Value > viableRecipes[index].Value)
                 {
                     index = i;
                 } 
             }
 
             // pay the player
-            Game.Player.Cash += viableRecipes[index].value;
+            Game.Player.Cash += viableRecipes[index].Value;
 
             // sell the food
-            Game.MessageLog.Add($"{viableRecipes[index].name} sold for {viableRecipes[index].value} gold");
+            Game.MessageLog.Add($"{viableRecipes[index].Name} sold for {viableRecipes[index].Value} gold");
             --readytoserve[index];
             if (readytoserve[index] == 0)
             {
@@ -141,9 +134,9 @@ namespace The_Ravening_Toad.Core
         private bool IsViableRecipe(IRecipe recipe)
         {
             if (recipe == null) return false;
-            if (recipe.meat > Game.Player.Meat) return false;
-            if (recipe.stove != stove) return false;
-            if (recipe.oven != oven) return false;
+            if (recipe.Meat > Game.Player.Meat) return false;
+            if (recipe.Stove != stove) return false;
+            if (recipe.Oven != oven) return false;
 
             return true;
         }

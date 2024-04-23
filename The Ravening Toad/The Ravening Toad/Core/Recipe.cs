@@ -16,35 +16,58 @@ namespace The_Ravening_Toad.Core
         protected string _stove;
         protected string _oven;
         protected string _description;
+        protected int _readyToMake;
+        protected int _onHand;
 
-        public string name
+        public string Name
         {
             get { return _name; }
         }
 
-        public List<Ingredient> ingredients
+        public List<Ingredient> Ingredients
         {
             get { return _ingredients; }
         }
 
-        public int value
+        public int Value
         {
             get { return _value; }
         }
 
-        public int meat
+        public int Meat
         {
             get { return _meat; }
         }
 
-        public string stove
+        public string Stove
         {
             get { return _stove; }
         }
 
-        public string oven
+        public string Oven
         {
             get { return _oven; }
+        }
+
+        public string Description
+        {
+            get { return _description; }
+        }
+
+        public int ReadyToMake
+        {
+            get { return _readyToMake; }
+            set
+            {
+                if (value < 0)
+                {
+                    _readyToMake = 0;
+                }
+                else
+                {
+                    _readyToMake = value;
+                }
+            }
         }
     }
 }

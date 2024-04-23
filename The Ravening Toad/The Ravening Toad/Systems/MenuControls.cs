@@ -185,7 +185,7 @@ namespace The_Ravening_Toad.Systems
                 {
                     Game.Player.Meat -= 6;
                     ++Game.ToadCafe.readytoserve[0];
-                    Game.MessageLog.Add($"The Toad prepared a {Game.ToadCafe.viableRecipes[0].name}! Delicious!");
+                    Game.MessageLog.Add($"The Toad prepared a {Game.ToadCafe.viableRecipes[0].Name}! Delicious!");
                 }
             }
         }
