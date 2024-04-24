@@ -22,12 +22,23 @@ namespace The_Ravening_Toad.Core
         protected bool _throwable;
         protected ItemType _ItemType;
         protected ItemID _ID;
+        protected int _owned = 0;
 
         // getters
         public string Name { get { return _name; } }
         public ItemType ItemType { get { return _ItemType; } }
         public ItemID ItemID { get { return _ID; } }
-
+        public int Owned
+        {
+            get { return _owned; }
+            set
+            {
+                if (value >= 0)
+                {
+                    _owned = value;
+                }
+            }
+        }
         // methods
         public Item() { }
         public virtual void Activate() { }

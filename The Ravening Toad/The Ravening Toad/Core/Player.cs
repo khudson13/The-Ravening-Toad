@@ -1,4 +1,5 @@
-﻿using RLNET;
+﻿using RaveningToad;
+using RLNET;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
@@ -9,34 +10,13 @@ using System.Threading.Tasks;
 // Here be the player object
 // Find all player data here
 
-// This is also where Game.cs looks to find out what the game state should be
-// * Whether a menu is open
-// * Which menu is open
-// * Game location i.e. dungeon, cafe, startscreen, etc
+// player inventory stored in ItemsMenu
 
 namespace The_Ravening_Toad.Core
 {
     public class Player : Actor
     {
-        private int[] _inventory = new int[(int)ItemID.END_USABLE]; // indexed by ItemID enum, each entry is the number of that item owned
         public List<Monster> visible_monsters = new List<Monster>();
-
-        public void AddItem(ItemID ID, int amount)
-        {
-            _inventory[(int)ID] += amount;
-        }
-        public void SubtractItem(ItemID ID, int amount = 1)
-        {
-            if (_inventory[(int)ID] >= amount)
-            {
-                _inventory[(int)ID] -= amount;
-            }
-        }
-        public int GetItemAmmount(ItemID ID)
-        {
-            return _inventory[(int)ID];
-        }
-        public int[] GetInventory() { return _inventory; }
 
         public Player()
         {
@@ -54,12 +34,6 @@ namespace The_Ravening_Toad.Core
             Name = "The Toad";
             Speed = 10;
             Symbol = '@';
-
-            // temporary starting inventory for testing
-            for (int i = 0; i < _inventory.Length; ++i)
-            {
-                _inventory[i] = 1;
-            }
         }
 
         public void DrawStats(RLConsole statConsole)

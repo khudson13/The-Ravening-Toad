@@ -8,13 +8,14 @@ using System.Threading.Tasks;
 using The_Ravening_Toad.Core;
 using The_Ravening_Toad.Items;
 
+// ALL DATA RELATED TO ITEMS LIVES HERE
+
 namespace The_Ravening_Toad.Systems
 {
     public class ItemsMenu
     {
         // prints items to screen in a rotating wheel, and processes item activations
 
-        private int[] _inventory = Game.Player.GetInventory();                          // copy of player inventory used for display
         private Item[] _item_definitions = new Item[(int)ItemID.END_USABLE];            // access item functionality here, items indexed in same order as _inventory for ease of use
         private bool _inventory_empty = false;                                          // is inventory empty
         public bool targeting = false;                                                  // currently selecting target for throw
@@ -38,7 +39,7 @@ namespace The_Ravening_Toad.Systems
                 int index_to_print = current_index - 1;
                 while (index_to_print >= 0)
                 {
-                    if (_inventory[index_to_print] > 0)
+                    if (_item_definitions[index_to_print].Owned > 0)
                     {
                         console.Print(x - 10, y + 1, ItemIDtoString((ItemID)(index_to_print)), RLColor.Gray);
                         index_to_print = -1;
@@ -51,12 +52,12 @@ namespace The_Ravening_Toad.Systems
 
                 // next item
                 index_to_print = current_index + 1;
-                while (index_to_print < _inventory.Length)
+                while (index_to_print < _item_definitions.Length)
                 {
-                    if (_inventory[index_to_print] > 0)
+                    if (_item_definitions[index_to_print].Owned > 0)
                     {
                         console.Print(x + 10, y + 1, ItemIDtoString((ItemID)(index_to_print)), RLColor.Gray);
-                        index_to_print = _inventory.Length;
+                        index_to_print = _item_definitions.Length;
                     }
                     else
                     {
@@ -71,38 +72,42 @@ namespace The_Ravening_Toad.Systems
             _item_definitions[current_index].Activate();
         }
 
+        public void AddItem(ItemID ID)
+        {
+            ++_item_definitions[(int)ID].Owned;
+        }
+
         public void DeductItem()
         {
-            --_inventory[current_index];
-            if (_inventory[current_index] == 0)
+            --_item_definitions[current_index].Owned;
+            if (_item_definitions[current_index].Owned == 0)
             {
-                while (_inventory[current_index] == 0 && current_index < _inventory.Length - 1)
+                while (_item_definitions[current_index].Owned == 0 && current_index < _item_definitions.Length - 1)
                 {
                     ++current_index;
                 }
-                if (_inventory[current_index] == 0)
+                if (_item_definitions[current_index].Owned == 0)
                 {
-                    while (_inventory[current_index] == 0 && current_index > 0)
+                    while (_item_definitions[current_index].Owned == 0 && current_index > 0)
                     {
                         --current_index;
                     }
-                    if (_inventory[current_index] == 0)
+                    if (_item_definitions[current_index].Owned == 0)
                     {
                         _inventory_empty = true;
                     }
                 }
             }
-            _inventory = Game.Player.GetInventory();
         }
 
         public int GetInventorySize()
         {
-            return _inventory.Length;
+            return _item_definitions.Length;
         }
 
         public int GetQuantity(int index)
         {
-            return _inventory[index];
+            return _item_definitions[index].Owned;
         }
 
         public string ItemIDtoString(ItemID itemID)
