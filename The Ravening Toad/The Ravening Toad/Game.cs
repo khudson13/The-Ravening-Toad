@@ -55,9 +55,10 @@ namespace RaveningToad
         public static ToadMap ToadMap { get; set; }
 
         public static CommandSystem CommandSystem { get; set; }
+        public static PlayerControls PlayerControls { get; set; }
         public static MenuControls MenuControls { get; set; }
 
-        public static MessageLog MessageLog { get; private set; }
+        public static MessageLog MessageLog { get; set; }
         public static MainMenu MainMenu { get; private set; }
         public static SaveMenu SaveMenu { get; private set; }
         public static LoadMenu LoadMenu { get; private set; }
@@ -155,6 +156,7 @@ namespace RaveningToad
 
             // Create Command System
             CommandSystem = new CommandSystem();
+            PlayerControls = new PlayerControls();
             MenuControls = new MenuControls();
             GameState = new GameState();
 
@@ -182,100 +184,13 @@ namespace RaveningToad
             RLKeyPress keyPress = _rootConsole.Keyboard.GetKeyPress();
             if (CommandSystem.IsPlayerTurn)
             {
+                
                 // primary player controls
                 if (keyPress != null && !GameState.pause)
                 {
-                    // DIRECTION CONTROLS
-                    if (keyPress.Key == RLKey.Up || keyPress.Key == RLKey.W)
-                    {
-                        didPlayerAct = CommandSystem.MovePlayer(Direction.Up);
-                    }
-                    else if (keyPress.Key == RLKey.Down || keyPress.Key == RLKey.S)
-                    {
-                        didPlayerAct = CommandSystem.MovePlayer(Direction.Down);
-                    }
-                    else if (keyPress.Key == RLKey.Left || keyPress.Key == RLKey.A)
-                    {
-                        didPlayerAct = CommandSystem.MovePlayer(Direction.Left);
-                    }
-                    else if (keyPress.Key == RLKey.Right || keyPress.Key == RLKey.D)
-                    {
-                        didPlayerAct = CommandSystem.MovePlayer(Direction.Right);
-                    }
-                    // ITEM CONTROLS
-                    else if (keyPress.Key == RLKey.E)
-                    {
-                        // select next item with non-zero quantity
-                        if (ItemsMenu.current_index < ItemsMenu.GetInventorySize() - 1)
-                        {
-                            int temp = ItemsMenu.current_index;
-                            ++ItemsMenu.current_index;
-                            while (ItemsMenu.GetQuantity(ItemsMenu.current_index) == 0 && ItemsMenu.current_index < ItemsMenu.GetInventorySize() - 1)
-                            {
-                                ++ItemsMenu.current_index;
-                            }
-                            if (ItemsMenu.GetQuantity(ItemsMenu.current_index) == 0)
-                            {
-                                ItemsMenu.current_index = temp;
-                            }
-                            else
-                            {
-                                _renderRequired = true;
-                            }
-                        }
-                    }
-                    else if (keyPress.Key == RLKey.Q)
-                    {
-                        // select previous item with non-zero quantity
-                        if (ItemsMenu.current_index > 0)
-                        {
-                            int temp = ItemsMenu.current_index;
-                            --ItemsMenu.current_index;
-                            while (ItemsMenu.GetQuantity(ItemsMenu.current_index) == 0 && ItemsMenu.current_index > 0)
-                            {
-                                --ItemsMenu.current_index;
-                            }
-                            if (ItemsMenu.GetQuantity(ItemsMenu.current_index) == 0)
-                            {
-                                ItemsMenu.current_index = temp;
-                            }
-                            else
-                            {
-                                _renderRequired = true;
-                            }
-                        }
-                    }
-                    // activate selected item
-                    else if (keyPress.Key == RLKey.Space)
-                    {
-                        ItemsMenu.ActivateItem();
-                        _renderRequired = true;
-                    }
-                    // USE EXIT
-                    else if (keyPress.Key == RLKey.Period)
-                    {
-                        if (ToadMap.CanMoveDownToNextLevel())
-                        {
-                            seed = (int)DateTime.UtcNow.Ticks;
-                            Random = new DotNetRandom(seed);
-                            MapGenerator mapGenerator = new MapGenerator(mapWidth, mapHeight, 20, 13, 7, mapLevel);
-                            ToadMap.Clear();
-                            ToadMap = mapGenerator.CreateMap();
-                            MessageLog = new MessageLog();
-                            CommandSystem = new CommandSystem();
-                            GameState.pause = true;
-                            GameState.location = "cafe";
-                            MessageLog.Add($"{Player.Name} has returned to the cafe");
-                        }
-                    }
-                    // OPEN MENU
-                    else if (keyPress.Key == RLKey.Escape)
-                    {
-                        GameState.pause = true;
-                        GameState.mainmenu = true;
-                        _renderRequired = true;
-                    }
+                    didPlayerAct = PlayerControls.ControlParser(keyPress.Key);                                        
                 }
+
                 // if paused
                 else if (GameState.pause)
                 {
