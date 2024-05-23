@@ -69,5 +69,20 @@ namespace The_Ravening_Toad.Core
                 }
             }
         }
+        public int OnHand
+        {
+            get { return _onHand; }
+            set
+            {
+                if (value < 0)
+                {
+                    _onHand = 0;
+                }
+                else
+                {
+                    _onHand = value;
+                }
+            }
+        }
     }
 }

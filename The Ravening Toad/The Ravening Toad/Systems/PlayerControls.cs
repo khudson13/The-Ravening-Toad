@@ -103,7 +103,7 @@ namespace The_Ravening_Toad.Systems
             else if (key == RLKey.Escape)
             {
                 Game.GameState.pause = true;
-                Game.GameState.mainmenu = true;
+                Game.GameState.mainmenu = true; 
                 didPlayerAct = true;
             }
 
