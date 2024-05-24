@@ -30,12 +30,13 @@ namespace The_Ravening_Toad.Core
     public enum ItemID
     {
         // don't forget to update ItemIDtoString() in ItemsMenu.cs when adding to this
-        POTIONS,
+        
+        // POTIONS
         S_Health,
         M_Health,
         L_Health,
 
-        WEAPONS,
+        // WEAPONS
         Grenade,
 
         END_USABLE, // items beyond this point can't be used in dungeon and don't appear in inventory menu

@@ -3,8 +3,16 @@
   "WorkspaceRootPath": "D:\\Repos\\The-Ravening-Toad\\The Ravening Toad\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{08F990ED-204B-4A09-86DB-D0F4E267BCEC}|The Ravening Toad\\The Ravening Toad.csproj|d:\\repos\\the-ravening-toad\\the ravening toad\\the ravening toad\\core\\itemtypes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08F990ED-204B-4A09-86DB-D0F4E267BCEC}|The Ravening Toad\\The Ravening Toad.csproj|solutionrelative:the ravening toad\\core\\itemtypes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{08F990ED-204B-4A09-86DB-D0F4E267BCEC}|The Ravening Toad\\The Ravening Toad.csproj|D:\\Repos\\The-Ravening-Toad\\The Ravening Toad\\the ravening toad\\systems\\itemsmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{08F990ED-204B-4A09-86DB-D0F4E267BCEC}|The Ravening Toad\\The Ravening Toad.csproj|solutionrelative:the ravening toad\\systems\\itemsmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08F990ED-204B-4A09-86DB-D0F4E267BCEC}|The Ravening Toad\\The Ravening Toad.csproj|D:\\Repos\\The-Ravening-Toad\\The Ravening Toad\\the ravening toad\\game.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08F990ED-204B-4A09-86DB-D0F4E267BCEC}|The Ravening Toad\\The Ravening Toad.csproj|solutionrelative:the ravening toad\\game.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{08F990ED-204B-4A09-86DB-D0F4E267BCEC}|The Ravening Toad\\The Ravening Toad.csproj|D:\\Repos\\The-Ravening-Toad\\The Ravening Toad\\the ravening toad\\core\\recipe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -19,12 +27,8 @@
       "RelativeMoniker": "D:0:0:{08F990ED-204B-4A09-86DB-D0F4E267BCEC}|The Ravening Toad\\The Ravening Toad.csproj|solutionrelative:the ravening toad\\interfaces\\iitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{08F990ED-204B-4A09-86DB-D0F4E267BCEC}|The Ravening Toad\\The Ravening Toad.csproj|d:\\repos\\the-ravening-toad\\the ravening toad\\the ravening toad\\systems\\playercontrols.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{08F990ED-204B-4A09-86DB-D0F4E267BCEC}|The Ravening Toad\\The Ravening Toad.csproj|D:\\Repos\\The-Ravening-Toad\\The Ravening Toad\\the ravening toad\\systems\\playercontrols.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{08F990ED-204B-4A09-86DB-D0F4E267BCEC}|The Ravening Toad\\The Ravening Toad.csproj|solutionrelative:the ravening toad\\systems\\playercontrols.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{08F990ED-204B-4A09-86DB-D0F4E267BCEC}|The Ravening Toad\\The Ravening Toad.csproj|D:\\Repos\\The-Ravening-Toad\\The Ravening Toad\\the ravening toad\\game.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{08F990ED-204B-4A09-86DB-D0F4E267BCEC}|The Ravening Toad\\The Ravening Toad.csproj|solutionrelative:the ravening toad\\game.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{08F990ED-204B-4A09-86DB-D0F4E267BCEC}|The Ravening Toad\\The Ravening Toad.csproj|D:\\Repos\\The-Ravening-Toad\\The Ravening Toad\\the ravening toad\\systems\\menucontrols.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -41,10 +45,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{08F990ED-204B-4A09-86DB-D0F4E267BCEC}|The Ravening Toad\\The Ravening Toad.csproj|D:\\Repos\\The-Ravening-Toad\\The Ravening Toad\\the ravening toad\\systems\\commandsystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{08F990ED-204B-4A09-86DB-D0F4E267BCEC}|The Ravening Toad\\The Ravening Toad.csproj|solutionrelative:the ravening toad\\systems\\commandsystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{08F990ED-204B-4A09-86DB-D0F4E267BCEC}|The Ravening Toad\\The Ravening Toad.csproj|D:\\Repos\\The-Ravening-Toad\\The Ravening Toad\\the ravening toad\\core\\itemtypes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{08F990ED-204B-4A09-86DB-D0F4E267BCEC}|The Ravening Toad\\The Ravening Toad.csproj|solutionrelative:the ravening toad\\core\\itemtypes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{08F990ED-204B-4A09-86DB-D0F4E267BCEC}|The Ravening Toad\\The Ravening Toad.csproj|D:\\Repos\\The-Ravening-Toad\\The Ravening Toad\\the ravening toad\\core\\item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -170,11 +170,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 25,
+          "SelectedChildIndex": 23,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "PlayerControls.cs",
               "DocumentMoniker": "D:\\Repos\\The-Ravening-Toad\\The Ravening Toad\\The Ravening Toad\\Systems\\PlayerControls.cs",
               "RelativeDocumentMoniker": "The Ravening Toad\\Systems\\PlayerControls.cs",
@@ -182,8 +182,7 @@
               "RelativeToolTip": "The Ravening Toad\\Systems\\PlayerControls.cs",
               "ViewState": "AQIAAEMAAAAAAAAAAAAmwGkAAAAwAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-22T00:40:04.99Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-22T00:40:04.99Z"
             },
             {
               "$type": "Document",
@@ -235,19 +234,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
               "Title": "Game.cs",
               "DocumentMoniker": "D:\\Repos\\The-Ravening-Toad\\The Ravening Toad\\The Ravening Toad\\Game.cs",
               "RelativeDocumentMoniker": "The Ravening Toad\\Game.cs",
               "ToolTip": "D:\\Repos\\The-Ravening-Toad\\The Ravening Toad\\The Ravening Toad\\Game.cs",
               "RelativeToolTip": "The Ravening Toad\\Game.cs",
-              "ViewState": "AQIAADYAAAAAAAAAAAAUwDwAAAAzAAAA",
+              "ViewState": "AQIAAHoAAAAAAAAAAAAUwDwAAAAzAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-18T00:09:49.253Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "CommandSystem.cs",
               "DocumentMoniker": "D:\\Repos\\The-Ravening-Toad\\The Ravening Toad\\The Ravening Toad\\Systems\\CommandSystem.cs",
               "RelativeDocumentMoniker": "The Ravening Toad\\Systems\\CommandSystem.cs",
@@ -259,7 +258,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "StandardMoveAndAttack.cs",
               "DocumentMoniker": "D:\\Repos\\The-Ravening-Toad\\The Ravening Toad\\The Ravening Toad\\Behaviors\\StandardMoveAndAttack.cs",
               "RelativeDocumentMoniker": "The Ravening Toad\\Behaviors\\StandardMoveAndAttack.cs",
@@ -319,7 +318,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Recipe.cs",
               "DocumentMoniker": "D:\\Repos\\The-Ravening-Toad\\The Ravening Toad\\The Ravening Toad\\Core\\Recipe.cs",
               "RelativeDocumentMoniker": "The Ravening Toad\\Core\\Recipe.cs",
@@ -327,8 +326,7 @@
               "RelativeToolTip": "The Ravening Toad\\Core\\Recipe.cs",
               "ViewState": "AQIAADUAAAAAAAAAAAAuwFAAAAAUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-18T00:09:52.51Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-18T00:09:52.51Z"
             },
             {
               "$type": "Document",
@@ -356,7 +354,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "MenuControls.cs",
               "DocumentMoniker": "D:\\Repos\\The-Ravening-Toad\\The Ravening Toad\\The Ravening Toad\\Systems\\MenuControls.cs",
               "RelativeDocumentMoniker": "The Ravening Toad\\Systems\\MenuControls.cs",
@@ -416,7 +414,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "IRecipe.cs",
               "DocumentMoniker": "D:\\Repos\\The-Ravening-Toad\\The Ravening Toad\\The Ravening Toad\\Interfaces\\IRecipe.cs",
               "RelativeDocumentMoniker": "The Ravening Toad\\Interfaces\\IRecipe.cs",
@@ -424,8 +422,7 @@
               "RelativeToolTip": "The Ravening Toad\\Interfaces\\IRecipe.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAA8AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-18T00:09:52.511Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-18T00:09:52.511Z"
             },
             {
               "$type": "Document",
@@ -441,7 +438,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "Monster.cs",
               "DocumentMoniker": "D:\\Repos\\The-Ravening-Toad\\The Ravening Toad\\The Ravening Toad\\Core\\Monster.cs",
               "RelativeDocumentMoniker": "The Ravening Toad\\Core\\Monster.cs",
@@ -453,15 +450,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 0,
               "Title": "ItemTypes.cs",
               "DocumentMoniker": "D:\\Repos\\The-Ravening-Toad\\The Ravening Toad\\The Ravening Toad\\Core\\ItemTypes.cs",
               "RelativeDocumentMoniker": "The Ravening Toad\\Core\\ItemTypes.cs",
               "ToolTip": "D:\\Repos\\The-Ravening-Toad\\The Ravening Toad\\The Ravening Toad\\Core\\ItemTypes.cs",
               "RelativeToolTip": "The Ravening Toad\\Core\\ItemTypes.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAC8AAAAFAAAA",
+              "ViewState": "AQIAABcAAAAAAAAAAAAQwDIAAAAUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-18T00:09:52.512Z"
+              "WhenOpened": "2024-04-18T00:09:52.512Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -477,16 +475,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "ItemsMenu.cs",
               "DocumentMoniker": "D:\\Repos\\The-Ravening-Toad\\The Ravening Toad\\The Ravening Toad\\Systems\\ItemsMenu.cs",
               "RelativeDocumentMoniker": "The Ravening Toad\\Systems\\ItemsMenu.cs",
               "ToolTip": "D:\\Repos\\The-Ravening-Toad\\The Ravening Toad\\The Ravening Toad\\Systems\\ItemsMenu.cs",
               "RelativeToolTip": "The Ravening Toad\\Systems\\ItemsMenu.cs",
-              "ViewState": "AQIAACYAAAAAAAAAAAApwDgAAAAUAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADgAAAAUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-18T00:09:52.514Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-18T00:09:52.514Z"
             },
             {
               "$type": "Document",
@@ -514,7 +511,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "IItem.cs",
               "DocumentMoniker": "D:\\Repos\\The-Ravening-Toad\\The Ravening Toad\\The Ravening Toad\\Interfaces\\IItem.cs",
               "RelativeDocumentMoniker": "The Ravening Toad\\Interfaces\\IItem.cs",
@@ -522,8 +519,7 @@
               "RelativeToolTip": "The Ravening Toad\\Interfaces\\IItem.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-18T00:09:52.516Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-18T00:09:52.516Z"
             },
             {
               "$type": "Document",
