@@ -214,7 +214,7 @@ namespace RaveningToad
                 if (didPlayerAct)
                 {
                     _renderRequired = true;
-                    CommandSystem.EndPlayerTurn();
+                    CommandSystem.EndPlayerTurn();                     
                 }
             }
             else
